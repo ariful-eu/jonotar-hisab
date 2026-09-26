@@ -98,6 +98,6 @@ export function loadDataset(dir = path.resolve(process.cwd(), "data")): S.Datase
   };
   const errs = checkRefs(ds);
   if (errs.length > 0) throw new DataError(errs.join("\n"));
-  cache = { dir, ds };
+  if (process.env.NODE_ENV === "production") cache = { dir, ds };
   return ds;
 }
