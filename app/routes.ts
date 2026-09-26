@@ -1,4 +1,8 @@
 import { type RouteConfig, index, route } from "@react-router/dev/routes";
+import { loadDataset } from "./data/load.server";
+
+// With ssr:false, a param route with a loader but zero prerendered paths fails the build.
+const ds = loadDataset();
 
 export default [
   index("routes/home.tsx"),
@@ -6,9 +10,9 @@ export default [
   route("wards", "routes/wards.tsx"),
   route("ward/:no", "routes/ward.tsx"),
   route("projects", "routes/projects.tsx"),
-  route("projects/:id", "routes/project.tsx"),
+  ...(ds.projects.length > 0 ? [route("projects/:id", "routes/project.tsx")] : []),
   route("tenders", "routes/tenders.tsx"),
-  route("tenders/:id", "routes/tender.tsx"),
+  ...(ds.tenders.length > 0 ? [route("tenders/:id", "routes/tender.tsx")] : []),
   route("services", "routes/services.tsx"),
   route("allowances", "routes/allowances.tsx"),
   route("rights", "routes/rights.tsx"),

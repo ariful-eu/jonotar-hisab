@@ -1,6 +1,5 @@
 import { MessageCircle, Phone } from "lucide-react";
-import { data, Link, useLoaderData } from "react-router";
-import type { Route } from "./+types/project";
+import { data, Link, useLoaderData, type LoaderFunctionArgs, type MetaFunction } from "react-router";
 import { Amount } from "../components/Amount";
 import { ShareButtons } from "../components/ShareButtons";
 import { SourceBadge } from "../components/SourceBadge";
@@ -11,12 +10,12 @@ import { useFmt, useT } from "../lib/i18n";
 import { OBSERVED_LABEL, PROJECT_STATUS_LABEL, SCHEME_LABEL } from "../lib/labels";
 import { pageMeta } from "../lib/meta";
 
-export function meta({ data }: Route.MetaArgs) {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) return pageMeta("প্রকল্প", "");
   return pageMeta(data.project.name_bn, "কাতুলী ইউনিয়নের প্রকল্প — বরাদ্দ, বাস্তবায়নকারী, সরেজমিন পর্যবেক্ষণ। আপনি কী দেখেছেন জানান।");
-}
+};
 
-export async function loader({ params }: Route.LoaderArgs) {
+export async function loader({ params }: LoaderFunctionArgs) {
   const ds = loadDataset();
   const project = ds.projects.find((p) => p.id === params.id);
   if (!project) throw data(null, { status: 404 });
