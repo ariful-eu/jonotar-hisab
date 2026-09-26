@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "Noto Sans Bengali";
+  src: local("Noto Sans Bengali"), local("NotoSansBengali-Regular"),
+    url("../node_modules/@fontsource/noto-sans-bengali/files/noto-sans-bengali-bengali-400-normal.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400 700;
+  unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0, U+1CD2, U+1CD5-1CD6, U+1CD8, U+1CE1, U+1CEA, U+1CED, U+1CF2, U+1CF5-1CF7, U+200C-200D, U+20B9, U+25CC, U+A8F1;
+}
+:root {
+  --bg: #fbf8f3; --surface: #ffffff; --surface-2: #f2ede4; --ink: #1d2422; --ink-2: #4d5855; --line: #e2dbcf;
+  --primary: #0f6b66; --primary-ink: #ffffff; --primary-soft: #d9ecea;
+  --accent: #a85f16; --accent-soft: #f6e6d0;
+  --income: #0f6b66; --expense: #c0632a;
+  --warn-bg: #fff3d1; --warn-ink: #614300; --bad: #b3261e; --good: #1f7a3a;
+  --observed-bg: #e9e3f7; --observed-ink: #4b3a8c;
+  --radius: 14px; --max: 760px;
+  --font: "Noto Sans Bengali", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #101615; --surface: #18201f; --surface-2: #212b29; --ink: #e7eeec; --ink-2: #a9b6b3; --line: #2e3a38;
+    --primary: #5cc4bb; --primary-ink: #0b1413; --primary-soft: #173331;
+    --accent: #e3a868; --accent-soft: #3a2a18;
+    --income: #5cc4bb; --expense: #e8905a;
+    --warn-bg: #3a2f10; --warn-ink: #f5d98a; --bad: #ff8a80; --good: #7bd88f;
+    --observed-bg: #2c2545; --observed-ink: #c9bdf5;
+    color-scheme: dark;
+  }
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 18px; line-height: 1.6; overflow-wrap: anywhere; padding-bottom: 84px; }
+.container { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+h1 { font-size: 1.55rem; line-height: 1.3; margin: 1.2rem 0 .6rem; }
+h2, .h2 { font-size: 1.3rem; line-height: 1.35; margin: 1.6rem 0 .6rem; }
+h3, .h3 { font-size: 1.1rem; line-height: 1.4; margin: 1rem 0 .4rem; }
+p { margin: .5rem 0; }
+a { color: var(--primary); text-underline-offset: 3px; }
+img { max-width: 100%; height: auto; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+table { border-collapse: collapse; width: 100%; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
