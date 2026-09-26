@@ -1,0 +1,87 @@
+{
+  "id": "katuli",
+  "name_bn": "কাতুলী",
+  "name_en": "Katuli",
+  "upazila_bn": "টাঙ্গাইল সদর",
+  "upazila_en": "Tangail Sadar",
+  "district_bn": "টাঙ্গাইল",
+  "district_en": "Tangail",
+  "area_km2": 26.92,
+  "population": 29811,
+  "households": 6433,
+  "census_year": 2011,
+  "portal_url": "https://katuliup.tangail.gov.bd/",
+  "villages_bn": [],
+  "villages_en": [],
+  "wards": [
+    {
+      "no": 1,
+      "villages_bn": [],
+      "villages_en": [],
+      "member_bn": null,
+      "member_verified_on": null
+    },
+    {
+      "no": 2,
+      "villages_bn": [],
+      "villages_en": [],
+      "member_bn": null,
+      "member_verified_on": null
+    },
+    {
+      "no": 3,
+      "villages_bn": [],
+      "villages_en": [],
+      "member_bn": null,
+      "member_verified_on": null
+    },
+    {
+      "no": 4,
+      "villages_bn": [],
+      "villages_en": [],
+      "member_bn": null,
+      "member_verified_on": null
+    },
+    {
+      "no": 5,
+      "villages_bn": [],
+      "villages_en": [],
+      "member_bn": null,
+      "member_verified_on": null
+    },
+    {
+      "no": 6,
+      "villages_bn": [],
+      "villages_en": [],
+      "member_bn": null,
+      "member_verified_on": null
+    },
+    {
+      "no": 7,
+      "villages_bn": [],
+      "villages_en": [],
+      "member_bn": null,
+      "member_verified_on": null
+    },
+    {
+      "no": 8,
+      "villages_bn": [],
+      "villages_en": [],
+      "member_bn": null,
+      "member_verified_on": null
+    },
+    {
+      "no": 9,
+      "villages_bn": [],
+      "villages_en": [],
+      "member_bn": null,
+      "member_verified_on": null
+    }
+  ],
+  "leadership": [],
+  "maintainer": {
+    "whatsapp": null,
+    "note_bn": null
+  },
+  "comparisons": []
+}
