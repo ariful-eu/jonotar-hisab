@@ -1,1 +1,160 @@
 union,fiscal_year,kind,direction,category,head_bn,head_en,amount,source_type,source_doc,status
+katuli,2014-15,proposed,income,own_tax,বসত বাড়ির বাৎসরিক মূল্যের উপর ৪% কর,Holding tax (4% of annual value),159200,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,own_tax,বকেয়া বসতবাড়ি কর,Holding tax arrears,1373643,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,own_tax,"ব্যবসা, পেশা ও জীবিকার উপর কর","Trade, profession & livelihood tax",30000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,fees,খোয়াড় ইজারা,Cattle-pound lease,1800,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,fees,গ্রাম আদালত,Village court fees,5000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,own_tax,মটর যান ব্যতীত অন্যান্য ভ্যান রিক্সা কর,Van/rickshaw tax,2000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,own_tax,অন্যান্য কর,Other taxes,1000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,salary_grant,চেয়ারম্যান ও সদস্যদের সম্মানী ভাতা (সরকারি অনুদান),Govt grant: chair & member honoraria,155700,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,salary_grant,"সচিব, দফাদার ও মহল্লাদারদের বেতন ভাতা (সরকারি অনুদান)",Govt grant: secretary & village police pay,432328,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,adp,এডিপি থোক বরাদ্দ (উপজেলা),ADP block allocation (upazila),200000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,block_grant,এলজিএসপি/সরকারি থোক বরাদ্দ,LGSP / govt block grant,1500000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,ldt_1pct,স্থাবর সম্পত্তি হস্তান্তর কর ১% অর্থ,1% land transfer tax share,1000000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,food_programmes,"টি, আর/কাবিখা ইত্যাদি",TR / KABIKHA etc.,4492387,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,hat_bazar,হাট বাজার ইজারা লব্ধ আয়,Hat-bazar lease income,50000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,other_grant,জেলা পরিষদ কর্তৃক,From Zila Parishad,50000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,income,other_grant,অন্যান্য (স্থানীয় সরকার সূত্রে),Other (local govt sources),5000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,establishment,চেয়ারম্যান ও সদস্যদের সম্মানী ভাতা,Chair & member honoraria,330000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,establishment,সচিব ও কর্মচারীদের বেতন ভাতা,Secretary & staff pay,432328,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,establishment,ট্যাক্স আদায় কমিশন ২০% বকেয়াসহ,Tax-collection commission 20% incl. arrears,274730,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,establishment,লাইসেন্স ফি আদায় কমিশন,Licence-fee collection commission,3000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,establishment,স্টেশনারী,Stationery,30000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,establishment,অন্যান্য সংস্থাপন ব্যয়,Other establishment,20000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,roads,"পাইপ কালভার্ট, পাকা রাস্তা, ইউ-ড্রেন, বাঁশের পুল, মাটি ভরাট","Culverts, paved roads, U-drains, bamboo bridges, earth filling",6500000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,health,স্বাস্থ্য ও পয়ঃপ্রণালী ব্যবস্থা,Health & sanitation,500000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,education,শিক্ষা/খেলাধূলা,Education / sports,500000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,agriculture,বৃক্ষরোপণ কর্মসূচি,Tree planting,100000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,agriculture,কৃষি,Agriculture,400000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,other,হাট-বাজার উন্নয়ন,Market development,100000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,other,ইউআইএসসি (ডিজিটাল সেন্টার),Union digital centre,100000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,other,জন্ম নিবন্ধন,Birth registration,30000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,other,পরিচয় পত্র,ID cards,20000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,establishment,পেট্রোল/ভ্রমণ ভাতা,Fuel / travel,12000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,establishment,"ডিজেল বিল, পেপার বিল, ভূমি কর","Diesel, newspaper, land tax",3000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,relief,ত্রাণ সামগ্রী পরিবহণ,Relief transport,5000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,establishment,আপ্যায়ন,Hospitality,9000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,other,গ্রাম আদালত,Village court,8000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,other,স্বেচ্ছামূলক দান/মজুরী প্রদান,Donations / wages,15000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,relief,দুর্যোগ ব্যবস্থাপনা,Disaster management,25000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,establishment,ঝাড়ুদারের মজুরী,Sweeper wages,6000,union,katuli-budget-2014-15,published
+katuli,2014-15,proposed,expense,other,অন্যান্য,Other,5000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,own_tax,বসত বাড়ির বাৎসরিক মূল্যের উপর ৪% কর,Holding tax (4% of annual value),159200,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,own_tax,বকেয়া বসতবাড়ি কর,Holding tax arrears,1214443,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,own_tax,"ব্যবসা, পেশা ও জীবিকার উপর কর","Trade, profession & livelihood tax",30000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,fees,খোয়াড় ইজারা,Cattle-pound lease,1800,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,fees,গ্রাম আদালত,Village court fees,5000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,own_tax,মটর যান ব্যতীত অন্যান্য ভ্যান রিক্সা কর,Van/rickshaw tax,2000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,own_tax,অন্যান্য কর,Other taxes,1000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,salary_grant,চেয়ারম্যান ও সদস্যদের সম্মানী ভাতা (সরকারি অনুদান),Govt grant: chair & member honoraria,155700,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,salary_grant,"সচিব, দফাদার ও মহল্লাদারদের বেতন ভাতা (সরকারি অনুদান)",Govt grant: secretary & village police pay,414328,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,adp,এডিপি থোক বরাদ্দ (উপজেলা),ADP block allocation (upazila),200000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,block_grant,এলজিএসপি/সরকারি থোক বরাদ্দ,LGSP / govt block grant,1458915,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,ldt_1pct,স্থাবর সম্পত্তি হস্তান্তর কর ১% অর্থ,1% land transfer tax share,800000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,hat_bazar,হাট বাজার ইজারা লব্ধ আয়,Hat-bazar lease income,50000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,other_grant,জেলা পরিষদ কর্তৃক,From Zila Parishad,50000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,income,other_grant,অন্যান্য (স্থানীয় সরকার সূত্রে),Other (local govt sources),5000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,establishment,চেয়ারম্যান ও সদস্যদের সম্মানী ভাতা,Chair & member honoraria,330000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,establishment,সচিব ও কর্মচারীদের বেতন ভাতা,Secretary & staff pay,414328,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,establishment,ট্যাক্স আদায় কমিশন ২০% বকেয়াসহ,Tax-collection commission 20% incl. arrears,343410,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,establishment,লাইসেন্স ফি আদায় কমিশন,Licence-fee collection commission,1500,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,establishment,স্টেশনারী,Stationery,25000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,establishment,অন্যান্য সংস্থাপন ব্যয়,Other establishment,20000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,roads,"পাইপ কালভার্ট, পাকা রাস্তা, ইউ-ড্রেন, বাঁশের পুল, মাটি ভরাট","Culverts, paved roads, U-drains, bamboo bridges, earth filling",1000000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,roads,গ্রামীণ রাস্তা পুনঃনির্মাণ ও মেরামত,Rural road rebuilding & repair,500000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,health,স্বাস্থ্য ও পয়ঃপ্রণালী ব্যবস্থা,Health & sanitation,500000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,education,শিক্ষা/খেলাধূলা,Education / sports,445148,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,agriculture,বৃক্ষরোপণ কর্মসূচি,Tree planting,100000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,agriculture,কৃষি,Agriculture,400000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,other,হাট-বাজার উন্নয়ন,Market development,115000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,other,ইউআইএসসি (ডিজিটাল সেন্টার),Union digital centre,100000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,other,অন্যান্য উন্নয়ন ব্যয়,Other development,85000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,other,জন্ম নিবন্ধন,Birth registration,30000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,other,পরিচয় পত্র,ID cards,20000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,establishment,পেট্রোল/ভ্রমণ ভাতা,Fuel / travel,12000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,establishment,"ডিজেল বিল, পেপার বিল, ভূমি কর","Diesel, newspaper, land tax",3000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,relief,ত্রাণ সামগ্রী পরিবহণ,Relief transport,5000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,establishment,আপ্যায়ন,Hospitality,9000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,other,গ্রাম আদালত,Village court,8000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,other,স্বেচ্ছামূলক দান/মজুরী প্রদান,Donations / wages,15000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,relief,দুর্যোগ ব্যবস্থাপনা,Disaster management,25000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,establishment,ঝাড়ুদারের মজুরী,Sweeper wages,6000,union,katuli-budget-2014-15,published
+katuli,2013-14,revised,expense,other,অন্যান্য,Other,5000,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,own_tax,বসত বাড়ির বাৎসরিক মূল্যের উপর ৪% কর,Holding tax (4% of annual value),53028,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,own_tax,"ব্যবসা, পেশা ও জীবিকার উপর কর","Trade, profession & livelihood tax",38400,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,fees,খোয়াড় ইজারা,Cattle-pound lease,1200,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,salary_grant,চেয়ারম্যান ও সদস্যদের সম্মানী ভাতা (সরকারি অনুদান),Govt grant: chair & member honoraria,155700,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,salary_grant,"সচিব, দফাদার ও মহল্লাদারদের বেতন ভাতা (সরকারি অনুদান)",Govt grant: secretary & village police pay,408120,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,adp,এডিপি থোক বরাদ্দ (উপজেলা),ADP block allocation (upazila),200000,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,block_grant,এলজিএসপি/সরকারি থোক বরাদ্দ,LGSP / govt block grant,1216372,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,ldt_1pct,স্থাবর সম্পত্তি হস্তান্তর কর ১% অর্থ,1% land transfer tax share,949800,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,food_programmes,"টি, আর/কাবিখা ইত্যাদি",TR / KABIKHA etc.,5151811,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,hat_bazar,হাট বাজার ইজারা লব্ধ আয়,Hat-bazar lease income,85032,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,other_grant,"জমৃনি, স্বেচ্ছাদান ইত্যাদি",Donations etc.,93745,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,income,other_grant,নাম ছাড়া একটি সারি (নথিতে খাতের নাম নেই),Unlabelled row in the document,34396,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,establishment,চেয়ারম্যান ও সদস্যদের সম্মানী ভাতা,Chair & member honoraria,201200,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,establishment,সচিব ও কর্মচারীদের বেতন ভাতা,Secretary & staff pay,408120,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,establishment,ট্যাক্স আদায় কমিশন ২০% বকেয়াসহ,Tax-collection commission 20% incl. arrears,12553,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,establishment,স্টেশনারী,Stationery,8037,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,roads,"পাইপ কালভার্ট, পাকা রাস্তা, ইউ-ড্রেন, বাঁশের পুল, মাটি ভরাট","Culverts, paved roads, U-drains, bamboo bridges, earth filling",6320198,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,health,স্বাস্থ্য ও পয়ঃপ্রণালী ব্যবস্থা,Health & sanitation,519000,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,education,শিক্ষা/খেলাধূলা,Education / sports,474617,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,agriculture,কৃষি,Agriculture,309000,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,other,হাট-বাজার উন্নয়ন,Market development,85032,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,other,জন্ম নিবন্ধন,Birth registration,34950,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,other,পরিচয় পত্র,ID cards,6000,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,establishment,পেট্রোল/ভ্রমণ ভাতা,Fuel / travel,11500,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,establishment,"ডিজেল বিল, পেপার বিল, ভূমি কর","Diesel, newspaper, land tax",1684,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,establishment,আপ্যায়ন,Hospitality,2036,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,establishment,ঝাড়ুদারের মজুরী,Sweeper wages,2100,union,katuli-budget-2014-15,published
+katuli,2012-13,actual,expense,other,অন্যান্য,Other,26067,union,katuli-budget-2014-15,published
+katuli,2024-25,actual,income,block_grant,ইউনিয়ন পরিষদ উন্নয়ন সহায়তা (সাধারণ বরাদ্দ) — ২য় কিস্তি (১ম কিস্তির তথ্য পাওয়া যায়নি),UP development grant — 2nd instalment (1st instalment not found),743700,upstream,lgd-bbg-2024-25-inst2,published
+katuli,2025-26,actual,income,block_grant,ইউনিয়ন পরিষদ উন্নয়ন সহায়তা — ২য় কিস্তি (১ম কিস্তির তথ্য পাওয়া যায়নি),UP development grant — 2nd instalment (1st instalment not found),741100,upstream,lgd-bbg-2025-26-inst2,published
+katuli,2026-27,actual,income,block_grant,ইউনিয়ন পরিষদ উন্নয়ন সহায়তা — ১ম কিস্তি,UP development grant — 1st instalment,391300,upstream,lgd-bbg-2026-27-inst1,published
+silimpur,2023-24,proposed,income,own_tax,বসতবাড়ি কর (হাল+বকেয়া),Holding tax,925000,union,silimpur-budget-2023-24,published
+silimpur,2023-24,proposed,income,fees,জন্ম-মৃত্যু নিবন্ধন ফি,Birth/death fees,150000,union,silimpur-budget-2023-24,published
+silimpur,2023-24,proposed,income,fees,লাইসেন্স ও পারমিট ফি,Licence fees,100000,union,silimpur-budget-2023-24,published
+silimpur,2023-24,proposed,income,hat_bazar,হাট-বাজার ইজারা,Hat-bazar,100000,union,silimpur-budget-2023-24,published
+silimpur,2023-24,proposed,income,salary_grant,সম্মানী ও বেতন অনুদান,Honoraria & salary grants,2391542,union,silimpur-budget-2023-24,published
+silimpur,2023-24,proposed,income,adp,এডিপি,ADP,2000000,union,silimpur-budget-2023-24,published
+silimpur,2023-24,proposed,income,employment,অতিদরিদ্রের কর্মসংস্থান,EGPP,2432000,union,silimpur-budget-2023-24,published
+silimpur,2023-24,proposed,income,ldt_1pct,১% হস্তান্তর কর,1% land transfer,1800000,union,silimpur-budget-2023-24,published
+silimpur,2023-24,proposed,income,block_grant,উন্নয়ন সহায়তা তহবিল,Development support,1100000,union,silimpur-budget-2023-24,published
+silimpur,2023-24,proposed,income,food_programmes,টিআর/কাবিটা/কাবিখা,TR/KABITA/KABIKHA,1500000,union,silimpur-budget-2023-24,published
+silimpur,2023-24,proposed,income,safety_net,ভিজিডি/ভিজিএফ/খাদ্যবান্ধব,VGD/VGF/food-friendly,7672520,union,silimpur-budget-2023-24,published
+porabari,2025-26,proposed,income,own_tax,বসতবাড়ি কর (হাল+বকেয়া),Holding tax,850000,union,porabari-budget-2025-26,published
+porabari,2025-26,proposed,income,ldt_1pct,১% হস্তান্তর কর,1% land transfer,1000000,union,porabari-budget-2025-26,published
+porabari,2025-26,proposed,income,adp,এডিপি,ADP,4000000,union,porabari-budget-2025-26,published
+porabari,2025-26,proposed,income,block_grant,ইউপি উন্নয়ন সহায়তা,UP development grant,1200000,union,porabari-budget-2025-26,published
+porabari,2025-26,proposed,income,food_programmes,টিআর/কাবিটা/কাবিখা,TR/KABITA/KABIKHA,1000000,union,porabari-budget-2025-26,published
+porabari,2025-26,proposed,income,employment,ইজিপিপি,EGPP,2506350,union,porabari-budget-2025-26,published
+porabari,2025-26,proposed,income,safety_net,ভিজিডি/ভিজিএফ,VGD/VGF,4100000,union,porabari-budget-2025-26,published
+baghil,2026-27,proposed,income,own_tax,বসতবাড়ি কর (হাল+বকেয়া),Holding tax,1700000,union,baghil-budget-2026-27,published
+baghil,2026-27,proposed,income,hat_bazar,হাট-বাজার (৫% ও ১৫%),Hat-bazar shares,1850000,union,baghil-budget-2026-27,published
+baghil,2026-27,proposed,income,salary_grant,সম্মানী ও বেতন অনুদান,Honoraria & salary grants,3027504,union,baghil-budget-2026-27,published
+baghil,2026-27,proposed,income,adp,এডিপি,ADP,1000000,union,baghil-budget-2026-27,published
+baghil,2026-27,proposed,income,employment,ইজিপিপি,EGPP,3998400,union,baghil-budget-2026-27,published
+baghil,2026-27,proposed,income,other_grant,উপজেলা রাজস্ব,Upazila revenue,3000000,union,baghil-budget-2026-27,published
+baghil,2026-27,proposed,income,ldt_1pct,১% হস্তান্তর কর,1% land transfer,2300000,union,baghil-budget-2026-27,published
+baghil,2026-27,proposed,income,block_grant,ইউপি উন্নয়ন সহায়তা,UP development grant,1600000,union,baghil-budget-2026-27,published
+baghil,2026-27,proposed,income,food_programmes,টিআর/কাবিটা/কাবিখা,TR/KABITA/KABIKHA,1800000,union,baghil-budget-2026-27,published
+baghil,2026-27,proposed,income,safety_net,ভিজিডি/ভিজিএফ,VGD/VGF,4647975,union,baghil-budget-2026-27,published
+karatia,2024-25,proposed,income,own_tax,বসতবাড়ি কর (হাল+বকেয়া),Holding tax,2500000,union,karatia-budget-2024-25,published
+karatia,2024-25,proposed,income,hat_bazar,ইজারা,Leases,3000000,union,karatia-budget-2024-25,published
+karatia,2024-25,proposed,income,food_programmes,টিআর/কাবিখা/কাবিটা,TR/KABIKHA/KABITA,1800000,union,karatia-budget-2024-25,published
+karatia,2024-25,proposed,income,adp,এডিপি,ADP,1000000,union,karatia-budget-2024-25,published
+karatia,2024-25,proposed,income,ldt_1pct,১% হস্তান্তর কর,1% land transfer,2400000,union,karatia-budget-2024-25,published
+karatia,2024-25,proposed,income,block_grant,উন্নয়ন সহায়তা (বিবিজি+পিবিজি),Development grants (BBG+PBG),2400000,union,karatia-budget-2024-25,published
+karatia,2024-25,proposed,income,employment,ইজিপিপি,EGPP,4672000,union,karatia-budget-2024-25,published
+hugra,2023-24,proposed,income,own_tax,বসতবাড়ি কর (হাল+বকেয়া),Holding tax,1102800,union,hugra-budget-2023-24,published
+hugra,2023-24,proposed,income,food_programmes,টিআর/কাবিখা/কাবিটা,TR/KABIKHA/KABITA,1155000,union,hugra-budget-2023-24,published
+hugra,2023-24,proposed,income,adp,এডিপি,ADP,300000,union,hugra-budget-2023-24,published
+hugra,2023-24,proposed,income,ldt_1pct,১% হস্তান্তর কর,1% land transfer,1250000,union,hugra-budget-2023-24,published
+hugra,2023-24,proposed,income,block_grant,এলজিএসপি/উন্নয়ন সহায়তা,LGSP/development grants,2830200,union,hugra-budget-2023-24,published
+hugra,2023-24,proposed,income,employment,ইজিপিপি,EGPP,5184000,union,hugra-budget-2023-24,published
+hugra,2023-24,proposed,income,safety_net,ভিজিডি/ভিজিএফ,VGD/VGF,3726640,union,hugra-budget-2023-24,published
+dainya,2023-24,proposed,income,adp,এডিপি,ADP,1800000,union,dainya-budget-2023-24,published
+dainya,2023-24,proposed,income,block_grant,উন্নয়ন সহায়তা,Development grant,1500000,union,dainya-budget-2023-24,published
+dainya,2023-24,proposed,income,food_programmes,টিআর/কাবিখা/কাবিটা,TR/KABIKHA/KABITA,1700000,union,dainya-budget-2023-24,published
+dainya,2023-24,proposed,income,ldt_1pct,১% হস্তান্তর কর,1% land transfer,2000000,union,dainya-budget-2023-24,published
+dainya,2023-24,proposed,income,employment,ইজিপিপি,EGPP,3744000,union,dainya-budget-2023-24,published

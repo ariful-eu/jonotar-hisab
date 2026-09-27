@@ -7,12 +7,62 @@
   "district_bn": "টাঙ্গাইল",
   "district_en": "Tangail",
   "area_km2": 26.92,
-  "population": 29811,
-  "households": 6433,
-  "census_year": 2011,
+  "population": 32540,
+  "households": 7884,
+  "census_year": 2022,
   "portal_url": "https://katuliup.tangail.gov.bd/",
-  "villages_bn": [],
-  "villages_en": [],
+  "villages_bn": [
+    "খোলাবাড়ী",
+    "বাগবাড়ী",
+    "চৌবাড়ীয়া",
+    "ডুবাইল",
+    "আলোকদিয়া",
+    "আব্দুল্লাপাড়া",
+    "ঘোষপাড়া",
+    "কড়াইল",
+    "ইছাপাশা",
+    "ভাবকী",
+    "কাতুলী",
+    "ভবানীপুর",
+    "রশিদপুর",
+    "ধীতপুর",
+    "নেওয়ারগাছা",
+    "হাটগাড়িয়া",
+    "পাঁচবাড়িয়া",
+    "আটবেরুহা",
+    "চকদই",
+    "বুর্জুক বেরুহা",
+    "অন্দরমানিক",
+    "ব্রাহ্মণজানি",
+    "গঙ্গাবরদিয়া",
+    "খোরশিলা"
+  ],
+  "villages_en": [
+    "Kholabari",
+    "Bagbari",
+    "Choubaria",
+    "Dubail",
+    "Alokdia",
+    "Abdullapara",
+    "Ghoshpara",
+    "Karail",
+    "Ichhapasha",
+    "Bhabki",
+    "Katuli",
+    "Bhabanipur",
+    "Rashidpur",
+    "Dhitpur",
+    "Newargachha",
+    "Hatgaria",
+    "Pachbaria",
+    "Atberuha",
+    "Chakdoi",
+    "Burjuk Beruha",
+    "Andarmanik",
+    "Brahmanjani",
+    "Gangabardia",
+    "Khorshila"
+  ],
   "wards": [
     {
       "no": 1,
@@ -78,10 +128,82 @@
       "member_verified_on": null
     }
   ],
-  "leadership": [],
+  "leadership": [
+    {
+      "role_bn": "চেয়ারম্যান",
+      "role_en": "Chairman",
+      "name_bn": "মোঃ ইকবাল হোসেন",
+      "name_en": "Md. Iqbal Hossain",
+      "verified_on": null,
+      "note_bn": "পোর্টালের কর্মকর্তা তালিকায় তারিখ নেই; ২০২৬ সালে পদে আছেন কিনা যাচাই করা হয়নি।"
+    },
+    {
+      "role_bn": "ইউপি সচিব (তথ্য প্রদানকারী কর্মকর্তা)",
+      "role_en": "UP Secretary (information officer)",
+      "name_bn": "মাহবুবুর রহমান",
+      "name_en": "Mahbubur Rahman",
+      "verified_on": null,
+      "note_bn": "পোর্টালের কর্মকর্তা তালিকায় তারিখ নেই; যাচাই করা হয়নি।"
+    }
+  ],
   "maintainer": {
     "whatsapp": null,
     "note_bn": null
   },
-  "comparisons": []
+  "comparisons": [
+    {
+      "id": "silimpur",
+      "name_bn": "সিলিমপুর",
+      "name_en": "Silimpur",
+      "population": 22581,
+      "households": 5683,
+      "census_year": 2022,
+      "portal_url": "https://silimpurup.tangail.gov.bd/"
+    },
+    {
+      "id": "porabari",
+      "name_bn": "পোড়াবাড়ী",
+      "name_en": "Porabari",
+      "population": 23712,
+      "households": 5617,
+      "census_year": 2022,
+      "portal_url": "https://porabariup.tangail.gov.bd/"
+    },
+    {
+      "id": "baghil",
+      "name_bn": "বাঘিল",
+      "name_en": "Baghil",
+      "population": 33410,
+      "households": 8183,
+      "census_year": 2022,
+      "portal_url": "https://baghilup.tangail.gov.bd/"
+    },
+    {
+      "id": "karatia",
+      "name_bn": "করটিয়া",
+      "name_en": "Karatia",
+      "population": 51995,
+      "households": 13060,
+      "census_year": 2022,
+      "portal_url": "https://karatiaup.tangail.gov.bd/"
+    },
+    {
+      "id": "hugra",
+      "name_bn": "হুগড়া",
+      "name_en": "Hugra",
+      "population": 38999,
+      "households": 8453,
+      "census_year": 2022,
+      "portal_url": "https://hugraup.tangail.gov.bd/"
+    },
+    {
+      "id": "dainya",
+      "name_bn": "দাইন্যা",
+      "name_en": "Dainya",
+      "population": 36696,
+      "households": 8945,
+      "census_year": 2022,
+      "portal_url": "https://dyennaup.tangail.gov.bd/"
+    }
+  ]
 }

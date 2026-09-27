@@ -54,6 +54,14 @@ describe("compareUnions", () => {
   });
 });
 
+describe("compareUnions with partial upstream years", () => {
+  it("prefers the latest year that has the union's own budget over a newer partial upstream year", () => {
+    const withUpstream = [...lines, L({ fiscal_year: "2026-27", kind: "actual", category: "block_grant", amount: 5, source_type: "upstream" })];
+    const rows = compareUnions(withUpstream, totals, [{ id: "katuli", name_bn: "কাতুলী", name_en: "Katuli", households: 4 }]);
+    expect(rows[0]).toMatchObject({ fiscalYear: "2014-15", income: 406 });
+  });
+});
+
 describe("fiscal years", () => {
   it("July starts a new fiscal year", () => {
     expect(fiscalYearOf(new Date("2026-06-30T12:00:00Z"))).toBe("2025-26");

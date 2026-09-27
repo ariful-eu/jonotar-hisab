@@ -62,7 +62,8 @@ export function summarizeYear(lines: BudgetLine[], totals: ReportedTotal[], unio
 export function compareUnions(lines: BudgetLine[], totals: ReportedTotal[], unions: UnionRef[]): Comparison[] {
   return unions
     .flatMap((u) => {
-      const fy = yearsFor(lines, u.id)[0];
+      const own = lines.filter((l) => l.source_type === "union");
+      const fy = yearsFor(own, u.id)[0] ?? yearsFor(lines, u.id)[0];
       const s = fy ? summarizeYear(lines, totals, u.id, fy) : null;
       if (!s) return [];
       const income = s.reportedIncome ?? s.income;

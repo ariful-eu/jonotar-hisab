@@ -1,1 +1,10 @@
 id,service_bn,service_en,official_fee,time_limit_days,legal_basis,source_doc,note_bn
+birth-reg-45d,জন্ম নিবন্ধন (জন্মের ৪৫ দিনের মধ্যে),Birth registration (within 45 days),0,,"জন্ম ও মৃত্যু নিবন্ধন আইন, ২০০৪ ও বিধিমালা",orgbdr-fees,মূল সনদ (বাংলা ও ইংরেজি) বিনামূল্যে।
+birth-reg-5y,জন্ম নিবন্ধন (৪৫ দিন থেকে ৫ বছর),Birth registration (45 days to 5 years),25,,"জন্ম ও মৃত্যু নিবন্ধন আইন, ২০০৪ ও বিধিমালা",orgbdr-fees,
+birth-reg-late,জন্ম নিবন্ধন (৫ বছর পরে),Birth registration (after 5 years),50,,"জন্ম ও মৃত্যু নিবন্ধন আইন, ২০০৪ ও বিধিমালা",orgbdr-fees,
+birth-cert-correct-dob,জন্ম সনদে জন্ম তারিখ সংশোধন,Correcting date of birth,100,,"জন্ম ও মৃত্যু নিবন্ধন আইন, ২০০৪ ও বিধিমালা",orgbdr-fees,
+birth-cert-correct-other,জন্ম সনদে অন্যান্য তথ্য সংশোধন,Correcting other details,50,,"জন্ম ও মৃত্যু নিবন্ধন আইন, ২০০৪ ও বিধিমালা",orgbdr-fees,
+birth-cert-duplicate,জন্ম/মৃত্যু সনদের প্রতিলিপি,Duplicate certificate,50,,"জন্ম ও মৃত্যু নিবন্ধন আইন, ২০০৪ ও বিধিমালা",orgbdr-fees,
+trade-licence,ট্রেড লাইসেন্স,Trade licence,,,"ইউপি আইন ২০০৯, ধারা ৪৯ (সিটিজেন চার্টার)",law-up-act-2009,কাতুলীর সিটিজেন চার্টারে থাকার কথা — প্রকাশিত হয়নি।
+citizenship-cert,নাগরিকত্ব সনদ,Citizenship certificate,,,"ইউপি আইন ২০০৯, ধারা ৪৯ (সিটিজেন চার্টার)",law-up-act-2009,কাতুলীর সিটিজেন চার্টারে থাকার কথা — প্রকাশিত হয়নি।
+warish-cert,ওয়ারিশ সনদ,Heir (warish) certificate,,,"ইউপি আইন ২০০৯, ধারা ৪৯ (সিটিজেন চার্টার)",law-up-act-2009,কাতুলীর সিটিজেন চার্টারে থাকার কথা — প্রকাশিত হয়নি।
