@@ -7,6 +7,7 @@ import { formatFy, formatTaka, formatTakaFull, perHousehold, toBnDigits } from "
 import { useT } from "../lib/i18n";
 import { SCHEME_LABEL } from "../lib/labels";
 import { pageMeta } from "../lib/meta";
+import { Logo } from "../components/Logo";
 import { absoluteUrl } from "../lib/site";
 
 export function meta() {
@@ -83,6 +84,7 @@ export default function PosterPage() {
       <p className="no-print">{t("এই পাতাটি A4 কাগজে প্রিন্ট করে নোটিশ বোর্ড, হাট-বাজার, মসজিদ বা স্কুলে লাগান।", "Print this page on A4 and put it up on notice boards, markets, mosques or schools.")}</p>
       <button type="button" className="btn btn-primary no-print" onClick={() => window.print()}>{t("প্রিন্ট করুন", "Print")}</button>
       <article className="poster" lang="bn">
+        <p className="poster-brand"><Logo size={44} /> <strong>জনতার হিসাব</strong></p>
         <h1>{poster.title}</h1>
         {poster.big ? <p className="big">{poster.big}</p> : null}
         {poster.bigLabel ? <p>{poster.bigLabel}</p> : null}

@@ -54,6 +54,9 @@ export default function Home() {
         "“Jonotar Hisab” is an independent citizens' initiative. It turns government documents into a plain account of Katuli Union Parishad's money, so you can know and ask questions.",
       )}</p>
 
+      <h2>{t("কী জানতে চান?", "What would you like to know?")}</h2>
+      <SectionTiles />
+
       {summary && headline !== null ? (
         <section className="card" aria-labelledby="hero-label">
           <p id="hero-label" className="muted">
@@ -92,9 +95,6 @@ export default function Home() {
           </p>
         </div>
       )}
-
-      <h2>{t("কী জানতে চান?", "What would you like to know?")}</h2>
-      <SectionTiles />
 
       {newerPartial.length > 0 ? (
         <section className="card" aria-labelledby="newer-h">
