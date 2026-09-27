@@ -1,0 +1,30 @@
+name: Check for new documents
+on:
+  schedule:
+    - cron: "30 0 * * *"   # 06:30 Bangladesh time
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run scrape
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: scraper/new-documents
+          delete-branch: true
+          title: "নতুন নথি পাওয়া গেছে — যাচাই করুন"
+          body-path: scrape-summary.md
+          commit-message: "data: new documents found by the daily scraper"
+          add-paths: |
+            data/documents.csv
+            data/tenders.csv
+            public/archive/**
