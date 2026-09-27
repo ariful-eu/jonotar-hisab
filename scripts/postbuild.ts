@@ -5,6 +5,13 @@ import { pickPrecache, renderServiceWorker } from "./lib/sw-template";
 const out = path.resolve("build/client");
 const base = process.env.BASE_PATH ?? "/";
 
+// With a basename, React Router nests prerendered pages under it; Pages already serves build/client at that path.
+const nested = path.join(out, base.replace(/^\/|\/$/g, ""));
+if (base !== "/" && fs.existsSync(nested)) {
+  for (const entry of fs.readdirSync(nested)) fs.renameSync(path.join(nested, entry), path.join(out, entry));
+  fs.rmdirSync(nested);
+}
+
 function walk(dir: string): string[] {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
     const p = path.join(dir, e.name);
