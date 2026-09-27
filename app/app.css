@@ -173,3 +173,11 @@ details.cat > summary::-webkit-details-marker { display: none; }
   .poster, .letter { max-width: 760px; }
 }
 @media (min-width: 560px) and (max-width: 899px) { .container { padding: 0 24px; } }
+.chip-btn { border: 1.5px solid var(--line); cursor: pointer; font: inherit; font-size: .95rem; min-height: 40px; padding: 4px 14px; }
+.chip-btn.active { background: var(--primary); color: var(--primary-ink); border-color: var(--primary); }
+.menu-item.tone-teal { background: #0f6b66; border-color: #0f6b66; color: #fff; }
+.menu-item.tone-amber { background: #9a5410; border-color: #9a5410; color: #fff; }
+.menu-item.tone-clay { background: #a13f22; border-color: #a13f22; color: #fff; }
+.menu-item[class*="tone-"] .muted, .menu-item[class*="tone-"] .menu-chevron { color: rgba(255, 255, 255, .86); }
+.menu-item[class*="tone-"] .menu-icon { background: rgba(255, 255, 255, .18); color: #fff; }
+.menu-item[class*="tone-"]:hover, .menu-item[class*="tone-"]:focus-visible { filter: brightness(1.08); }

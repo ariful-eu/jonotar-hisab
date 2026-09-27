@@ -4,11 +4,11 @@ import { Unknown } from "./Unknown";
 
 export type { BarItem };
 
-export function Bars({ items, tone, format = "taka" }: { items: BarItem[]; tone: "income" | "expense"; format?: "taka" | "takaFull" }) {
+export function Bars({ items, tone, format = "taka", max: sharedMax }: { items: BarItem[]; tone: "income" | "expense"; format?: "taka" | "takaFull"; max?: number }) {
   const f = useFmt();
   const t = useT();
   if (items.length === 0) return <p className="muted">{t("তথ্য নেই", "No data")}</p>;
-  const max = Math.max(0, ...items.map((i) => i.amount ?? 0));
+  const max = sharedMax ?? Math.max(0, ...items.map((i) => i.amount ?? 0));
   return (
     <ul className="bars">
       {items.map((i) => {

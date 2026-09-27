@@ -62,7 +62,7 @@ export default function Home() {
           <p id="hero-label" className="muted">
             {reconstructed
               ? t(`${f.fy(summary.fiscalYear)} অর্থবছরে অন্তত এত টাকা এসেছে (অন্য সরকারি অফিসের তালিকা থেকে — আংশিক)`, `At least this much came in FY ${summary.fiscalYear} (from other offices' lists — partial)`)
-              : t(`ইউনিয়নের সর্বশেষ প্রকাশিত বাজেট (${f.fy(summary.fiscalYear)}) অনুযায়ী বছরে মোট আয়`, `Yearly income in the union's latest published budget (FY ${summary.fiscalYear})`)}
+              : t(`কাতুলী ইউনিয়নের মোট বাজেট — সর্বশেষ প্রকাশিত, ${f.fy(summary.fiscalYear)} অর্থবছর`, `Katuli Union's total budget — latest published, FY ${summary.fiscalYear}`)}
           </p>
           <p className="hero-number">{f.taka(headline)}</p>
           {perHh !== null ? (
@@ -84,7 +84,7 @@ export default function Home() {
           <Bars tone="income" items={top(incomeItems)} />
           <h2 className="h3">{t("খরচ হয় কোথায়", "Where it is spent")}</h2>
           <Bars tone="expense" items={top(expenseItems)} />
-          <Link className="btn btn-primary" to={`/budget/${summary.fiscalYear}`}>{t("সব খাতের পুরো হিসাব দেখুন", "See every item")}</Link>
+          <Link className="btn btn-primary" to={`/budget/${summary.fiscalYear}`}>{t("পুরো বাজেট দেখুন", "See the full budget")}</Link>
         </section>
       ) : (
         <div className="warn" role="alert">

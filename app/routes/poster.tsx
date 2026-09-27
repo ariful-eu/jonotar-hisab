@@ -29,7 +29,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     poster = {
       title: "কাতুলী ইউনিয়নের টাকা কোথা থেকে আসে, কোথায় যায়?",
       big: income !== null ? formatTaka(income, "bn") : null,
-      bigLabel: s ? `${formatFy(s.fiscalYear, "bn")} অর্থবছরের আয় (ইউনিয়নের সর্বশেষ প্রকাশিত বাজেট)${perHh !== null ? ` — পরিবারপ্রতি বাজেট প্রায় ${formatTakaFull(perHh, "bn")}` : ""}` : null,
+      bigLabel: s ? `${formatFy(s.fiscalYear, "bn")} অর্থবছরের মোট বাজেট (ইউনিয়নের সর্বশেষ প্রকাশিত)${perHh !== null ? ` — পরিবারপ্রতি বাজেট প্রায় ${formatTakaFull(perHh, "bn")}` : ""}` : null,
       facts: [
         { label: "এর পরের বাজেট", value: "প্রকাশিত হয়নি — চেয়ে নিন (তথ্য অধিকার আইন)" },
         { label: "আইন অনুযায়ী প্রকাশযোগ্য নথি", value: `${toBnDigits(ds.disclosures.length)}টির মধ্যে ${toBnDigits(published)}টি প্রকাশিত` },

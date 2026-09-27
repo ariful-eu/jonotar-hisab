@@ -30,6 +30,10 @@ describe("Bars", () => {
     expect(fills[0].style.width).toBe("100%");
     expect(fills[1].style.width).toBe("25%");
   });
+  it("scales against a shared max when rendered one item at a time", () => {
+    const { container } = wrap(<Bars tone="expense" max={200} items={[{ key: "a", label: "কৃষি", amount: 50 }]} />);
+    expect(container.querySelector<HTMLElement>(".bar-fill")!.style.width).toBe("25%");
+  });
   it("shows an empty message when there are no items", () => {
     wrap(<Bars tone="income" items={[]} />);
     expect(screen.getByText("তথ্য নেই")).toBeTruthy();

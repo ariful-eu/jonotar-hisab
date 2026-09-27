@@ -4,7 +4,7 @@ import { useT } from "../lib/i18n";
 
 export const NAV_ITEMS = [
   { to: "/", end: true, icon: House, bn: "হোম", en: "Home" },
-  { to: "/budget", end: false, icon: Wallet, bn: "হিসাব", en: "Budget" },
+  { to: "/budget", end: false, icon: Wallet, bn: "বাজেট", en: "Budget" },
   { to: "/projects", end: false, icon: Hammer, bn: "কাজ", en: "Works" },
   { to: "/wards", end: false, icon: MapPin, bn: "ওয়ার্ড", en: "Wards" },
   { to: "/rights", end: false, icon: Scale, bn: "অধিকার", en: "Rights" },
