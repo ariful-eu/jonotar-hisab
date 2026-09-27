@@ -17,7 +17,7 @@ const optWard = z.preprocess((v) => {
   const b = blankToNull(v);
   return b === null ? null : Number(toEnDigits(String(b)));
 }, z.number().int().min(1).max(9).nullable());
-const rowStatus = z.enum(["draft", "published"]);
+const rowStatus = z.enum(["draft", "published", "ignored"]);
 
 export const SOURCE_TYPES = ["union", "upstream", "observed"] as const;
 export const KINDS = ["proposed", "revised", "actual"] as const;

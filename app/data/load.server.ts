@@ -20,7 +20,7 @@ export function parseCsv<T>(file: string, text: string, schema: z.ZodType<T>, dr
   }
   const out: T[] = [];
   res.data.forEach((raw, i) => {
-    if ((raw[draftField] ?? "").trim() === "draft") return;
+    if (["draft", "ignored"].includes((raw[draftField] ?? "").trim())) return;
     const parsed = schema.safeParse(raw);
     if (!parsed.success) {
       const issue = parsed.error.issues[0];

@@ -6,7 +6,7 @@ Everything on the site comes from the files in this folder. Open the CSVs in Exc
 - **Amounts** can be typed however they appear in the document: `১,৫৯,২০০`, `159200`, `৳১৫৯২০০` or `১৫৯২০০ টাকা`. Do not write "লাখ" or "lakh"; write the full number.
 - **Dates** are `YYYY-MM-DD` (e.g. `2026-09-26`). **Fiscal years** look like `2026-27`.
 - **Every figure needs a `source_doc`.** Add the document to `documents.csv` first, and put the file in `public/archive/<year>/`.
-- A row with `status` set to `draft` (in `projects.csv` the column is `status_row`) is **hidden** from the site. Set it to `published` once you've checked it.
+- `status` can be `published`, `draft` (waiting for review) or `ignored` (reviewed, not relevant — kept so the checker does not fetch it again). A row with `status` set to `draft` (in `projects.csv` the column is `status_row`) is **hidden** from the site. Set it to `published` once you've checked it.
 - **Never** add beneficiary names, NID numbers, phone numbers or photos of people receiving allowances. Only counts go in `allowance_counts.csv`.
 - **Wording:** describe what a document says and what a volunteer saw, with the date. Never call anyone corrupt or a thief.
 
