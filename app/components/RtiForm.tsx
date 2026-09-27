@@ -15,8 +15,9 @@ export function RtiForm({ items, union }: { items: RtiItem[]; union: { name_bn: 
     if (wanted && items.some((i) => i.id === wanted)) setItemId(wanted);
   }, [items]);
   const information = itemId === "custom" ? custom : items.find((i) => i.id === itemId)?.rti_request_bn ?? "";
-  const today = new Date().toISOString().slice(0, 10);
-  const letter = buildRtiLetter({ unionName: union.name_bn, upazila: union.upazila_bn, district: union.district_bn, information, applicant, dateText: f.date(today) });
+  const [today, setToday] = useState("");
+  useEffect(() => setToday(new Date().toISOString().slice(0, 10)), []);
+  const letter = buildRtiLetter({ unionName: union.name_bn, upazila: union.upazila_bn, district: union.district_bn, information, applicant, dateText: today ? f.date(today) : "" });
   const field = (k: keyof typeof applicant, label: string) => (
     <label>{label}<input value={applicant[k]} onChange={(e) => setApplicant({ ...applicant, [k]: e.target.value })} autoComplete="off" /></label>
   );

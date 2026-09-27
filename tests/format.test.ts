@@ -15,6 +15,8 @@ describe("parseAmount", () => {
     expect(parseAmount(" 1,59,200 ")).toBe(159200);
     expect(parseAmount("Tk. 500")).toBe(500);
     expect(parseAmount("24.25")).toBe(24.25);
+    expect(parseAmount("৪৪,৯২,৩৮৭/-")).toBe(4492387);
+    expect(parseAmount("=১,৫৯,২০০/-")).toBe(159200);
   });
   it("returns null for blanks and dashes", () => {
     expect(parseAmount("")).toBeNull();

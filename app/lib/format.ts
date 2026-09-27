@@ -11,7 +11,7 @@ export function toEnDigits(input: string): string {
 }
 
 export function parseAmount(raw: string): number | null {
-  const cleaned = toEnDigits(raw).replace(/৳|টাকা|tk\.?|,|\s/gi, "");
+  const cleaned = toEnDigits(raw).replace(/৳|টাকা|tk\.?|,|\s/gi, "").replace(/^=/, "").replace(/\/-+$/, "");
   if (cleaned === "" || cleaned === "-" || cleaned === "–") return null;
   return /^-?\d+(\.\d+)?$/.test(cleaned) ? Number(cleaned) : Number.NaN;
 }
