@@ -81,3 +81,10 @@ export function fiscalYearOf(d: Date): string {
 export function fyStart(fy: string): number {
   return Number(fy.slice(0, 4));
 }
+
+export function headlineYear(lines: BudgetLine[], union: string): { year: string | null; newerPartial: string[] } {
+  const all = yearsFor(lines, union);
+  const full = yearsFor(lines.filter((l) => l.source_type === "union"), union)[0];
+  if (!full) return { year: all[0] ?? null, newerPartial: [] };
+  return { year: full, newerPartial: all.filter((y) => y > full) };
+}

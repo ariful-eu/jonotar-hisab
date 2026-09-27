@@ -45,7 +45,7 @@ export function RtiForm({ items, union }: { items: RtiItem[]; union: { name_bn: 
         <p><strong>{letter.subject}</strong></p>
         {letter.fields.map((x) => <div key={x.label} className="field"><span>{x.label}</span><span>{x.value}</span></div>)}
         <p>{letter.closing}</p>
-        <p style={{ marginTop: "2.5rem" }}>{t("আবেদনকারীর স্বাক্ষর", "Applicant's signature")}: ........................................</p>
+        <p style={{ marginTop: "2.5rem" }}>আবেদনকারীর স্বাক্ষর: ........................................</p>
       </article>
     </div>
   );

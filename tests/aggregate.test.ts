@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { compareUnions, fiscalYearOf, fyStart, summarizeYear, yearsFor } from "../app/lib/aggregate";
+import { compareUnions, fiscalYearOf, fyStart, headlineYear, summarizeYear, yearsFor } from "../app/lib/aggregate";
 import type { BudgetLine, ReportedTotal } from "../app/data/schemas";
 
 const L = (o: Partial<BudgetLine>): BudgetLine => ({ union: "katuli", fiscal_year: "2014-15", kind: "proposed", direction: "income", category: "own_tax", head_bn: "ক", head_en: null, amount: 100, source_type: "union", source_doc: "d", status: "published", ...o });
@@ -68,5 +68,17 @@ describe("fiscal years", () => {
     expect(fiscalYearOf(new Date("2026-07-01T12:00:00Z"))).toBe("2026-27");
     expect(fiscalYearOf(new Date("2099-09-01T12:00:00Z"))).toBe("2099-00");
     expect(fyStart("2014-15")).toBe(2014);
+  });
+});
+
+describe("headlineYear", () => {
+  it("uses the latest full budget and reports newer partial years separately", () => {
+    const withUpstream = [...lines, L({ fiscal_year: "2026-27", kind: "actual", amount: 5, source_type: "upstream" })];
+    expect(headlineYear(withUpstream, "katuli")).toEqual({ year: "2014-15", newerPartial: ["2026-27"] });
+  });
+  it("falls back to the latest partial year when no full budget exists", () => {
+    const only = [L({ fiscal_year: "2026-27", source_type: "upstream" })];
+    expect(headlineYear(only, "katuli")).toEqual({ year: "2026-27", newerPartial: [] });
+    expect(headlineYear([], "katuli")).toEqual({ year: null, newerPartial: [] });
   });
 });

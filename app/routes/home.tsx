@@ -6,7 +6,7 @@ import { SectionTiles } from "../components/SectionTiles";
 import { ShareButtons } from "../components/ShareButtons";
 import { categoryItems } from "../data/categories";
 import { loadDataset } from "../data/load.server";
-import { fiscalYearOf, fyStart, summarizeYear, yearsFor } from "../lib/aggregate";
+import { fiscalYearOf, fyStart, headlineYear, summarizeYear, yearsFor } from "../lib/aggregate";
 import { perHousehold } from "../lib/format";
 import { useFmt, useT } from "../lib/i18n";
 import { KIND_LABEL } from "../lib/labels";
@@ -21,11 +21,12 @@ export function meta() {
 export async function loader() {
   const ds = loadDataset();
   const id = ds.union.id;
-  const latest = yearsFor(ds.budget, id)[0] ?? null;
+  const { year: latest, newerPartial } = headlineYear(ds.budget, id);
   const latestUnionYear = yearsFor(ds.budget.filter((l) => l.source_type === "union"), id)[0] ?? null;
   return {
     union: { id, households: ds.union.households, census_year: ds.union.census_year },
     summary: latest ? summarizeYear(ds.budget, ds.reportedTotals, id, latest) : null,
+    newerPartial: newerPartial.map((fy) => ({ fy, total: summarizeYear(ds.budget, ds.reportedTotals, id, fy)?.income ?? 0 })),
     latestUnionYear,
     currentFy: fiscalYearOf(new Date()),
     disclosures: ds.disclosures.map(({ id, requirement_bn, requirement_en, published }) => ({ id, requirement_bn, requirement_en, published })),
@@ -33,7 +34,7 @@ export async function loader() {
 }
 
 export default function Home() {
-  const { union, summary, latestUnionYear, currentFy, disclosures } = useLoaderData<typeof loader>();
+  const { union, summary, newerPartial, latestUnionYear, currentFy, disclosures } = useLoaderData<typeof loader>();
   const t = useT();
   const f = useFmt();
   const headline = summary ? summary.reportedIncome ?? summary.income : null;
@@ -85,6 +86,21 @@ export default function Home() {
           <h2 className="h3">{t("কোথায় খরচ হয়", "Where it goes")}</h2>
           <Bars tone="expense" items={categoryItems(summary.expenseByCategory, f.lang)} />
           <Link className="btn btn-primary" to={`/budget/${summary.fiscalYear}`}>{t("পুরো হিসাব দেখুন", "See the full budget")}</Link>
+        </section>
+      ) : null}
+
+      {newerPartial.length > 0 ? (
+        <section className="card" aria-labelledby="newer-h">
+          <h2 id="newer-h" className="h3">{t("এর পরের বছরগুলোতে যা জানা গেছে", "What we know about later years")}</h2>
+          <p className="muted">{t("ইউনিয়ন এসব বছরের বাজেট প্রকাশ করেনি। অন্য সরকারি অফিসের বরাদ্দ তালিকায় কাতুলীর নামে পাওয়া অংশটুকু:", "The union did not publish these budgets. Amounts found for Katuli in other government offices' allocation lists:")}</p>
+          <ul className="scorecard">
+            {newerPartial.map((p) => (
+              <li key={p.fy}>
+                <span className="grow"><Link to={`/budget/${p.fy}`}>{t(`${f.fy(p.fy)} অর্থবছর`, `FY ${p.fy}`)}</Link></span>
+                <strong>{t(`অন্তত ${f.taka(p.total)}`, `at least ${f.taka(p.total)}`)}</strong>
+              </li>
+            ))}
+          </ul>
         </section>
       ) : null}
 

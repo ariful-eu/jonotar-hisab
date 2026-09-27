@@ -2,7 +2,7 @@ import QRCode from "qrcode";
 import { data, useLoaderData } from "react-router";
 import type { Route } from "./+types/poster";
 import { loadDataset } from "../data/load.server";
-import { summarizeYear, yearsFor } from "../lib/aggregate";
+import { headlineYear, summarizeYear } from "../lib/aggregate";
 import { formatFy, formatTaka, formatTakaFull, perHousehold, toBnDigits } from "../lib/format";
 import { useT } from "../lib/i18n";
 import { SCHEME_LABEL } from "../lib/labels";
@@ -20,7 +20,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   const id = ds.union.id;
   let poster: Poster;
   if (params.kind === "home" && params.id === id) {
-    const fy = yearsFor(ds.budget, id)[0];
+    const fy = headlineYear(ds.budget, id).year;
     const s = fy ? summarizeYear(ds.budget, ds.reportedTotals, id, fy) : null;
     const income = s ? s.reportedIncome ?? s.income : null;
     const perHh = income !== null ? perHousehold(income, ds.union.households) : null;
@@ -28,8 +28,9 @@ export async function loader({ params }: Route.LoaderArgs) {
     poster = {
       title: "কাতুলী ইউনিয়নের টাকা কোথা থেকে আসে, কোথায় যায়?",
       big: income !== null ? formatTaka(income, "bn") : null,
-      bigLabel: s ? `${formatFy(s.fiscalYear, "bn")} অর্থবছরের আয়${perHh !== null ? ` — প্রতি পরিবারে প্রায় ${formatTakaFull(perHh, "bn")}` : ""}` : null,
+      bigLabel: s ? `${formatFy(s.fiscalYear, "bn")} অর্থবছরের আয় (ইউনিয়নের সর্বশেষ প্রকাশিত বাজেট)${perHh !== null ? ` — প্রতি পরিবারে প্রায় ${formatTakaFull(perHh, "bn")}` : ""}` : null,
       facts: [
+        { label: "এর পরের বাজেট", value: "প্রকাশিত হয়নি — চেয়ে নিন (তথ্য অধিকার আইন)" },
         { label: "আইন অনুযায়ী প্রকাশযোগ্য নথি", value: `${toBnDigits(ds.disclosures.length)}টির মধ্যে ${toBnDigits(published)}টি প্রকাশিত` },
         { label: "তথ্য চাওয়ার অধিকার", value: "তথ্য অধিকার আইন ২০০৯ — ২০ কার্যদিবসে উত্তর দেওয়ার কথা" },
         { label: "ঘুষ চাইলে", value: "দুদক হটলাইন ১০৬ (টোল-ফ্রি)" },
