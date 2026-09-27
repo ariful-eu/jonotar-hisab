@@ -129,3 +129,5 @@ details.cat > summary::-webkit-details-marker { display: none; }
   .rti-page > :not(.letter) { display: none !important; }
   @page { size: A4; margin: 14mm; }
 }
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-text small { font-size: .72rem; font-weight: 400; color: var(--ink-2); }

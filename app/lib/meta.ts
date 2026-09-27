@@ -1,4 +1,4 @@
-const SITE = "কাতুলী ইউনিয়নের বাজেট — স্বাধীন নাগরিক উদ্যোগ";
+const SITE = "জনতার হিসাব — কাতুলী ইউনিয়ন";
 
 export function pageMeta(title: string, description: string) {
   return [

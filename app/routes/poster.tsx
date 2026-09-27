@@ -91,7 +91,7 @@ export default function PosterPage() {
           <span dangerouslySetInnerHTML={{ __html: qr }} />
           <p>ফোনের ক্যামেরা দিয়ে স্ক্যান করে বিস্তারিত দেখুন<br /><small>{url}</small></p>
         </div>
-        <p className="muted">স্বাধীন নাগরিক উদ্যোগ — এটি সরকারি নোটিশ নয়। কোনো অমিল মানেই অনিয়মের প্রমাণ নয়।</p>
+        <p className="muted">জনতার হিসাব — স্বাধীন নাগরিক উদ্যোগ — এটি সরকারি নোটিশ নয়। কোনো অমিল মানেই অনিয়মের প্রমাণ নয়।</p>
       </article>
     </>
   );

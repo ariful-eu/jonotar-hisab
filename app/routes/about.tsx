@@ -20,7 +20,7 @@ export default function About() {
       <h1>{t("আমাদের সম্পর্কে", "About")}</h1>
       <section className="card">
         <h2 className="h3">{t("আমরা কারা", "Who we are")}</h2>
-        <p>{t("এটি কাতুলী ইউনিয়নের নাগরিকদের একটি স্বাধীন, অরাজনৈতিক উদ্যোগ। এটি সরকারি ওয়েবসাইট নয়, ইউনিয়ন পরিষদ বা কোনো সরকারি দপ্তরের সাথে যুক্ত নয়। লক্ষ্য একটাই: জনগণের টাকার হিসাব সবার কাছে সহজ করে পৌঁছে দেওয়া।", "This is an independent, non-partisan initiative by citizens of Katuli Union. It is not a government website and is not affiliated with the Union Parishad or any government office. Our only aim is to make public money easy for everyone to follow.")}</p>
+        <p>{t("“জনতার হিসাব” কাতুলী ইউনিয়নের নাগরিকদের একটি স্বাধীন, অরাজনৈতিক উদ্যোগ। এটি সরকারি ওয়েবসাইট নয়, ইউনিয়ন পরিষদ বা কোনো সরকারি দপ্তরের সাথে যুক্ত নয়। লক্ষ্য একটাই: জনগণের টাকার হিসাব সবার কাছে সহজ করে পৌঁছে দেওয়া।", "“Jonotar Hisab” (The People's Account) is an independent, non-partisan initiative by citizens of Katuli Union. It is not a government website and is not affiliated with the Union Parishad or any government office. Our only aim is to make public money easy for everyone to follow.")}</p>
         <p>{t("ইউনিয়ন পরিষদের সরকারি ওয়েবসাইট: ", "The Union Parishad's official website: ")}<a href={portal} target="_blank" rel="noopener">{portal}</a></p>
       </section>
       <section className="card">
