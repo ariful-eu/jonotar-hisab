@@ -15,6 +15,10 @@ describe("parseLgedNotice", () => {
     const rows = lgedRows(TEXT, { union: "Katuli", upazila: "Tangail Sadar" });
     expect(rows.map((r) => r.tenderId)).toEqual(["1306710"]);
   });
+  it("is not thrown off by a preceding row that has no Union", () => {
+    const t = "Remarks (LTM) 2. 1128600 Construction of Dhopakhali Union Land Office Boundary Wall (Remaining Part) Under Upazila : Dhanbari, District: Tangail TAN/TULO-2/BWD-03/ 09 22-07-2025 & 16.00pm 23-07-2025 & 15.00pm LTM 3. 1128639 Improvement of Bagbari Chowbaria Jame Mosque Under Katuli Union, Upazila: Tangail Sadar, District:Tangail. [Latitude:24.231614, Longitude: 89.834115] GSID-2/TNG/SDW-648 22-07-2025 & 16.00pm 23-07-2025 & 15.00pm LTM";
+    expect(lgedRows(t, { union: "Katuli", upazila: "Tangail Sadar" })).toEqual([{ tenderId: "1128639", scheme: "Improvement of Bagbari Chowbaria Jame Mosque", union: "Katuli", upazila: "Tangail Sadar", lat: 24.231614, lng: 89.834115, packageNo: "GSID-2/TNG/SDW-648", closing: "2025-07-23" }]);
+  });
   it("returns nothing for unrelated or empty text", () => {
     expect(parseLgedNotice("").rows).toEqual([]);
     expect(lgedRows(TEXT.replace(/Katuli/g, "Kakua"), { union: "Katuli", upazila: "Tangail Sadar" })).toEqual([]);

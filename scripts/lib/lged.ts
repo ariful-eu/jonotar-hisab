@@ -5,7 +5,7 @@ const dmy = (s: string) => {
   return `${y}-${m}-${d}`;
 };
 
-const ROW = /(\d{6,8})\s+(.+?)\s+Under\s+(.+?)\s+Union,\s*Upazila:\s*(.+?),\s*District:\s*\w+\.?\s*\[Latitude:\s*([\d.]+),\s*Longitude:\s*([\d.]+)\]\s*(\S+)\s+\d{2}-\d{2}-\d{4}\s*&\s*[\d.:]+\s*[ap]m\s+(\d{2}-\d{2}-\d{4})/gi;
+const ROW = /(\d{6,8})\s+((?:(?!\s\d{6,8}\s)(?!\sUnder\s).)+?)\s+Under\s+([A-Za-z' .-]{2,40}?)\s+Union,\s*Upazila:\s*(.+?),\s*District:\s*\w+\.?\s*\[Latitude:\s*([\d.]+),\s*Longitude:\s*([\d.]+)\]\s*(\S+)\s+\d{2}-\d{2}-\d{4}\s*&\s*[\d.:]+\s*[ap]m\s+(\d{2}-\d{2}-\d{4})/gi;
 
 export function parseLgedNotice(raw: string): { noticeNo: string | null; date: string | null; rows: LgedRow[] } {
   const text = raw.replace(/\s+/g, " ");
