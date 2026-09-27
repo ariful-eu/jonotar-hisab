@@ -25,7 +25,7 @@ export default function Tender() {
   const base = import.meta.env.BASE_URL;
   return (
     <>
-      <p className="no-print"><Link to="/tenders">← {t("সব দরপত্র", "All tenders")}</Link></p>
+      <p className="no-print"><Link to="/tenders">← {t("সব টেন্ডার", "All tenders")}</Link></p>
       <h1>{x.title_bn}</h1>
       <section className="card">
         <dl className="kv">
@@ -41,7 +41,7 @@ export default function Tender() {
           {x.archive_path ? <a className="btn" href={`${base}${x.archive_path}`} target="_blank" rel="noopener">{t("সংরক্ষিত নোটিশ", "Saved copy of notice")}</a> : null}
           {x.url ? <a className="btn" href={x.url} target="_blank" rel="noopener">{t("মূল ওয়েবসাইটে", "On the original website")}</a> : null}
         </div>
-        {project ? <p>{t("সংশ্লিষ্ট প্রকল্প: ", "Related project: ")}<Link to={`/projects/${project.id}`}>{project.name_bn}</Link></p> : null}
+        {project ? <p>{t("এই টেন্ডারের কাজ: ", "The work: ")}<Link to={`/projects/${project.id}`}>{project.name_bn}</Link></p> : null}
       </section>
       <ShareButtons title={x.title_bn} />
     </>

@@ -37,8 +37,8 @@ export const RIGHTS_TOPICS: RightsTopic[] = [
   },
   {
     key: "ward-shava",
-    title_bn: "ওয়ার্ড সভা: আপনার ওয়ার্ডের সংসদ",
-    title_en: "Ward shava: your ward's assembly",
+    title_bn: "ওয়ার্ড সভা: এলাকার সবার সভা",
+    title_en: "Ward shava: the whole ward's meeting",
     summary_bn: "আপনার ওয়ার্ডের সব ভোটার ওয়ার্ড সভার সদস্য। কোন রাস্তা আগে হবে, কারা ভাতা পাবেন — এখানেই ঠিক হওয়ার কথা।",
     summary_en: "Every voter in your ward is a member. Which road comes first and who gets allowances is meant to be decided here.",
     sections: [

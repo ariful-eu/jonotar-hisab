@@ -31,10 +31,14 @@ export async function loader({ params }: Route.LoaderArgs) {
     ...ds.union.comparisons,
   ]);
   const docIds = summary ? [...summary.incomeByCategory, ...summary.expenseByCategory].flatMap((c) => c.lines.map((l) => l.source_doc)) : [];
-  return { unionId: id, households: ds.union.households, years, fy, summary, comparison, docs: docRefs(ds.documents, docIds) };
+  const counts = new Map<string, number>();
+  for (const d of docIds) counts.set(d, (counts.get(d) ?? 0) + 1);
+  const primaryDoc = [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? null;
+  const ownYears = new Set(yearsFor(ds.budget.filter((l) => l.source_type === "union"), id));
+  return { unionId: id, households: ds.union.households, years, partialYears: years.filter((y) => !ownYears.has(y)), fy, summary, comparison, primaryDoc, docs: docRefs(ds.documents, docIds) };
 }
 
-function CategoryList({ cats, tone, docs }: { cats: CategoryTotal[]; tone: "income" | "expense"; docs: Record<string, DocRef> }) {
+function CategoryList({ cats, tone, docs, primaryDoc }: { cats: CategoryTotal[]; tone: "income" | "expense"; docs: Record<string, DocRef>; primaryDoc: string | null }) {
   const f = useFmt();
   const t = useT();
   return (
@@ -48,13 +52,12 @@ function CategoryList({ cats, tone, docs }: { cats: CategoryTotal[]; tone: "inco
               <span className="muted small-link"><ChevronDown size={16} aria-hidden /> {t(`${f.digits(c.lines.length)}টি খাত দেখুন`, `See ${c.lines.length} line items`)}</span>
             </summary>
             <table className="lines">
-              <thead><tr><th>{t("খাত", "Head")}</th><th className="num">{t("টাকা", "Taka")}</th><th>{t("উৎস", "Source")}</th></tr></thead>
+              <thead><tr><th>{t("খাত", "Item")}</th><th className="num">{t("টাকা", "Taka")}</th></tr></thead>
               <tbody>
                 {c.lines.map((l, i) => (
                   <tr key={i}>
-                    <td>{f.lang === "en" && l.head_en ? l.head_en : l.head_bn}</td>
+                    <td>{f.lang === "en" && l.head_en ? l.head_en : l.head_bn}{l.source_doc !== primaryDoc ? <><br /><SourceBadge type={l.source_type} doc={docs[l.source_doc]} /></> : null}</td>
                     <td className="num">{f.takaFull(l.amount)}</td>
-                    <td><SourceBadge type={l.source_type} doc={docs[l.source_doc]} /></td>
                   </tr>
                 ))}
               </tbody>
@@ -73,14 +76,14 @@ export function EmptyYear() {
       <AlertTriangle aria-hidden />
       <p>
         {t("এই বছরের বাজেটের তথ্য প্রকাশিত হয়নি। ", "This year's budget has not been published. ")}
-        <Link to="/rights/rti?item=budget-current">{t("তথ্য অধিকার আইনে চেয়ে আবেদন করুন →", "Request it under the RTI Act →")}</Link>
+        <Link to="/rights/rti?item=budget-current">{t("তথ্য চান — আবেদনপত্র তৈরি করুন →", "Ask for it — make an RTI letter →")}</Link>
       </p>
     </div>
   );
 }
 
 export default function Budget() {
-  const { unionId, households, years, fy, summary, comparison, docs } = useLoaderData<typeof loader>();
+  const { unionId, households, years, partialYears, fy, summary, comparison, primaryDoc, docs } = useLoaderData<typeof loader>();
   const t = useT();
   const f = useFmt();
   const lowReliability = Object.values(docs).some((d) => d.reliability === "low");
@@ -89,11 +92,11 @@ export default function Budget() {
 
   return (
     <>
-      <h1>{t("বাজেট", "Budget")}{fy ? ` ${f.fy(fy)}` : ""}</h1>
+      <h1>{t("আয়-ব্যয়ের হিসাব", "Income & spending")}{fy ? ` ${f.fy(fy)}` : ""}</h1>
       {years.length > 0 ? (
         <nav className="chips" aria-label={t("অর্থবছর", "Fiscal year")}>
           {years.map((y) => (
-            <Link key={y} to={`/budget/${y}`} className={`chip${y === fy ? " active" : ""}`} aria-current={y === fy ? "page" : undefined}>{f.fy(y)}</Link>
+            <Link key={y} to={`/budget/${y}`} className={`chip${y === fy ? " active" : ""}`} aria-current={y === fy ? "page" : undefined}>{f.fy(y)}{partialYears.includes(y) ? t(" (আংশিক)", " (partial)") : ""}</Link>
           ))}
         </nav>
       ) : null}
@@ -108,7 +111,8 @@ export default function Budget() {
           ) : null}
 
           <section className="card">
-            <p className="muted">{t(`${KIND_LABEL[summary.kind].bn} বাজেট`, `${KIND_LABEL[summary.kind].en} budget`)}</p>
+            <p className="muted">{t(`${KIND_LABEL[summary.kind].bn} হিসাব`, `${KIND_LABEL[summary.kind].en} figures`)}{summary.kind === "proposed" ? t(" — বছরের শুরুতে যে পরিকল্পনা করা হয়েছিল", " — planned at the start of the year") : summary.kind === "actual" ? t(" — বছর শেষে আসলে যা হয়েছে", " — what actually happened") : ""}</p>
+            {primaryDoc && docs[primaryDoc] ? <p className="muted">{t("উৎস: ", "Source: ")}{f.lang === "en" && docs[primaryDoc].title_en ? docs[primaryDoc].title_en : docs[primaryDoc].title_bn} <SourceBadge type={summary.sourceTypes[0]} doc={docs[primaryDoc]} /></p> : null}
             <dl className="kv">
               <dt>{t("মোট আয়", "Total income")}</dt><dd><Amount value={income} full /></dd>
               <dt>{t("মোট খরচ", "Total spending")}</dt><dd><Amount value={summary.expense === 0 && summary.reportedExpense === null ? null : summary.reportedExpense ?? summary.expense} full /></dd>
@@ -128,10 +132,10 @@ export default function Budget() {
             ) : null}
           </section>
 
-          <h2>{t("আয় কোথা থেকে", "Where the money comes from")}</h2>
-          <CategoryList cats={summary.incomeByCategory} tone="income" docs={docs} />
-          <h2>{t("খরচ কোথায়", "Where it is spent")}</h2>
-          {summary.expenseByCategory.length > 0 ? <CategoryList cats={summary.expenseByCategory} tone="expense" docs={docs} /> : <p className="muted">{t("খরচের খাতওয়ারি হিসাব প্রকাশিত হয়নি।", "No spending breakdown has been published.")}</p>}
+          <h2>{t("টাকা আসে কোথা থেকে", "Where the money comes from")}</h2>
+          <CategoryList cats={summary.incomeByCategory} tone="income" docs={docs} primaryDoc={primaryDoc} />
+          <h2>{t("খরচ হয় কোথায়", "Where it is spent")}</h2>
+          {summary.expenseByCategory.length > 0 ? <CategoryList cats={summary.expenseByCategory} tone="expense" docs={docs} primaryDoc={primaryDoc} /> : <p className="muted">{t("খরচের খাতওয়ারি হিসাব প্রকাশিত হয়নি।", "No spending breakdown has been published.")}</p>}
         </>
       )}
 

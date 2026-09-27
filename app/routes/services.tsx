@@ -22,20 +22,15 @@ export default function Services() {
   return (
     <>
       <h1>{t("সেবার সরকারি ফি", "Official service fees")}</h1>
-      <p>{t("নিচের ফি-র বেশি টাকা চাওয়া হলে রসিদ চান, আর অভিযোগ করুন।", "If you are asked for more than these fees, ask for a receipt and complain.")}</p>
+      <p>{t("ইউনিয়ন পরিষদে সেবা নিতে সরকার যে ফি ঠিক করে দিয়েছে। এর বেশি টাকা চাইলে রসিদ চান, আর নিচের ঠিকানায় অভিযোগ করুন।", "The fees set by the government for UP services. If asked for more, ask for a receipt and complain.")}</p>
       {fees.length === 0 ? <p className="muted">{t("এখনো কোনো ফি-র তথ্য যোগ করা হয়নি।", "No fee information has been added yet.")}</p> : null}
       {fees.map((x) => (
         <section key={x.id} className="card">
           <h2 className="h3">{f.lang === "bn" ? x.service_bn : x.service_en}</h2>
-          <dl className="kv">
-            <dt>{t("সরকারি ফি", "Official fee")}</dt>
-            <dd>{x.official_fee === null ? <Unknown rti="citizen-charter" /> : x.official_fee === 0 ? t("বিনামূল্যে", "Free") : f.takaFull(x.official_fee)}</dd>
-            <dt>{t("কত দিনে", "Time limit")}</dt>
-            <dd>{x.time_limit_days === null ? <Unknown rti="citizen-charter" /> : t(`${f.digits(x.time_limit_days)} দিন`, `${x.time_limit_days} days`)}</dd>
-            <dt>{t("আইনি ভিত্তি", "Legal basis")}</dt><dd>{x.legal_basis}</dd>
-          </dl>
+          <p className="fee">{x.official_fee === null ? <Unknown rti="citizen-charter" /> : x.official_fee === 0 ? t("বিনামূল্যে", "Free") : f.takaFull(x.official_fee)}</p>
+          {x.time_limit_days !== null ? <p>{t(`${f.digits(x.time_limit_days)} দিনের মধ্যে পাওয়ার কথা`, `Should be delivered within ${x.time_limit_days} days`)}</p> : null}
           {x.note_bn ? <p className="muted">{x.note_bn}</p> : null}
-          <SourceBadge type="upstream" doc={docs[x.source_doc]} />
+          <p className="muted">{t("নিয়ম: ", "Rule: ")}{x.legal_basis} {docs[x.source_doc] ? <SourceBadge type="upstream" doc={docs[x.source_doc]} /> : null}</p>
         </section>
       ))}
       <section className="card">

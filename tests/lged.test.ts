@@ -38,3 +38,23 @@ describe("lgedRecords", () => {
     expect(lgedRecords(TEXT.replace(/Katuli/g, "Kakua"), { union: "Katuli", upazila: "Tangail Sadar" }, "u", "a").document).toBeNull();
   });
 });
+
+import { banglaScheme } from "../scripts/lib/lged";
+
+describe("banglaScheme", () => {
+  it("translates the common scheme words and keeps place names", () => {
+    expect(banglaScheme("Improvement of Char Chowbaria Graveyard")).toBe("Char Chowbaria কবরস্থান উন্নয়ন");
+    expect(banglaScheme("Improvement of Chakladarpara Jame Mosque")).toBe("Chakladarpara জামে মসজিদ উন্নয়ন");
+    expect(banglaScheme("Construction of Alokdia Govt. Primary School Road")).toBe("Alokdia সরকারি প্রাথমিক বিদ্যালয় রাস্তা নির্মাণ");
+    expect(banglaScheme("Improvement of Chowbaria Village Near Engineer Abdus Sabur House Jame Mosque")).toBe("Chowbaria গ্রাম, Engineer Abdus Sabur-এর বাড়ির কাছে জামে মসজিদ উন্নয়ন");
+  });
+});
+
+describe("banglaScheme with village names", () => {
+  it("writes known village names in Bangla", () => {
+    const places = { Alokdia: "আলোকদিয়া", Choubaria: "চৌবাড়ীয়া", Bagbari: "বাগবাড়ী" };
+    expect(banglaScheme("Improvement of Alokdia Central Graveyard", places)).toBe("আলোকদিয়া কেন্দ্রীয় কবরস্থান উন্নয়ন");
+    expect(banglaScheme("Improvement of Char Chowbaria Graveyard", places)).toBe("চর চৌবাড়ীয়া কবরস্থান উন্নয়ন");
+    expect(banglaScheme("Improvement of Bagbari Chowbaria Jame Mosque", places)).toBe("বাগবাড়ী চৌবাড়ীয়া জামে মসজিদ উন্নয়ন");
+  });
+});

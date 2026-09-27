@@ -3,13 +3,13 @@ import type { Issuer, Kind, SourceType } from "../data/schemas";
 type L = { bn: string; en: string };
 
 export const KIND_LABEL: Record<Kind, L> = {
-  proposed: { bn: "প্রস্তাবিত", en: "proposed" },
-  revised: { bn: "সংশোধিত", en: "revised" },
-  actual: { bn: "প্রকৃত", en: "actual" },
+  proposed: { bn: "প্রস্তাবিত", en: "Proposed" },
+  revised: { bn: "সংশোধিত", en: "Revised" },
+  actual: { bn: "প্রকৃত", en: "Actual" },
 };
 export const SOURCE_TYPE_LABEL: Record<SourceType, L> = {
-  union: { bn: "ইউনিয়নের নথি", en: "Union document" },
-  upstream: { bn: "অন্য সরকারি অফিসের নথি", en: "Other government office" },
+  union: { bn: "ইউনিয়নের নিজের কাগজ", en: "Union's own document" },
+  upstream: { bn: "অন্য সরকারি অফিসের কাগজ", en: "Other government office" },
   observed: { bn: "স্বেচ্ছাসেবকের পর্যবেক্ষণ", en: "Volunteer observation" },
 };
 export const ISSUER_LABEL: Record<Issuer, L> = {
@@ -22,20 +22,21 @@ export const ISSUER_LABEL: Record<Issuer, L> = {
 };
 export const SCHEME_LABEL: Record<string, L> = {
   adp: { bn: "এডিপি", en: "ADP" },
-  lgsp: { bn: "এলজিএসপি/থোক বরাদ্দ", en: "LGSP / block grant" },
+  lgsp: { bn: "ইউনিয়ন উন্নয়ন সহায়তা (এলজিএসপি)", en: "LGSP / block grant" },
+  lged: { bn: "এলজিইডির কাজ", en: "LGED works" },
   tr: { bn: "টিআর", en: "TR" },
-  kabita: { bn: "কাবিটা", en: "KABITA" },
-  kabikha: { bn: "কাবিখা", en: "KABIKHA" },
-  egpp: { bn: "অতিদরিদ্রের কর্মসংস্থান (ইজিপিপি)", en: "EGPP employment" },
-  gr: { bn: "জিআর (ত্রাণ)", en: "GR relief" },
+  kabita: { bn: "কাবিটা (কাজের বিনিময়ে টাকা)", en: "KABITA (cash for work)" },
+  kabikha: { bn: "কাবিখা (কাজের বিনিময়ে খাদ্য)", en: "KABIKHA (food for work)" },
+  egpp: { bn: "৪০ দিনের কর্মসূচি (ইজিপিপি)", en: "40-day employment (EGPP)" },
+  gr: { bn: "ত্রাণ (জিআর)", en: "Relief (GR)" },
   own: { bn: "নিজস্ব তহবিল", en: "Own funds" },
   other: { bn: "অন্যান্য", en: "Other" },
 };
 export const PROJECT_STATUS_LABEL: Record<string, L> = {
-  planned: { bn: "পরিকল্পিত", en: "Planned" },
+  planned: { bn: "শুরু হবে", en: "Planned" },
   ongoing: { bn: "চলমান", en: "Ongoing" },
-  completed: { bn: "সম্পন্ন (নথি অনুযায়ী)", en: "Completed (per documents)" },
-  unknown: { bn: "অবস্থা অজানা", en: "Status unknown" },
+  completed: { bn: "শেষ হয়েছে (কাগজে)", en: "Completed (on paper)" },
+  unknown: { bn: "অবস্থা জানা নেই", en: "Status unknown" },
 };
 export const OBSERVED_LABEL: Record<string, L> = {
   not_started: { bn: "কাজ শুরু হয়নি", en: "Not started" },

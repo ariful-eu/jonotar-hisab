@@ -24,12 +24,12 @@ export default function Wards() {
   return (
     <>
       <h1>{t("আমার ওয়ার্ড", "My ward")}</h1>
-      <p>{t("আপনার ওয়ার্ড বেছে নিন।", "Choose your ward.")}</p>
+      <p>{t("আপনি কোন ওয়ার্ডে থাকেন? বেছে নিলে সেখানকার কাজ, ভাতা আর ওয়ার্ড সভার তথ্য দেখবেন।", "Which ward do you live in? Pick it to see works, allowances and ward meetings there.")}</p>
       <div className="tiles">
         {wards.map((w) => (
           <Link key={w.no} to={`/ward/${w.no}`} className="tile">
-            <span className="hero-number">{f.digits(w.no)}</span>
-            {t(`${f.digits(w.projects)}টি প্রকল্প`, `${w.projects} projects`)}
+            <span className="ward-no">{t(`ওয়ার্ড ${f.digits(w.no)}`, `Ward ${w.no}`)}</span>
+            <span className="muted">{w.projects > 0 ? t(`${f.digits(w.projects)}টি কাজের তথ্য`, `${w.projects} works listed`) : t("কাজের তথ্য নেই", "No works listed")}</span>
           </Link>
         ))}
       </div>

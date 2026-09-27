@@ -15,7 +15,7 @@ export function SourceBadge({ type, doc }: { type: SourceType; doc?: DocRef }) {
     <span className="source">
       <span className={`chip chip-${type}`}>{SOURCE_TYPE_LABEL[type][lang]}</span>
       {doc?.reliability === "low" ? <span className="chip chip-low">{t("কম নির্ভরযোগ্য", "Low reliability")}</span> : null}
-      {href ? <a href={href} target="_blank" rel="noopener" className="small-link">{t("নথি", "Source")}</a> : null}
+      {href ? <a href={href} target="_blank" rel="noopener" className="small-link">{t("কাগজ দেখুন", "See document")}</a> : null}
     </span>
   );
 }

@@ -16,7 +16,7 @@ export function DeadlineBadge({ deadline }: { deadline: string | null }) {
   return (
     <span className={`chip ${closed ? "" : "chip-union"}`}>
       {f.date(deadline)}
-      {days === null ? "" : closed ? t(" · বন্ধ", " · closed") : t(` · ${f.digits(days)} দিন বাকি`, ` · ${days} days left`)}
+      {days === null ? "" : closed ? t(" · সময় শেষ", " · closed") : t(` · ${f.digits(days)} দিন বাকি`, ` · ${days} days left`)}
     </span>
   );
 }

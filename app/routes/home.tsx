@@ -42,37 +42,24 @@ export default function Home() {
   const staleYears = latestUnionYear ? fyStart(currentFy) - fyStart(latestUnionYear) : null;
   const perHh = headline !== null ? perHousehold(headline, union.households) : null;
 
+  const top = (xs: ReturnType<typeof categoryItems>) => xs.slice(0, 4);
+  const incomeItems = summary ? categoryItems(summary.incomeByCategory, f.lang) : [];
+  const expenseItems = summary ? categoryItems(summary.expenseByCategory, f.lang) : [];
+
   return (
     <>
       <h1>{t(TITLE, "Where does Katuli Union's money come from, and where does it go?")}</h1>
-
-      {staleYears === null ? (
-        <div className="warn" role="alert">
-          <AlertTriangle aria-hidden />
-          <p>
-            {t("কাতুলী ইউনিয়ন পরিষদের প্রকাশিত কোনো বাজেট আমরা খুঁজে পাইনি। ", "We could not find any budget published by Katuli Union Parishad. ")}
-            <Link to="/rights/rti?item=budget-current">{t("বাজেট চেয়ে আবেদন করুন →", "Request it →")}</Link>
-          </p>
-        </div>
-      ) : staleYears >= 2 ? (
-        <div className="warn" role="alert">
-          <AlertTriangle aria-hidden />
-          <p>
-            {t(
-              `ইউনিয়ন পরিষদের নিজের প্রকাশিত সর্বশেষ বাজেট ${f.fy(latestUnionYear!)} অর্থবছরের — ${f.digits(staleYears)} বছর আগের। আইন অনুযায়ী প্রতি বছর প্রকাশ্য সভায় বাজেট দেওয়ার কথা। `,
-              `The Union Parishad's own latest published budget is for FY ${latestUnionYear} — ${staleYears} years old. By law a budget must be presented publicly every year. `,
-            )}
-            <Link to="/rights/rti?item=budget-current">{t("চলতি বাজেট চেয়ে আবেদন করুন →", "Request the current budget →")}</Link>
-          </p>
-        </div>
-      ) : null}
+      <p className="intro">{t(
+        "“জনতার হিসাব” একটি স্বাধীন নাগরিক উদ্যোগ। সরকারি কাগজপত্র থেকে কাতুলী ইউনিয়ন পরিষদের টাকার হিসাব এখানে সহজ ভাষায় দেওয়া হয়েছে — যাতে আপনি জানতে ও প্রশ্ন করতে পারেন।",
+        "“Jonotar Hisab” is an independent citizens' initiative. It turns government documents into a plain account of Katuli Union Parishad's money, so you can know and ask questions.",
+      )}</p>
 
       {summary && headline !== null ? (
         <section className="card" aria-labelledby="hero-label">
           <p id="hero-label" className="muted">
             {reconstructed
-              ? t(`${f.fy(summary.fiscalYear)} অর্থবছরে অন্তত এত টাকা এসেছে (অন্য সরকারি অফিসের তালিকা থেকে হিসাব — আংশিক)`, `At least this much came in FY ${summary.fiscalYear} (from other offices' lists — partial)`)
-              : t(`${f.fy(summary.fiscalYear)} অর্থবছরের মোট আয় (${KIND_LABEL[summary.kind].bn} বাজেট)`, `Total income, FY ${summary.fiscalYear} (${KIND_LABEL[summary.kind].en} budget)`)}
+              ? t(`${f.fy(summary.fiscalYear)} অর্থবছরে অন্তত এত টাকা এসেছে (অন্য সরকারি অফিসের তালিকা থেকে — আংশিক)`, `At least this much came in FY ${summary.fiscalYear} (from other offices' lists — partial)`)
+              : t(`ইউনিয়নের সর্বশেষ প্রকাশিত বাজেট (${f.fy(summary.fiscalYear)}) অনুযায়ী বছরে মোট আয়`, `Yearly income in the union's latest published budget (FY ${summary.fiscalYear})`)}
           </p>
           <p className="hero-number">{f.taka(headline)}</p>
           {perHh !== null ? (
@@ -81,18 +68,38 @@ export default function Home() {
               <span className="muted">({t(`${f.num(union.households)} পরিবার, আদমশুমারি ${f.digits(union.census_year)}`, `${f.num(union.households)} households, census ${union.census_year}`)})</span>
             </p>
           ) : null}
-          <h2 className="h3">{t("কোথা থেকে আসে", "Where it comes from")}</h2>
-          <Bars tone="income" items={categoryItems(summary.incomeByCategory, f.lang)} />
-          <h2 className="h3">{t("কোথায় খরচ হয়", "Where it goes")}</h2>
-          <Bars tone="expense" items={categoryItems(summary.expenseByCategory, f.lang)} />
-          <Link className="btn btn-primary" to={`/budget/${summary.fiscalYear}`}>{t("পুরো হিসাব দেখুন", "See the full budget")}</Link>
+          {staleYears !== null && staleYears >= 2 ? (
+            <div className="warn" role="note">
+              <AlertTriangle aria-hidden />
+              <p>
+                {t(`এই বাজেট ${f.digits(staleYears)} বছর আগের। এর পরে ইউনিয়ন আর কোনো বাজেট প্রকাশ করেনি, অথচ আইন অনুযায়ী প্রতি বছর প্রকাশ্য সভায় বাজেট দেওয়ার কথা। `, `This budget is ${staleYears} years old. The union has not published one since, although the law requires a public budget every year. `)}
+                <Link to="/rights/rti?item=budget-current">{t("এ বছরের বাজেট চেয়ে আবেদন করুন →", "Ask for this year's budget →")}</Link>
+              </p>
+            </div>
+          ) : null}
+          <h2 className="h3">{t("টাকা আসে কোথা থেকে", "Where the money comes from")}</h2>
+          <Bars tone="income" items={top(incomeItems)} />
+          <h2 className="h3">{t("খরচ হয় কোথায়", "Where it is spent")}</h2>
+          <Bars tone="expense" items={top(expenseItems)} />
+          <Link className="btn btn-primary" to={`/budget/${summary.fiscalYear}`}>{t("সব খাতের পুরো হিসাব দেখুন", "See every item")}</Link>
         </section>
-      ) : null}
+      ) : (
+        <div className="warn" role="alert">
+          <AlertTriangle aria-hidden />
+          <p>
+            {t("কাতুলী ইউনিয়ন পরিষদের প্রকাশিত কোনো বাজেট আমরা খুঁজে পাইনি। ", "We could not find any budget published by Katuli Union Parishad. ")}
+            <Link to="/rights/rti?item=budget-current">{t("বাজেট চেয়ে আবেদন করুন →", "Ask for it →")}</Link>
+          </p>
+        </div>
+      )}
+
+      <h2>{t("কী জানতে চান?", "What would you like to know?")}</h2>
+      <SectionTiles />
 
       {newerPartial.length > 0 ? (
         <section className="card" aria-labelledby="newer-h">
-          <h2 id="newer-h" className="h3">{t("এর পরের বছরগুলোতে যা জানা গেছে", "What we know about later years")}</h2>
-          <p className="muted">{t("ইউনিয়ন এসব বছরের বাজেট প্রকাশ করেনি। অন্য সরকারি অফিসের বরাদ্দ তালিকায় কাতুলী ইউনিয়নের নামে পাওয়া অংশটুকু:", "The union did not publish these budgets. Amounts found for Katuli in other government offices' allocation lists:")}</p>
+          <h2 id="newer-h" className="h3">{t("এর পরের বছরগুলোর খবর", "What we know about later years")}</h2>
+          <p className="muted">{t("ইউনিয়ন এসব বছরের বাজেট প্রকাশ করেনি। অন্য সরকারি অফিসের তালিকায় কাতুলী ইউনিয়নের নামে যা পাওয়া গেছে, শুধু সেটুকু:", "The union did not publish these budgets. Only what other government offices list for Katuli Union:")}</p>
           <ul className="scorecard">
             {newerPartial.map((p) => (
               <li key={p.fy}>
@@ -106,11 +113,7 @@ export default function Home() {
 
       <DisclosureStrip items={disclosures} />
 
-      <h2>{t("আরও দেখুন", "Explore")}</h2>
-      <SectionTiles />
-
-      <ShareButtons title={t(TITLE, "Katuli Union budget")} />
-      <p className="no-print"><Link to={`/poster/home/${union.id}`}>{t("নোটিশ বোর্ডের জন্য পোস্টার প্রিন্ট করুন", "Print a notice-board poster")}</Link></p>
+      <ShareButtons title={t(TITLE, "Katuli Union budget")} poster={`/poster/home/${union.id}`} />
     </>
   );
 }

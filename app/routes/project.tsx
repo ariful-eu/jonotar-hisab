@@ -38,24 +38,24 @@ export default function Project() {
 
   return (
     <>
-      <p className="no-print"><Link to="/projects">← {t("সব প্রকল্প", "All projects")}</Link></p>
+      <p className="no-print"><Link to="/projects">← {t("সব কাজ", "All works")}</Link></p>
       <h1>{name}</h1>
       <section className="card">
         <dl className="kv">
-          <dt>{t("বরাদ্দ", "Allocation")}</dt><dd><Amount value={p.amount} full /></dd>
-          <dt>{t("কর্মসূচি", "Scheme")}</dt><dd>{SCHEME_LABEL[p.scheme][f.lang]}</dd>
+          <dt>{t("বরাদ্দ টাকা", "Allocated")}</dt><dd><Amount value={p.amount} full /></dd>
+          <dt>{t("কোন খাতের টাকা", "Funding source")}</dt><dd>{SCHEME_LABEL[p.scheme][f.lang]}</dd>
           <dt>{t("অর্থবছর", "Fiscal year")}</dt><dd>{p.fiscal_year ? f.fy(p.fiscal_year) : <Unknown />}</dd>
           <dt>{t("ওয়ার্ড / গ্রাম", "Ward / village")}</dt><dd>{p.ward ? f.digits(p.ward) : <Unknown />}{p.village_bn ? ` · ${p.village_bn}` : ""}</dd>
-          <dt>{t("কাজের পরিমাণ", "Scope of work")}</dt><dd>{p.unit_of_work_bn ?? <Unknown />}</dd>
-          <dt>{t("বাস্তবায়নকারী (পিআইসি/ঠিকাদার)", "Implementer (PIC/contractor)")}</dt><dd>{p.implementer_bn ?? <Unknown />}</dd>
+          <dt>{t("কাজের মাপ", "Scope of work")}</dt><dd>{p.unit_of_work_bn ?? <Unknown />}</dd>
+          <dt>{t("কে কাজ করছে (ঠিকাদার/প্রকল্প কমিটি)", "Who does it (contractor/committee)")}</dt><dd>{p.implementer_bn ?? <Unknown />}</dd>
           <dt>{t("শুরু – শেষ", "Start – end")}</dt><dd>{p.start ? f.date(p.start) : "?"} – {p.end ? f.date(p.end) : "?"}</dd>
-          <dt>{t("নথি অনুযায়ী অবস্থা", "Status per documents")}</dt><dd>{PROJECT_STATUS_LABEL[p.status][f.lang]}</dd>
+          <dt>{t("কাগজে কাজের অবস্থা", "Status on paper")}</dt><dd>{PROJECT_STATUS_LABEL[p.status][f.lang]}</dd>
           <dt>{t("উৎস", "Source")}</dt><dd><SourceBadge type={p.source_type} doc={docs[p.source_doc]} /></dd>
         </dl>
-        {tenders.length > 0 ? <p>{t("সংশ্লিষ্ট দরপত্র: ", "Related tender: ")}{tenders.map((x) => <Link key={x.id} to={`/tenders/${x.id}`}>{x.title_bn}</Link>)}</p> : null}
+        {tenders.length > 0 ? <p>{t("এই কাজের টেন্ডার: ", "Tender for this work: ")}{tenders.map((x) => <Link key={x.id} to={`/tenders/${x.id}`}>{x.title_bn}</Link>)}</p> : null}
       </section>
 
-      <h2>{t("সরেজমিনে যা দেখা গেছে", "What was seen on site")}</h2>
+      <h2>{t("স্বেচ্ছাসেবকেরা গিয়ে যা দেখেছেন", "What volunteers saw on site")}</h2>
       {visits.length === 0 ? (
         <p className="muted">{t("এখনো কোনো স্বেচ্ছাসেবক এই প্রকল্প দেখে আসেননি। আপনি দেখে এলে জানান।", "No volunteer has visited yet. If you go, tell us what you see.")}</p>
       ) : (
@@ -86,8 +86,7 @@ export default function Project() {
         </div>
       </section>
 
-      <ShareButtons title={name} />
-      <p className="no-print"><Link to={`/poster/project/${p.id}`}>{t("প্রকল্প-পোস্টার প্রিন্ট করুন", "Print a project poster")}</Link></p>
+      <ShareButtons title={name} poster={`/poster/project/${p.id}`} />
     </>
   );
 }

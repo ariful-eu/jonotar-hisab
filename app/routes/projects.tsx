@@ -29,8 +29,8 @@ export default function Projects() {
 
   return (
     <>
-      <h1>{t("উন্নয়ন প্রকল্প", "Development projects")}</h1>
-      <p>{t("প্রতিটি প্রকল্পে কত টাকা বরাদ্দ, কে বাস্তবায়ন করছে, আর সরেজমিনে কী দেখা গেছে।", "What each project was allocated, who implements it, and what was seen on site.")}</p>
+      <h1>{t("উন্নয়ন কাজ", "Development works")}</h1>
+      <p>{t("ইউনিয়নে কোথায় কোন কাজ হচ্ছে বা হওয়ার কথা — কত টাকার, কে করছে, আর স্বেচ্ছাসেবকেরা গিয়ে কী দেখেছেন। নিজের এলাকার কাজ খুঁজতে ওয়ার্ড বেছে নিন।", "Works in the union — how much, who does them, and what volunteers saw. Pick your ward to find local works.")}</p>
       <div className="filters">
         <label>{t("ওয়ার্ড", "Ward")}
           <select value={filter.ward} onChange={set("ward")}>
@@ -39,7 +39,7 @@ export default function Projects() {
             <option value="none">{t("উল্লেখ নেই", "Not stated")}</option>
           </select>
         </label>
-        <label>{t("কর্মসূচি", "Scheme")}
+        <label>{t("কোন খাতের টাকা", "Funding source")}
           <select value={filter.scheme} onChange={set("scheme")}>
             <option value="">{t("সব", "All")}</option>
             {SCHEMES.map((s) => <option key={s} value={s}>{SCHEME_LABEL[s][f.lang]}</option>)}
@@ -52,7 +52,7 @@ export default function Projects() {
           </select>
         </label>
       </div>
-      <p className="muted">{t(`${f.digits(shown.length)}টি প্রকল্প`, `${shown.length} projects`)}</p>
+      <p className="muted">{t(`${f.digits(shown.length)}টি কাজ`, `${shown.length} works`)}</p>
       {shown.map((p) => (
         <Link key={p.id} to={`/projects/${p.id}`} className="card list-link">
           <h3>{f.lang === "en" && p.name_en ? p.name_en : p.name_bn}</h3>

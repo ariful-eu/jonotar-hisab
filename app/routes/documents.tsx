@@ -28,12 +28,12 @@ export default function Documents() {
   const shown = documents.filter((d) => issuer === "" || d.issuer === issuer);
   return (
     <>
-      <h1>{t("নথিপত্র", "Documents")}</h1>
+      <h1>{t("মূল কাগজপত্র", "Original documents")}</h1>
       <DisclosureStrip items={disclosures} full />
-      <h2>{t("আমাদের সংগ্রহের নথি", "Documents we hold")}</h2>
+      <h2>{t("আমাদের কাছে থাকা সব কাগজ", "Documents we hold")}</h2>
       <p className="muted">{t("মূল ওয়েবসাইট থেকে সরিয়ে ফেলা হলেও যেন প্রমাণ থাকে, তাই প্রতিটি নথির কপি সংরক্ষণ করা হয়।", "We keep a copy of every document, so the evidence survives even if it is removed from the original website.")}</p>
       <div className="filters">
-        <label>{t("কার নথি", "Issued by")}
+        <label>{t("কোন অফিসের", "Issued by")}
           <select value={issuer} onChange={(e) => setIssuer(e.target.value)}>
             <option value="">{t("সব", "All")}</option>
             {ISSUERS.map((i) => <option key={i} value={i}>{ISSUER_LABEL[i][f.lang]}</option>)}

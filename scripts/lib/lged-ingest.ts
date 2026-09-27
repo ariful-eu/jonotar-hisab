@@ -23,7 +23,9 @@ export async function pdfText(buf: Uint8Array): Promise<string> {
 export async function ingestLgedPdf(buf: Uint8Array, url: string, target: LgedTarget): Promise<number> {
   const text = await pdfText(buf);
   const archivePath = `archive/lged/${path.basename(new URL(url).pathname).replace(/[^\w.-]/g, "")}`;
-  const rec = lgedRecords(text, target, url, archivePath);
+  const union = JSON.parse(fs.readFileSync(path.resolve("data/union.json"), "utf8")) as { villages_en: string[]; villages_bn: string[] };
+  const places = Object.fromEntries(union.villages_en.map((en, i) => [en, union.villages_bn[i]]));
+  const rec = lgedRecords(text, target, url, archivePath, places);
   if (!rec.document) {
     const mentions = new RegExp(target.union, "i").test(text) && new RegExp(target.upazila.replace(/\s+/g, "\\s*"), "i").test(text);
     return mentions ? -1 : 0;

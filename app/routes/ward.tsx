@@ -44,8 +44,8 @@ export default function Ward() {
         </dl>
       </section>
 
-      <h2>{t("এই ওয়ার্ডের প্রকল্প", "Projects in this ward")}</h2>
-      {projects.length === 0 ? <p className="muted">{t("কোনো প্রকল্পের তথ্য পাওয়া যায়নি।", "No project information found.")} <Link to="/rights/rti?item=project-list">{t("প্রকল্প তালিকা চেয়ে নিন →", "Request the project list →")}</Link></p> : (
+      <h2>{t("এই ওয়ার্ডের উন্নয়ন কাজ", "Works in this ward")}</h2>
+      {projects.length === 0 ? <p className="muted">{t("এই ওয়ার্ডের কোনো কাজের তথ্য প্রকাশিত হয়নি। ", "No works published for this ward. ")}<Link to="/rights/rti?item=project-list">{t("কাজের তালিকা চান →", "Ask for the list →")}</Link></p> : (
         <table className="lines">
           <tbody>{projects.map((p) => (
             <tr key={p.id}>
@@ -56,16 +56,16 @@ export default function Ward() {
         </table>
       )}
 
-      {allowances.length > 0 ? (
-        <>
-          <h2>{t("এই ওয়ার্ডে ভাতাভোগী (সংখ্যা)", "Allowance recipients in this ward (counts)")}</h2>
-          <table className="lines">
-            <tbody>{allowances.map((a) => (
-              <tr key={a.programme}><td>{f.lang === "bn" ? a.name_bn : a.name_en}</td><td className="num">{a.count === null ? <Unknown rti="beneficiary-counts" /> : f.num(a.count)}</td></tr>
-            ))}</tbody>
-          </table>
-        </>
-      ) : null}
+      <h2>{t("এই ওয়ার্ডে কতজন ভাতা পান", "Allowance recipients in this ward")}</h2>
+      {allowances.every((a) => a.count === null) ? (
+        <p className="muted">{t("ওয়ার্ডভিত্তিক ভাতাভোগীর সংখ্যা ইউনিয়ন প্রকাশ করেনি। ", "The union has not published ward-level counts. ")}<Link to="/rights/rti?item=beneficiary-counts">{t("তথ্য চান →", "Ask for it →")}</Link> · <Link to="/allowances">{t("কে ভাতা পাবেন দেখুন", "Who qualifies")}</Link></p>
+      ) : (
+        <table className="lines">
+          <tbody>{allowances.map((a) => (
+            <tr key={a.programme}><td>{f.lang === "bn" ? a.name_bn : a.name_en}</td><td className="num">{a.count === null ? <Unknown /> : f.num(a.count)}</td></tr>
+          ))}</tbody>
+        </table>
+      )}
 
       <section className="card">
         <h2 className="h3">{t("ওয়ার্ড সভায় আপনার অধিকার", "Your rights at the ward meeting")}</h2>
@@ -73,8 +73,7 @@ export default function Ward() {
         <Link to="/rights/ward-shava">{t("বিস্তারিত জানুন →", "Learn more →")}</Link>
       </section>
 
-      <ShareButtons title={t(`কাতুলী ${f.digits(ward.no)} নং ওয়ার্ড`, `Katuli ward ${ward.no}`)} />
-      <p className="no-print"><Link to={`/poster/ward/${ward.no}`}>{t("ওয়ার্ড-পোস্টার প্রিন্ট করুন", "Print a ward poster")}</Link></p>
+      <ShareButtons title={t(`কাতুলী ${f.digits(ward.no)} নং ওয়ার্ড`, `Katuli ward ${ward.no}`)} poster={`/poster/ward/${ward.no}`} />
     </>
   );
 }

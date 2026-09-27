@@ -19,8 +19,8 @@ export default function Tenders() {
   const t = useT();
   return (
     <>
-      <h1>{t("দরপত্র (টেন্ডার)", "Tenders")}</h1>
-      <p>{t("ইউনিয়নে কোন কাজের দরপত্র আহ্বান করা হয়েছে, কে কাজ পেয়েছে। সরকারি কেনাকাটায় দরপত্রের তথ্য প্রকাশ্য হওয়ার কথা।", "Which works were put out to tender in the union, and who won them. Public procurement notices are meant to be public.")}</p>
+      <h1>{t("টেন্ডার (দরপত্র)", "Tenders")}</h1>
+      <p>{t("সরকার কোনো কাজ করাতে চাইলে ঠিকাদারদের কাছ থেকে দর চায় — একে টেন্ডার বলে। এখানে কাতুলী ইউনিয়নের কাজের টেন্ডার, শেষ তারিখ আর কে কাজ পেল তা দেখুন। নতুন টেন্ডার প্রতিদিন স্বয়ংক্রিয়ভাবে যোগ হয়।", "When the government wants work done it asks contractors for bids — a tender. See Katuli Union tenders, deadlines and winners here. New ones are added automatically every day.")}</p>
       {tenders.length === 0 ? (
         <div className="card">
           <p>{t("কাতুলী ইউনিয়নের কোনো দরপত্র বিজ্ঞপ্তি এখনো অনলাইনে পাওয়া যায়নি। আমাদের স্বয়ংক্রিয় ব্যবস্থা প্রতিদিন ইউনিয়ন ও উপজেলার ওয়েবসাইট দেখে।", "No tender notice for Katuli Union has been found online yet. Our automatic checker looks at the union and upazila websites every day.")}</p>

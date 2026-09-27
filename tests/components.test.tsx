@@ -17,7 +17,7 @@ describe("Amount", () => {
   });
   it("shows অজানা for null, never 0", () => {
     wrap(<Amount value={null} />);
-    expect(screen.getByText("অজানা")).toBeTruthy();
+    expect(screen.getByText("তথ্য নেই")).toBeTruthy();
     expect(screen.queryByText("৳০")).toBeNull();
   });
 });
@@ -43,8 +43,8 @@ describe("DisclosureStrip", () => {
       { id: "charter", requirement_bn: "সিটিজেন চার্টার", requirement_en: "Citizen charter", published: "yes" },
       { id: "audit", requirement_bn: "অডিট", requirement_en: "Audit", published: "partial" },
     ]} />);
-    expect(screen.getByText("৩টির মধ্যে ১টি প্রকাশিত")).toBeTruthy();
-    const links = screen.getAllByRole("link", { name: /চেয়ে আবেদন/ });
+    expect(screen.getByText("৩টির মধ্যে প্রকাশ করেছে ১টি")).toBeTruthy();
+    const links = screen.getAllByRole("link", { name: /তথ্য চান/ });
     expect(links[0].getAttribute("href")).toBe("/rights/rti?item=budget-current");
     expect(links).toHaveLength(2);
   });
@@ -53,8 +53,8 @@ describe("DisclosureStrip", () => {
 describe("SourceBadge", () => {
   it("shows the source type and a low-reliability warning", () => {
     wrap(<SourceBadge type="union" doc={{ id: "d", title_bn: "বাজেট", title_en: null, url: "https://example.org/x", archive_path: null, reliability: "low", issuer: "union", date: null }} />);
-    expect(screen.getByText("ইউনিয়নের নথি")).toBeTruthy();
+    expect(screen.getByText("ইউনিয়নের নিজের কাগজ")).toBeTruthy();
     expect(screen.getByText("কম নির্ভরযোগ্য")).toBeTruthy();
-    expect(screen.getByRole("link", { name: "নথি" }).getAttribute("href")).toBe("https://example.org/x");
+    expect(screen.getByRole("link", { name: "কাগজ দেখুন" }).getAttribute("href")).toBe("https://example.org/x");
   });
 });

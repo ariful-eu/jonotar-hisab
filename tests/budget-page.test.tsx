@@ -13,7 +13,7 @@ describe("budget page", () => {
   it("shows the not-published state with an RTI link when a year has no data", async () => {
     renderWith({ unionId: "katuli", households: 6433, years: [], fy: null, summary: null, comparison: [], docs: {} });
     expect(await screen.findByText(/তথ্য প্রকাশিত হয়নি/)).toBeTruthy();
-    expect(screen.getByRole("link", { name: /চেয়ে আবেদন/ }).getAttribute("href")).toBe("/rights/rti?item=budget-current");
+    expect(screen.getByRole("link", { name: /তথ্য চান/ }).getAttribute("href")).toBe("/rights/rti?item=budget-current");
   });
 
   it("shows অজানা per household when a neighbour's households are unknown", async () => {
@@ -22,6 +22,6 @@ describe("budget page", () => {
       comparison: [{ id: "silimpur", name_bn: "সিলিমপুর", name_en: "Silimpur", fiscalYear: "2023-24", kind: "proposed", income: 18442514, perHousehold: null }],
     });
     expect(await screen.findByText(/সিলিমপুর/)).toBeTruthy();
-    expect(screen.getAllByText("অজানা").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("তথ্য নেই").length).toBeGreaterThan(0);
   });
 });

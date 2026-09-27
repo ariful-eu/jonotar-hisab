@@ -46,7 +46,7 @@ export async function loader({ params }: Route.LoaderArgs) {
       big: null,
       bigLabel: null,
       facts: [
-        ...projects.slice(0, 6).map((p) => ({ label: p.name_bn, value: p.amount !== null ? formatTakaFull(p.amount, "bn") : "টাকার পরিমাণ অজানা" })),
+        ...projects.slice(0, 6).map((p) => ({ label: p.name_bn, value: p.amount !== null ? formatTakaFull(p.amount, "bn") : "টাকার পরিমাণ প্রকাশিত হয়নি" })),
         ...(projects.length === 0 ? [{ label: "এই ওয়ার্ডের প্রকল্প", value: "কোনো তথ্য প্রকাশিত হয়নি" }] : []),
         { label: "ওয়ার্ড সভা", value: "বছরে অন্তত ২ বার, ৭ দিন আগে নোটিশ — সব ভোটার সদস্য" },
       ],
@@ -61,9 +61,9 @@ export async function loader({ params }: Route.LoaderArgs) {
       bigLabel: p.amount !== null ? "বরাদ্দ" : null,
       facts: [
         { label: "কর্মসূচি", value: SCHEME_LABEL[p.scheme].bn },
-        { label: "ওয়ার্ড", value: p.ward ? toBnDigits(p.ward) : "অজানা" },
-        { label: "বাস্তবায়নকারী", value: p.implementer_bn ?? "অজানা" },
-        { label: "কাজের পরিমাণ", value: p.unit_of_work_bn ?? "অজানা" },
+        { label: "ওয়ার্ড", value: p.ward ? toBnDigits(p.ward) : "তথ্য নেই" },
+        { label: "বাস্তবায়নকারী", value: p.implementer_bn ?? "তথ্য নেই" },
+        { label: "কাজের পরিমাণ", value: p.unit_of_work_bn ?? "তথ্য নেই" },
       ],
       path: `/projects/${p.id}`,
     };

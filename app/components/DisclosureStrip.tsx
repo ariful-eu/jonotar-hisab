@@ -12,16 +12,16 @@ export function DisclosureStrip({ items, full = false }: { items: DisclosureItem
   const shown = full ? items : items.slice(0, 5);
   return (
     <section className="card" aria-labelledby="disc-h">
-      <h2 id="disc-h" className="h3">{t("আইন অনুযায়ী যা প্রকাশ করার কথা", "What the law says must be made public")}</h2>
+      <h2 id="disc-h" className="h3">{t("যে তথ্য ইউনিয়নের প্রকাশ করার কথা", "What the union must make public by law")}</h2>
       <p className="scoreline">
-        <strong>{t(`${f.digits(items.length)}টির মধ্যে ${f.digits(yes)}টি প্রকাশিত`, `${yes} of ${items.length} published`)}</strong>
+        <strong>{t(`${f.digits(items.length)}টির মধ্যে প্রকাশ করেছে ${f.digits(yes)}টি`, `${yes} of ${items.length} published`)}</strong>
       </p>
       <ul className="scorecard">
         {shown.map((i) => (
           <li key={i.id}>
             <StatusIcon s={i.published} />
             <span className="grow">{f.lang === "bn" ? i.requirement_bn : i.requirement_en}</span>
-            {i.published !== "yes" ? <Link className="small-link" to={`/rights/rti?item=${i.id}`}>{t("চেয়ে আবেদন", "Request")}</Link> : null}
+            {i.published !== "yes" ? <Link className="small-link" to={`/rights/rti?item=${i.id}`}>{t("তথ্য চান", "Ask for it")}</Link> : null}
           </li>
         ))}
       </ul>

@@ -1,7 +1,7 @@
 id,fiscal_year,name_bn,name_en,scheme,ward,village_bn,lat,lng,amount,unit_of_work_bn,implementer_bn,start,end,status,source_type,source_doc,up_reply_bn,status_row
-lged-1201328,2025-26,Improvement of Alokdia Central Graveyard (এলজিইডি),Improvement of Alokdia Central Graveyard,other,,,24.234638,89.816643,,,,,,planned,upstream,lged-notice-47-2025-2026,,published
-lged-1306710,2026-27,Improvement of Char Chowbaria Graveyard (এলজিইডি),Improvement of Char Chowbaria Graveyard,other,,,24.2217,89.84289,,,,,,planned,upstream,lged-notice-04-2026-2027,,published
-lged-1306712,2026-27,Improvement of Chakladarpara Jame Mosque (এলজিইডি),Improvement of Chakladarpara Jame Mosque,other,,,24.23762,89.838338,,,,,,planned,upstream,lged-notice-04-2026-2027,,published
-lged-1192617,2025-26,Improvement of Bausaid Moddhopara Graveyard (এলজিইডি),Improvement of Bausaid Moddhopara Graveyard,other,,,24.21969,89.85496,,,,,,planned,upstream,lged-notice-46-2025-2026,,published
-lged-1090363,2024-25,Improvement of Chowbaria Village Near Engineer Abdus Sabur House Jame Mosque (এলজিইডি),Improvement of Chowbaria Village Near Engineer Abdus Sabur House Jame Mosque,other,,,24.2342,89.83725,,,,,,planned,upstream,lged-notice-37-2024-2025,,published
-lged-1128639,2025-26,Improvement of Bagbari Chowbaria Jame Mosque (এলজিইডি),Improvement of Bagbari Chowbaria Jame Mosque,other,,,24.231614,89.834115,,,,,,planned,upstream,lged-notice-01-2025-2026,,published
+lged-1201328,2025-26,আলোকদিয়া কেন্দ্রীয় কবরস্থান উন্নয়ন,Improvement of Alokdia Central Graveyard,lged,,,24.234638,89.816643,,,,,,planned,upstream,lged-notice-47-2025-2026,,published
+lged-1306710,2026-27,চর চৌবাড়ীয়া কবরস্থান উন্নয়ন,Improvement of Char Chowbaria Graveyard,lged,,,24.2217,89.84289,,,,,,planned,upstream,lged-notice-04-2026-2027,,published
+lged-1306712,2026-27,Chakladarpara জামে মসজিদ উন্নয়ন,Improvement of Chakladarpara Jame Mosque,lged,,,24.23762,89.838338,,,,,,planned,upstream,lged-notice-04-2026-2027,,published
+lged-1192617,2025-26,Bausaid Moddhopara কবরস্থান উন্নয়ন,Improvement of Bausaid Moddhopara Graveyard,lged,,,24.21969,89.85496,,,,,,planned,upstream,lged-notice-46-2025-2026,,published
+lged-1090363,2024-25,"চৌবাড়ীয়া গ্রাম, Engineer Abdus Sabur-এর বাড়ির কাছে জামে মসজিদ উন্নয়ন",Improvement of Chowbaria Village Near Engineer Abdus Sabur House Jame Mosque,lged,,,24.2342,89.83725,,,,,,planned,upstream,lged-notice-37-2024-2025,,published
+lged-1128639,2025-26,বাগবাড়ী চৌবাড়ীয়া জামে মসজিদ উন্নয়ন,Improvement of Bagbari Chowbaria Jame Mosque,lged,,,24.231614,89.834115,,,,,,planned,upstream,lged-notice-01-2025-2026,,published
