@@ -23,6 +23,8 @@ jobs:
           key: scrape-cache-${{ github.run_id }}
           restore-keys: scrape-cache-
       - run: npm run scrape
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       # LGED packages verified by text (union + upazila) are published directly.
       - name: Publish verified LGED tenders
         if: hashFiles('.scrape-cache/auto-published') != ''
@@ -47,4 +49,5 @@ jobs:
           add-paths: |
             data/documents.csv
             data/tenders.csv
+            data/budget_lines.csv
             public/archive/2*/**

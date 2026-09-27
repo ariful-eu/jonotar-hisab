@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { buildDraftRows, buildExtractionPrompt, looksLikeBudgetDoc, mediaTypeForExt, parseModelJson, toContentBlock } from "./lib/extract-budget";
 import { ingestLgedPdf } from "./lib/lged-ingest";
 import { appendRows, csvColumns, draftDocumentRow, draftTenderRow, extractLinks, isFileUrl, knownUrls, type Source } from "./lib/scrape-core";
 
@@ -10,6 +11,9 @@ const year = today.slice(0, 4);
 const docsPath = path.resolve("data/documents.csv");
 const tendersPath = path.resolve("data/tenders.csv");
 const sources: Source[] = JSON.parse(fs.readFileSync(path.resolve("scripts/sources.json"), "utf8"));
+const anthropicKey = process.env.ANTHROPIC_API_KEY;
+const extractModel = process.env.EXTRACT_MODEL ?? "claude-opus-5-5";
+let budgetLinesCsv = fs.readFileSync(path.resolve("data/budget_lines.csv"), "utf8");
 const seenPath = path.resolve(".scrape-cache/seen.json");
 const seen = new Set<string>(fs.existsSync(seenPath) ? JSON.parse(fs.readFileSync(seenPath, "utf8")) : []);
 
@@ -67,12 +71,31 @@ async function main() {
         docsCsv = appendRows(docsCsv, [doc], csvColumns(docsCsv));
         if (source.tender) tendersCsv = appendRows(tendersCsv, [draftTenderRow(link, source, today)], csvColumns(tendersCsv));
         summary.push(`- **${doc.title_bn}** — [link](${link.url})${doc.archive_path ? ` · saved to \`public/${doc.archive_path}\`` : ""} (from \`${source.id}\`)`);
+        if (anthropicKey && doc.archive_path && looksLikeBudgetDoc({ title_bn: doc.title_bn, url: link.url })) {
+          try {
+            const mediaType = mediaTypeForExt(doc.archive_path.slice(doc.archive_path.lastIndexOf(".")));
+            if (!mediaType) throw new Error("unsupported file type for AI reading");
+            const { default: Anthropic } = await import("@anthropic-ai/sdk");
+            const client = new Anthropic({ apiKey: anthropicKey });
+            const data = fs.readFileSync(path.resolve("public", doc.archive_path)).toString("base64");
+            const res = await client.messages.create({ model: extractModel, max_tokens: 8000, messages: [{ role: "user", content: [toContentBlock(mediaType, data), { type: "text", text: buildExtractionPrompt({ union: "katuli", docId: doc.id, fiscalYearHint: doc.fiscal_year || undefined }) }] }] });
+            const text = res.content.filter((b) => b.type === "text").map((b) => (b as { text: string }).text).join("\n");
+            const { rows } = buildDraftRows(parseModelJson(text), { union: "katuli", docId: doc.id, fiscalYear: doc.fiscal_year || "" });
+            if (rows.length > 0) {
+              budgetLinesCsv = appendRows(budgetLinesCsv, rows, csvColumns(budgetLinesCsv));
+              summary.push(`  - 🤖 AI read ${rows.length} draft budget line(s) from this document — check them in \`data/budget_lines.csv\` before publishing`);
+            }
+          } catch (e) {
+            summary.push(`  - ⚠ AI reading failed for this document: ${(e as Error).message}`);
+          }
+        }
       }
     } catch (e) {
       failures.push(`- ${source.id}: ${(e as Error).message}`);
     }
   }
 
+  fs.writeFileSync(path.resolve("data/budget_lines.csv"), budgetLinesCsv);
   fs.mkdirSync(path.dirname(seenPath), { recursive: true });
   fs.writeFileSync(seenPath, JSON.stringify([...seen]));
   if (autoPublished > 0) fs.writeFileSync(path.resolve(".scrape-cache/auto-published"), String(autoPublished));

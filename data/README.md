@@ -23,6 +23,15 @@ Everything on the site comes from the files in this folder. Open the CSVs in Exc
 | `service_fees.csv` | Official fee and time limit for each service |
 | `allowances.csv` / `allowance_counts.csv` | Allowance rules and amounts; per-ward counts |
 
+## AI-assisted reading of scanned budget documents (optional)
+If a `Union Parishad` sets a paid `ANTHROPIC_API_KEY` in the repo's GitHub Actions secrets (Settings → Secrets and variables → Actions), the daily checker also asks Claude to transcribe any new document whose title or filename contains "বাজেট"/"budget". It adds the lines it reads to `budget_lines.csv` with `status=draft` — **never published automatically** — and lists them in the same pull request. Always open the source document and check every row (head, amount, direction, category, kind, fiscal year) before setting `status` to `published`; a misread amount is worse than no amount.
+
+You can also run this by hand on any document already in `documents.csv` with an `archive_path` (a PDF, PNG or JPEG):
+
+    ANTHROPIC_API_KEY=sk-... npm run extract-budget -- <document-id> [fiscal-year-hint]
+
+This costs a small amount per document (roughly the price of a couple of pages of Claude Opus vision input) and is entirely optional — without the secret, nothing changes.
+
 ## The daily checker
 **LGED tenders are fully automatic.** The checker reads every new LGED Tangail tender PDF and publishes a package straight to the site only when its row says *Katuli Union, Upazila: Tangail Sadar*. These rows live in `*_auto.csv`, so don't edit those files by hand. If a PDF mentions Katuli but can't be parsed, it arrives as a draft in the normal pull request instead.
 

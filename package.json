@@ -11,7 +11,8 @@
     "typecheck": "react-router typegen && tsc",
     "scrape": "NODE_EXTRA_CA_CERTS=scripts/certs/sectigo-dv-r36.pem tsx scripts/scrape.ts",
     "check:size": "tsx scripts/check-size.ts",
-    "test": "vitest run"
+    "test": "vitest run",
+    "extract-budget": "tsx scripts/extract-budget.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
   "type": "module",
   "private": "true",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.128.0",
     "@fontsource/noto-sans-bengali": "^5.3.0",
     "@react-router/node": "^7.18.4",
     "isbot": "^5.2.2",
