@@ -10,7 +10,7 @@ export function Header() {
       <div className="banner" role="note">{t("স্বাধীন নাগরিক উদ্যোগ — এটি সরকারি ওয়েবসাইট নয়", "Independent citizens' initiative — not a government website")}</div>
       <header className="site-header">
         <div className="bar">
-          <Link to="/" className="brand"><Coins size={24} aria-hidden />{t("কাতুলীর বাজেট", "Katuli Budget")}</Link>
+          <Link to="/" className="brand"><Coins size={24} aria-hidden />{t("কাতুলী ইউনিয়নের বাজেট", "Katuli Union Budget")}</Link>
           <button type="button" className="btn btn-small" lang={lang === "bn" ? "en" : "bn"} onClick={() => setLang(lang === "bn" ? "en" : "bn")}>
             {lang === "bn" ? "English" : "বাংলা"}
           </button>

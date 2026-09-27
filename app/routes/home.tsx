@@ -92,7 +92,7 @@ export default function Home() {
       {newerPartial.length > 0 ? (
         <section className="card" aria-labelledby="newer-h">
           <h2 id="newer-h" className="h3">{t("এর পরের বছরগুলোতে যা জানা গেছে", "What we know about later years")}</h2>
-          <p className="muted">{t("ইউনিয়ন এসব বছরের বাজেট প্রকাশ করেনি। অন্য সরকারি অফিসের বরাদ্দ তালিকায় কাতুলীর নামে পাওয়া অংশটুকু:", "The union did not publish these budgets. Amounts found for Katuli in other government offices' allocation lists:")}</p>
+          <p className="muted">{t("ইউনিয়ন এসব বছরের বাজেট প্রকাশ করেনি। অন্য সরকারি অফিসের বরাদ্দ তালিকায় কাতুলী ইউনিয়নের নামে পাওয়া অংশটুকু:", "The union did not publish these budgets. Amounts found for Katuli in other government offices' allocation lists:")}</p>
           <ul className="scorecard">
             {newerPartial.map((p) => (
               <li key={p.fy}>
