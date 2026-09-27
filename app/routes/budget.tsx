@@ -27,7 +27,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   const fy = params.year ?? years[0] ?? null;
   const summary = fy ? summarizeYear(ds.budget, ds.reportedTotals, id, fy) : null;
   const comparison = compareUnions(ds.budget, ds.reportedTotals, [
-    { id, name_bn: ds.union.name_bn, name_en: ds.union.name_en, households: ds.union.households },
+    { id, name_bn: `${ds.union.name_bn} ইউনিয়ন`, name_en: `${ds.union.name_en} Union`, households: ds.union.households },
     ...ds.union.comparisons,
   ]);
   const docIds = summary ? [...summary.incomeByCategory, ...summary.expenseByCategory].flatMap((c) => c.lines.map((l) => l.source_doc)) : [];

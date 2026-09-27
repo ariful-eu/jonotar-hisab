@@ -153,8 +153,8 @@
   "comparisons": [
     {
       "id": "silimpur",
-      "name_bn": "সিলিমপুর",
-      "name_en": "Silimpur",
+      "name_bn": "সিলিমপুর ইউনিয়ন",
+      "name_en": "Silimpur Union",
       "population": 22581,
       "households": 5683,
       "census_year": 2022,
@@ -162,8 +162,8 @@
     },
     {
       "id": "porabari",
-      "name_bn": "পোড়াবাড়ী",
-      "name_en": "Porabari",
+      "name_bn": "পোড়াবাড়ী ইউনিয়ন",
+      "name_en": "Porabari Union",
       "population": 23712,
       "households": 5617,
       "census_year": 2022,
@@ -171,8 +171,8 @@
     },
     {
       "id": "baghil",
-      "name_bn": "বাঘিল",
-      "name_en": "Baghil",
+      "name_bn": "বাঘিল ইউনিয়ন",
+      "name_en": "Baghil Union",
       "population": 33410,
       "households": 8183,
       "census_year": 2022,
@@ -180,8 +180,8 @@
     },
     {
       "id": "karatia",
-      "name_bn": "করটিয়া",
-      "name_en": "Karatia",
+      "name_bn": "করটিয়া ইউনিয়ন",
+      "name_en": "Karatia Union",
       "population": 51995,
       "households": 13060,
       "census_year": 2022,
@@ -189,8 +189,8 @@
     },
     {
       "id": "hugra",
-      "name_bn": "হুগড়া",
-      "name_en": "Hugra",
+      "name_bn": "হুগড়া ইউনিয়ন",
+      "name_en": "Hugra Union",
       "population": 38999,
       "households": 8453,
       "census_year": 2022,
@@ -198,8 +198,8 @@
     },
     {
       "id": "dainya",
-      "name_bn": "দাইন্যা",
-      "name_en": "Dainya",
+      "name_bn": "দাইন্যা ইউনিয়ন",
+      "name_en": "Dainya Union",
       "population": 36696,
       "households": 8945,
       "census_year": 2022,
