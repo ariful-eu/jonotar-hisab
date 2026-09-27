@@ -4,3 +4,4 @@ build/
 .superpowers/
 scrape-summary.md
 .DS_Store
+.scrape-cache/

@@ -6,6 +6,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 jobs:
   scrape:
     runs-on: ubuntu-latest
@@ -16,7 +17,26 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      - uses: actions/cache@v4
+        with:
+          path: .scrape-cache
+          key: scrape-cache-${{ github.run_id }}
+          restore-keys: scrape-cache-
       - run: npm run scrape
+      # LGED packages verified by text (union + upazila) are published directly.
+      - name: Publish verified LGED tenders
+        if: hashFiles('.scrape-cache/auto-published') != ''
+        run: |
+          git config user.name "jonotar-hisab-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/documents_auto.csv data/projects_auto.csv data/tenders_auto.csv public/archive/lged
+          npm test
+          git commit -m "data: auto-publish LGED tenders for Katuli Union, Tangail Sadar"
+          git push
+          gh workflow run deploy.yml --ref main
+          rm .scrape-cache/auto-published
+        env:
+          GH_TOKEN: ${{ github.token }}
       - uses: peter-evans/create-pull-request@v7
         with:
           branch: scraper/new-documents
@@ -27,4 +47,4 @@ jobs:
           add-paths: |
             data/documents.csv
             data/tenders.csv
-            public/archive/**
+            public/archive/2*/**

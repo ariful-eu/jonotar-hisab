@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { ingestLgedPdf } from "./lib/lged-ingest";
 import { appendRows, csvColumns, draftDocumentRow, draftTenderRow, extractLinks, isFileUrl, knownUrls, type Source } from "./lib/scrape-core";
 
 const UA = "KatuliBudgetBot/1.0 (independent citizen transparency project)";
@@ -9,6 +10,8 @@ const year = today.slice(0, 4);
 const docsPath = path.resolve("data/documents.csv");
 const tendersPath = path.resolve("data/tenders.csv");
 const sources: Source[] = JSON.parse(fs.readFileSync(path.resolve("scripts/sources.json"), "utf8"));
+const seenPath = path.resolve(".scrape-cache/seen.json");
+const seen = new Set<string>(fs.existsSync(seenPath) ? JSON.parse(fs.readFileSync(seenPath, "utf8")) : []);
 
 async function get(url: string): Promise<Response> {
   return fetch(url, { headers: { "User-Agent": UA }, signal: AbortSignal.timeout(30_000), redirect: "follow" });
@@ -17,7 +20,9 @@ async function get(url: string): Promise<Response> {
 async function main() {
   let docsCsv = fs.readFileSync(docsPath, "utf8");
   let tendersCsv = fs.readFileSync(tendersPath, "utf8");
-  const known = new Set([...knownUrls(docsCsv), ...knownUrls(tendersCsv)]);
+  const autoDocs = path.resolve("data/documents_auto.csv");
+  const known = new Set([...knownUrls(docsCsv), ...knownUrls(tendersCsv), ...(fs.existsSync(autoDocs) ? knownUrls(fs.readFileSync(autoDocs, "utf8")) : [])]);
+  let autoPublished = 0;
   const summary: string[] = [];
   const failures: string[] = [];
 
@@ -28,6 +33,21 @@ async function main() {
       const links = extractLinks(await res.text(), source.url, source.linkPattern).filter((l) => !known.has(l.url));
       for (const link of links) {
         known.add(link.url);
+        if (source.lged) {
+          if (seen.has(link.url)) continue;
+          try {
+            const file = await get(link.url);
+            const buf = new Uint8Array(await file.arrayBuffer());
+            if (!file.ok || buf.length > MAX_FILE_BYTES) continue;
+            const n = await ingestLgedPdf(buf, link.url, source.lged);
+            seen.add(link.url);
+            if (n > 0) { autoPublished += n; summary.push(`- ✅ auto-published ${n} ${source.lged.union} package(s) from [${link.url}](${link.url})`); }
+            if (n !== -1) continue;
+          } catch (e) {
+            summary.push(`  - ⚠ could not read ${link.url}: ${(e as Error).message}`);
+            continue;
+          }
+        }
         const doc = draftDocumentRow(link, source, today);
         if (isFileUrl(link.url)) {
           try {
@@ -53,6 +73,9 @@ async function main() {
     }
   }
 
+  fs.mkdirSync(path.dirname(seenPath), { recursive: true });
+  fs.writeFileSync(seenPath, JSON.stringify([...seen]));
+  if (autoPublished > 0) fs.writeFileSync(path.resolve(".scrape-cache/auto-published"), String(autoPublished));
   fs.writeFileSync(docsPath, docsCsv);
   fs.writeFileSync(tendersPath, tendersCsv);
   const newCount = summary.filter((s) => s.startsWith("- **")).length;

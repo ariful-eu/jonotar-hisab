@@ -112,7 +112,7 @@ export default function Budget() {
             <dl className="kv">
               <dt>{t("মোট আয়", "Total income")}</dt><dd><Amount value={income} full /></dd>
               <dt>{t("মোট খরচ", "Total spending")}</dt><dd><Amount value={summary.expense === 0 && summary.reportedExpense === null ? null : summary.reportedExpense ?? summary.expense} full /></dd>
-              <dt>{t("প্রতি পরিবারে আয়", "Income per household")}</dt><dd><Amount value={income !== null ? perHousehold(income, households) : null} full /></dd>
+              <dt>{t("পরিবারপ্রতি বাজেট", "Budget per household")}</dt><dd><Amount value={income !== null ? perHousehold(income, households) : null} full /></dd>
             </dl>
             {summary.reportedIncome !== null && summary.reportedIncome !== summary.income ? (
               <p className="muted">{t(
@@ -137,7 +137,7 @@ export default function Budget() {
 
       {comparison.length > 0 ? (
         <section>
-          <h2>{t("পাশের ইউনিয়নের সাথে তুলনা (প্রতি পরিবারে আয়)", "Compared with neighbouring unions (income per household)")}</h2>
+          <h2>{t("পাশের ইউনিয়নের সাথে তুলনা (পরিবারপ্রতি বাজেট)", "Compared with neighbouring unions (budget per household)")}</h2>
           <p className="muted">{t("প্রতিটি ইউনিয়নের সর্বশেষ পাওয়া বছরের তথ্য — বছর আলাদা হতে পারে, তাই সরাসরি তুলনায় সাবধান।", "Each union's latest available year — years differ, so compare with care.")}</p>
           <Bars tone="income" format="takaFull" items={comparison.map((c) => ({ key: c.id, label: f.lang === "bn" ? c.name_bn : c.name_en, note: f.fy(c.fiscalYear), amount: c.perHousehold, highlight: c.id === unionId }))} />
         </section>

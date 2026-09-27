@@ -1,10 +1,62 @@
 [
-  { "id": "katuli-notices", "issuer": "union", "url": "https://katuliup.tangail.gov.bd/pages/notices?page_size=100&archived=true", "linkPattern": "/pages/notices/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)" },
-  { "id": "katuli-files", "issuer": "union", "url": "https://katuliup.tangail.gov.bd/pages/files?page_size=100&archived=true", "linkPattern": "\\.(pdf|jpe?g|png|docx?|xlsx?)(\\?|$)" },
-  { "id": "katuli-tenders", "issuer": "union", "url": "https://katuliup.tangail.gov.bd/pages/tenders?page_size=100&archived=true", "linkPattern": "/pages/tenders/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)", "tender": true },
-  { "id": "katuli-projects", "issuer": "union", "url": "https://katuliup.tangail.gov.bd/pages/field-projects?page_size=100&archived=true", "linkPattern": "\\.(pdf|jpe?g|png|docx?|xlsx?)(\\?|$)" },
-  { "id": "sadar-notices", "issuer": "upazila", "url": "https://tangailsadar.tangail.gov.bd/pages/notices?page_size=100&archived=true&search=কাতুলী", "linkPattern": "/pages/notices/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)" },
-  { "id": "sadar-office-orders", "issuer": "upazila", "url": "https://tangailsadar.tangail.gov.bd/pages/office-orders?page_size=100&archived=true&search=কাতুলী", "linkPattern": "/pages/office-orders/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)" },
-  { "id": "sadar-tenders", "issuer": "upazila", "url": "https://tangailsadar.tangail.gov.bd/pages/tenders?page_size=100&archived=true&search=কাতুলী", "linkPattern": "/pages/tenders/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)", "tender": true },
-  { "id": "district-notices", "issuer": "district", "url": "https://tangail.gov.bd/pages/notices?page_size=100&archived=true&search=কাতুলী", "linkPattern": "/pages/notices/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)" }
+  {
+    "id": "katuli-notices",
+    "issuer": "union",
+    "url": "https://katuliup.tangail.gov.bd/pages/notices?page_size=100&archived=true",
+    "linkPattern": "/pages/notices/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)"
+  },
+  {
+    "id": "katuli-files",
+    "issuer": "union",
+    "url": "https://katuliup.tangail.gov.bd/pages/files?page_size=100&archived=true",
+    "linkPattern": "\\.(pdf|jpe?g|png|docx?|xlsx?)(\\?|$)"
+  },
+  {
+    "id": "katuli-tenders",
+    "issuer": "union",
+    "url": "https://katuliup.tangail.gov.bd/pages/tenders?page_size=100&archived=true",
+    "linkPattern": "/pages/tenders/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)",
+    "tender": true
+  },
+  {
+    "id": "katuli-projects",
+    "issuer": "union",
+    "url": "https://katuliup.tangail.gov.bd/pages/field-projects?page_size=100&archived=true",
+    "linkPattern": "\\.(pdf|jpe?g|png|docx?|xlsx?)(\\?|$)"
+  },
+  {
+    "id": "sadar-notices",
+    "issuer": "upazila",
+    "url": "https://tangailsadar.tangail.gov.bd/pages/notices?page_size=100&archived=true&search=কাতুলী",
+    "linkPattern": "/pages/notices/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)"
+  },
+  {
+    "id": "sadar-office-orders",
+    "issuer": "upazila",
+    "url": "https://tangailsadar.tangail.gov.bd/pages/office-orders?page_size=100&archived=true&search=কাতুলী",
+    "linkPattern": "/pages/office-orders/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)"
+  },
+  {
+    "id": "sadar-tenders",
+    "issuer": "upazila",
+    "url": "https://tangailsadar.tangail.gov.bd/pages/tenders?page_size=100&archived=true&search=কাতুলী",
+    "linkPattern": "/pages/tenders/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)",
+    "tender": true
+  },
+  {
+    "id": "district-notices",
+    "issuer": "district",
+    "url": "https://tangail.gov.bd/pages/notices?page_size=100&archived=true&search=কাতুলী",
+    "linkPattern": "/pages/notices/.+|\\.(pdf|jpe?g|png|docx?)(\\?|$)"
+  },
+  {
+    "id": "lged-tangail-tenders",
+    "issuer": "district",
+    "url": "https://lged.tangail.gov.bd/pages/tenders?page_size=100&archived=true",
+    "linkPattern": "\\.pdf(\\?|$)",
+    "lged": {
+      "union": "Katuli",
+      "upazila": "Tangail Sadar"
+    }
+  }
 ]

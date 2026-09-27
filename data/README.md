@@ -24,6 +24,8 @@ Everything on the site comes from the files in this folder. Open the CSVs in Exc
 | `allowances.csv` / `allowance_counts.csv` | Allowance rules and amounts; per-ward counts |
 
 ## The daily checker
+**LGED tenders are fully automatic.** The checker reads every new LGED Tangail tender PDF and publishes a package straight to the site only when its row says *Katuli Union, Upazila: Tangail Sadar*. These rows live in `*_auto.csv`, so don't edit those files by hand. If a PDF mentions Katuli but can't be parsed, it arrives as a draft in the normal pull request instead.
+
 Every morning a GitHub Action checks the union and upazila websites (`scripts/sources.json`). If it finds new notices, files or tenders, it saves a copy under `public/archive/`, adds **draft** rows, and opens a pull request. Open each link, fill in the details, set `status` to `published`, and merge. The site then redeploys automatically.
 
 ## Check before you push

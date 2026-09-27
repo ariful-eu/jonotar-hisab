@@ -78,6 +78,11 @@ let cache: { dir: string; ds: S.Dataset } | null = null;
 export function loadDataset(dir = path.resolve(process.cwd(), "data")): S.Dataset {
   if (cache && cache.dir === dir) return cache.ds;
   const read = (f: string) => fs.readFileSync(path.join(dir, f), "utf8");
+  const withAuto = <T,>(file: string, schema: z.ZodType<T>, draftField = "status"): T[] => {
+    const auto = file.replace(/\.csv$/, "_auto.csv");
+    const extra = fs.existsSync(path.join(dir, auto)) ? parseCsv(auto, read(auto), schema, draftField) : [];
+    return [...parseCsv(file, read(file), schema, draftField), ...extra];
+  };
   const union = S.UnionProfile.safeParse(JSON.parse(read("union.json")));
   if (!union.success) {
     const issue = union.error.issues[0];
@@ -85,13 +90,13 @@ export function loadDataset(dir = path.resolve(process.cwd(), "data")): S.Datase
   }
   const ds: S.Dataset = {
     union: union.data,
-    documents: parseCsv("documents.csv", read("documents.csv"), S.DocumentRow),
+    documents: withAuto("documents.csv", S.DocumentRow),
     disclosures: parseCsv("disclosures.csv", read("disclosures.csv"), S.DisclosureRow, "-"),
     budget: parseCsv("budget_lines.csv", read("budget_lines.csv"), S.BudgetLine),
     reportedTotals: parseCsv("budget_reported_totals.csv", read("budget_reported_totals.csv"), S.ReportedTotal, "-"),
-    projects: parseCsv("projects.csv", read("projects.csv"), S.ProjectRow, "status_row"),
+    projects: withAuto("projects.csv", S.ProjectRow, "status_row"),
     verifications: parseCsv("verifications.csv", read("verifications.csv"), S.VerificationRow),
-    tenders: parseCsv("tenders.csv", read("tenders.csv"), S.TenderRow),
+    tenders: withAuto("tenders.csv", S.TenderRow),
     fees: parseCsv("service_fees.csv", read("service_fees.csv"), S.ServiceFeeRow, "-"),
     allowances: parseCsv("allowances.csv", read("allowances.csv"), S.AllowanceRow, "-"),
     allowanceCounts: parseCsv("allowance_counts.csv", read("allowance_counts.csv"), S.AllowanceCountRow),

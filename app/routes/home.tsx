@@ -77,7 +77,7 @@ export default function Home() {
           <p className="hero-number">{f.taka(headline)}</p>
           {perHh !== null ? (
             <p>
-              {t(`মানে প্রতি পরিবারের জন্য প্রায় ${f.takaFull(perHh)}`, `About ${f.takaFull(perHh)} per household`)}{" "}
+              {t(`পরিবারপ্রতি বাজেট প্রায় ${f.takaFull(perHh)}`, `Budget per household: about ${f.takaFull(perHh)}`)}{" "}
               <span className="muted">({t(`${f.num(union.households)} পরিবার, আদমশুমারি ${f.digits(union.census_year)}`, `${f.num(union.households)} households, census ${union.census_year}`)})</span>
             </p>
           ) : null}

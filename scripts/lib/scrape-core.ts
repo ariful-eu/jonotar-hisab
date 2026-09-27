@@ -3,7 +3,7 @@ import * as cheerio from "cheerio";
 import Papa from "papaparse";
 import type { Issuer } from "../../app/data/schemas";
 
-export type Source = { id: string; issuer: Issuer; url: string; linkPattern: string; tender?: boolean };
+export type Source = { id: string; issuer: Issuer; url: string; linkPattern: string; tender?: boolean; lged?: { union: string; upazila: string } };
 export type Link = { url: string; text: string };
 
 const GENERIC = /^(দেখুন|বিস্তারিত|ডাউনলোড|download|view|details?)?$/i;
