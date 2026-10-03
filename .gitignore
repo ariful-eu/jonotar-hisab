@@ -5,3 +5,5 @@ build/
 scrape-summary.md
 .DS_Store
 .scrape-cache/
+.vite/
+extract-summary.md
