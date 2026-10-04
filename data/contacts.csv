@@ -1,1 +1,21 @@
 id,category,name_bn,name_en,number,hours_bn,free,note_bn,source_doc,status
+emergency-999,emergency,"জাতীয় জরুরি সেবা (পুলিশ, ফায়ার সার্ভিস, অ্যাম্বুলেন্স)","National emergency (police, fire, ambulance)",৯৯৯,২৪ ঘণ্টা,yes,যেকোনো ফোন থেকে বিনামূল্যে।,natportal-hotlines,published
+fire-102,emergency,ফায়ার সার্ভিস,Fire service,১০২,২৪ ঘণ্টা,unknown,আগুন বা দুর্ঘটনায় সব অপারেটর থেকে।,natportal-hotlines,published
+disaster-1090,emergency,দুর্যোগের আগাম বার্তা,Disaster early warning,১০৯০,২৪ ঘণ্টা,yes,"বন্যা, ঝড়ের আগাম সতর্কবার্তা — টোল ফ্রি।",natportal-hotlines,published
+health-16263,health,স্বাস্থ্য বাতায়ন (ডাক্তারের পরামর্শ),Health call centre (doctor's advice),১৬২৬৩,২৪ ঘণ্টা,unknown,ফোনে ডাক্তারের পরামর্শ।,dghs-home,published
+tangail-general-hospital,health,"জেনারেল হাসপাতাল, টাঙ্গাইল — জরুরি বিভাগ",Tangail General Hospital — emergency,০৯২১-৫৩০৮০,,unknown,"ময়মনসিংহ রোড, টাঙ্গাইল।",tsadar-hospitals,published
+tangail-general-hospital-mobile,health,"জেনারেল হাসপাতাল, টাঙ্গাইল — জরুরি স্বাস্থ্য সেবা (মোবাইল)",Tangail General Hospital — emergency (mobile),০১৭৩০-৩২৪৭৯২,,unknown,,tsadar-hospitals,published
+uhc-tangail-sadar,health,"উপজেলা স্বাস্থ্য কমপ্লেক্স, টাঙ্গাইল সদর","Upazila Health Complex, Tangail Sadar",০৯২১-৫৩৫০০,,unknown,"আকুর-টাকুর পাড়া, টাঙ্গাইল।",tsadar-hospitals,published
+women-children-109,women_children,নারী ও শিশু নির্যাতন প্রতিরোধ,Violence against women and children,১০৯,২৪ ঘণ্টা,yes,,natportal-hotlines,published
+child-1098,women_children,শিশু সহায়তা (চাইল্ড হেল্পলাইন),Child helpline,১০৯৮,২৪ ঘণ্টা,yes,বিপদে পড়া যেকোনো শিশুর জন্য।,natportal-hotlines,published
+legal-aid-16699,legal,সরকারি আইনগত সহায়তা,Government legal aid,১৬৬৯৯,,yes,অসহায় ও দরিদ্র মানুষের জন্য বিনামূল্যে আইনি পরামর্শ।,natportal-hotlines,published
+supreme-court-103,legal,সুপ্রিম কোর্ট হেল্পলাইন,Supreme Court helpline,১০৩,,unknown,আইনি সেবা ও আদালত-সংক্রান্ত তথ্য।,natportal-hotlines,published
+govt-info-333,govt_info,সরকারি তথ্য ও সেবা,Government information & services,৩৩৩,২৪ ঘণ্টা,no,"সরকারি সেবা পাওয়ার নিয়ম, ইউএনও/ডিসির কাছে সমস্যা জানানো, দুর্যোগে সাহায্যের আবেদন।",natportal-hotlines,published
+land-16122,govt_info,"ভূমি সেবা (নামজারি, খতিয়ান, খাজনা)","Land services (mutation, records, tax)",১৬১২২,,unknown,,natportal-hotlines,published
+acc-106,govt_info,দুর্নীতি দমন কমিশন হটলাইন,Anti-Corruption Commission hotline,১০৬,অফিস সময়,yes,সেবা পেতে ঘুষ চাওয়া হলে জানান — বিনা খরচে।,natportal-hotlines,published
+pbs-16899,utility,পল্লী বিদ্যুৎ কল সেন্টার,Palli Bidyut (rural electricity) call centre,১৬৮৯৯,,unknown,বিদ্যুৎ বিভ্রাট ও সংযোগ।,pbs-tangail,published
+power-16999,utility,বিদ্যুৎ বিভাগ অভিযোগ,Power Division complaints,১৬৯৯৯,,unknown,,natportal-hotlines,published
+btrc-100,utility,মোবাইল/টেলিকম অভিযোগ (বিটিআরসি),Mobile/telecom complaints (BTRC),১০০,,unknown,,natportal-hotlines,published
+passport-16445,govt_info,পাসপোর্ট তথ্য,Passport information,১৬৪৪৫,,unknown,,natportal-hotlines,published
+probashi-16135,govt_info,প্রবাসী সহায়তা,Migrant workers' help,১৬১৩৫,,unknown,প্রবাসী কর্মী ও পরিবারের সমস্যা।,natportal-hotlines,published
+uno-tangail-sadar,local_office,"উপজেলা নির্বাহী অফিসারের কার্যালয়, টাঙ্গাইল সদর","UNO office, Tangail Sadar",০৯২১-৬৩৫৬১,অফিস সময়,no,,tsadar-uno-contact,published

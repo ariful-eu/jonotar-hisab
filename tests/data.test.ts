@@ -20,3 +20,19 @@ describe("auto-added LGED records", () => {
     expect(ds.tenders.some((x) => x.id.startsWith("lged-47-") || x.id.startsWith("lged-04-"))).toBe(false);
   });
 });
+
+import { SERVICE_GUIDES } from "../app/content/service-guides";
+
+describe("service guides", () => {
+  it("every fee id and source document exists, and ids are unique", () => {
+    const ds = loadDataset(path.resolve("data"));
+    const fees = new Set(ds.fees.map((f) => f.id));
+    const docs = new Set(ds.documents.map((d) => d.id));
+    for (const g of SERVICE_GUIDES) {
+      for (const id of g.fee_ids) expect(fees, `${g.id} fee ${id}`).toContain(id);
+      for (const id of g.source_docs) expect(docs, `${g.id} source ${id}`).toContain(id);
+      expect(g.papers.length + g.steps.length).toBeGreaterThan(0);
+    }
+    expect(new Set(SERVICE_GUIDES.map((g) => g.id)).size).toBe(SERVICE_GUIDES.length);
+  });
+});

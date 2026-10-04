@@ -14,6 +14,8 @@ export default [
   route("tenders", "routes/tenders.tsx"),
   ...(ds.tenders.length > 0 ? [route("tenders/:id", "routes/tender.tsx")] : []),
   route("services", "routes/services.tsx"),
+  route("services/:id", "routes/service-guide.tsx"),
+  route("contacts", "routes/contacts.tsx"),
   route("allowances", "routes/allowances.tsx"),
   route("allowances/check", "routes/allowance-check.tsx"),
   route("notices", "routes/notices.tsx"),

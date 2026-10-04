@@ -12,7 +12,7 @@ export function meta() {
 
 export async function loader() {
   const ds = loadDataset();
-  return { items: noticesFeed(ds.documents, ds.tenders, ds.union.comparisons.map((c) => `${c.id}-`)) };
+  return { items: noticesFeed(ds.documents, ds.tenders) };
 }
 
 export default function Notices() {

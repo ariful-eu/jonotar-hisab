@@ -16,13 +16,19 @@ const D = (o: Partial<DocumentRow>): DocumentRow => ({ id: "d", title_bn: "ক",
 const T = (o: Partial<TenderRow>): TenderRow => ({ id: "t", title_bn: "টেন্ডার", title_en: null, issuer: "LGED", ref_no: null, published: "2026-07-28", deadline: null, est_value: null, url: null, archive_path: null, awarded_to: null, award_value: null, project_id: null, status: "published", ...o });
 
 describe("noticesFeed", () => {
-  it("mixes local documents and tenders newest first, undated last, excluding ministry/other and excluded ids", () => {
+  it("lists only scraper-found notices plus tenders, newest first, undated last", () => {
     const feed = noticesFeed(
-      [D({ id: "a", date: "2025-01-01" }), D({ id: "b", issuer: "ministry", date: "2026-01-01" }), D({ id: "c", date: null }), D({ id: "silimpur-budget-2023-24", date: "2026-02-02" }), D({ id: "e", issuer: "upazila", date: "2026-09-01" })],
+      [
+        D({ id: "katuli-notices-aa", date: "2025-01-01" }),
+        D({ id: "sadar-notices-bb", issuer: "upazila", date: "2026-09-01" }),
+        D({ id: "district-notices-cc", issuer: "district", date: null }),
+        D({ id: "tsadar-hospitals", issuer: "upazila", date: "2026-10-01" }),
+        D({ id: "katuli-budget-2014-15", date: "2014-12-08" }),
+        D({ id: "katuli-files-dd", status: "ignored", date: "2026-09-02" }),
+      ],
       [T({ id: "t1", published: "2026-07-28" })],
-      ["silimpur-"],
     );
-    expect(feed.map((x) => x.id)).toEqual(["e", "t1", "a", "c"]);
+    expect(feed.map((x) => x.id)).toEqual(["sadar-notices-bb", "t1", "katuli-notices-aa", "district-notices-cc"]);
     expect(feed.find((x) => x.id === "t1")?.url).toBe("/tenders/t1");
   });
 });

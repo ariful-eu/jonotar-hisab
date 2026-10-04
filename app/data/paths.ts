@@ -1,4 +1,5 @@
 import { RIGHTS_TOPICS } from "../content/rights";
+import { SERVICE_GUIDES } from "../content/service-guides";
 import { yearsFor } from "../lib/aggregate";
 import type { Dataset } from "./schemas";
 
@@ -16,6 +17,8 @@ export function allPaths(ds: Dataset): string[] {
       "/tenders",
       ...ds.tenders.map((t) => `/tenders/${t.id}`),
       "/services",
+      ...SERVICE_GUIDES.map((g) => `/services/${g.id}`),
+      "/contacts",
       "/allowances",
       "/allowances/check",
       "/notices",

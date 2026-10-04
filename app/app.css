@@ -221,3 +221,29 @@ details.cat > summary::-webkit-details-marker { display: none; }
 .menu-compact .menu-item { min-height: 60px; padding: 10px 14px; }
 .menu-compact .menu-icon { width: 36px; height: 36px; }
 @media (min-width: 900px) { .menu-compact { grid-template-columns: repeat(3, minmax(0, 1fr)); } .menu-compact .menu-item { flex-direction: row; align-items: center; min-height: 72px; } }
+.guide-list { display: grid; gap: 10px; }
+@media (min-width: 900px) { .guide-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.guide-card { display: flex; gap: 12px; align-items: flex-start; margin: 0; }
+.guide-card strong { display: block; font-size: 1.05rem; }
+.guide-card .muted { display: block; }
+.guide-card .chips { margin: 6px 0 0; }
+.guide-title { display: flex; align-items: center; gap: 12px; }
+.guide-section h2 { display: flex; align-items: center; gap: 8px; margin-top: 0; }
+.guide-section h2 svg { color: var(--primary); flex: none; }
+.guide-section ul, .guide-section ol { margin: 0; padding-left: 1.3rem; }
+.guide-section li { margin: 6px 0; }
+.checklist { list-style: none; padding-left: 0 !important; }
+.checklist li { position: relative; padding-left: 28px; }
+.checklist li::before { content: "✓"; position: absolute; left: 4px; color: var(--good); font-weight: 700; }
+.where-list { list-style: none; padding-left: 0 !important; }
+.where-list li { display: flex; align-items: center; gap: 8px; }
+.where-list svg { color: var(--primary); flex: none; }
+.steps li::marker { font-weight: 700; color: var(--primary); }
+.tips { background: var(--accent-soft); border-color: transparent; }
+.contact-list { list-style: none; padding: 0; margin: 0 0 8px; }
+.contact { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.contact strong { display: block; }
+.contact .muted { display: block; }
+.contact .chips { margin: 4px 0 0; }
+.contact-emergency { border-left: 5px solid #b3261e; }
+.call-btn { flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 48px; padding: 8px 14px; border-radius: 999px; background: var(--primary); color: var(--primary-ink); font-weight: 700; font-size: 1.05rem; text-decoration: none; white-space: nowrap; }

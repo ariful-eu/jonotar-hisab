@@ -34,7 +34,7 @@ export async function loader() {
       area: ds.union.area_km2,
     },
     ownBudget,
-    notices: noticesFeed(ds.documents, ds.tenders, ds.union.comparisons.map((c) => `${c.id}-`)).slice(0, 5),
+    notices: noticesFeed(ds.documents, ds.tenders).slice(0, 5),
   };
 }
 
