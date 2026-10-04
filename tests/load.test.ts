@@ -40,7 +40,7 @@ function makeDs(over: Partial<Dataset> = {}): Dataset {
       wards: [], leadership: [], maintainer: { whatsapp: null, note_bn: null }, comparisons: [{ id: "silimpur", name_bn: "সিলিমপুর", name_en: "Silimpur", population: null, households: null, census_year: null, portal_url: null }],
     },
     documents: [{ id: "doc-a", title_bn: "ক", title_en: null, issuer: "union", date: null, fiscal_year: null, url: null, archive_path: null, reliability: "official", status: "published", note_bn: null }],
-    disclosures: [], budget: [], reportedTotals: [], projects: [], verifications: [], tenders: [], fees: [], allowances: [], allowanceCounts: [],
+    disclosures: [], budget: [], reportedTotals: [], projects: [], verifications: [], tenders: [], fees: [], allowances: [], allowanceCounts: [], contacts: [],
     ...over,
   };
 }
@@ -61,5 +61,19 @@ describe("checkRefs", () => {
     }));
     expect(errs.join("\n")).toMatch(/duplicate id "doc-a"/);
     expect(errs.join("\n")).toMatch(/project_id "ghost"/);
+  });
+});
+
+import { ContactRow } from "../app/data/schemas";
+
+describe("ContactRow", () => {
+  const h = "id,category,name_bn,name_en,number,hours_bn,free,note_bn,source_doc,status";
+  it("accepts a helpline with Bangla digits and dashes", () => {
+    const rows = parseCsv("contacts.csv", `${h}\nnational-emergency,emergency,জাতীয় জরুরি সেবা,National emergency,৯৯৯,২৪ ঘণ্টা,yes,,doc-a,published\n`, ContactRow);
+    expect(rows[0].number).toBe("৯৯৯");
+  });
+  it("rejects a number with no digits and an unknown category", () => {
+    expect(() => parseCsv("contacts.csv", `${h}\nx,emergency,ক,X,call us,,yes,,doc-a,published\n`, ContactRow)).toThrowError(/column number/);
+    expect(() => parseCsv("contacts.csv", `${h}\nx,gossip,ক,X,999,,yes,,doc-a,published\n`, ContactRow)).toThrowError(/column category/);
   });
 });

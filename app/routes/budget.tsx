@@ -1,4 +1,4 @@
-import { AlertTriangle, ChevronDown } from "lucide-react";
+import { AlertTriangle, ChevronDown, Info } from "lucide-react";
 import { useState } from "react";
 import { data, Link, useLoaderData } from "react-router";
 import type { Route } from "./+types/budget";
@@ -127,7 +127,8 @@ export default function Budget() {
 
   return (
     <>
-      <h1>{t("বাজেট", "Budget")}{fy ? ` ${f.fy(fy)}` : ""}</h1>
+      <h1>{t("ইউনিয়নের বাজেট", "Union budget")}{fy ? ` ${f.fy(fy)}` : ""}</h1>
+      <p className="intro">{t("কাতুলী ইউনিয়ন পরিষদের টাকা কোথা থেকে আসে আর কোন খাতে খরচ হয় — সহজ ভাষায়। প্রতিটি সংখ্যার উৎস দেওয়া আছে।", "Where Katuli Union Parishad's money comes from and what it's spent on — in plain language, with a source for every figure.")}</p>
       {years.length > 0 ? (
         <nav className="chips" aria-label={t("অর্থবছর", "Fiscal year")}>
           {years.map((y) => (
@@ -139,10 +140,10 @@ export default function Budget() {
       {!summary ? <EmptyYear /> : (
         <>
           {reconstructed ? (
-            <div className="warn"><AlertTriangle aria-hidden /><p>{t("ইউনিয়ন পরিষদ এই বছরের বাজেট প্রকাশ করেনি। নিচের সংখ্যাগুলো উপজেলা/জেলা/মন্ত্রণালয়ের বরাদ্দ তালিকা থেকে নেওয়া — তাই আংশিক।", "The Union Parishad did not publish this year's budget. These figures come from upazila/district/ministry allocation lists, so they are partial.")}</p></div>
+            <div className="info-note"><Info size={20} aria-hidden /><p>{t("এই বছরের পুরো বাজেট আমরা এখনো পাইনি। নিচে শুধু অন্য সরকারি অফিসের তালিকায় পাওয়া কাতুলী ইউনিয়নের বরাদ্দ দেখানো হলো — তাই আংশিক।", "We don't have this year's full budget yet. Below are only the allocations to Katuli Union found in other government offices' lists, so the picture is partial.")}</p></div>
           ) : null}
           {lowReliability ? (
-            <div className="warn"><AlertTriangle aria-hidden /><p>{t("উৎস নথিতে অসঙ্গতি আছে (যেমন দুটি ভিন্ন তারিখ/সভাপতির নাম)। সংখ্যাগুলো সাবধানে ব্যবহার করুন।", "The source document has inconsistencies (e.g. two different dates or chairs). Use these figures with care.")}</p></div>
+            <div className="info-note"><Info size={20} aria-hidden /><p>{t("উৎস নথিতে কিছু অসংগতি আছে (যেমন দুটি ভিন্ন তারিখ), তাই সংখ্যাগুলো আনুমানিক ধরে নিন।", "The source document has some inconsistencies (e.g. two different dates), so treat these figures as approximate.")}</p></div>
           ) : null}
 
           <section className="card">

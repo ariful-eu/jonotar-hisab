@@ -1,4 +1,7 @@
+import { MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
 import { data, Link, useLoaderData } from "react-router";
+import { getMyWard, setMyWard } from "../lib/prefs";
 import type { Route } from "./+types/ward";
 import { Amount } from "../components/Amount";
 import { ShareButtons } from "../components/ShareButtons";
@@ -27,6 +30,26 @@ export async function loader({ params }: Route.LoaderArgs) {
   };
 }
 
+function MyWardButton({ ward }: { ward: number }) {
+  const t = useT();
+  const [mine, setMine] = useState(false);
+  useEffect(() => setMine(getMyWard() === ward), [ward]);
+  return (
+    <button
+      type="button"
+      className={`btn${mine ? " btn-primary" : ""} no-print`}
+      aria-pressed={mine}
+      onClick={() => {
+        setMyWard(mine ? null : ward);
+        setMine(!mine);
+      }}
+    >
+      <MapPin size={18} aria-hidden />
+      {mine ? t("এটা আমার ওয়ার্ড ✓ (হোমে দেখাবে)", "My ward ✓ (shown on home)") : t("এটা আমার ওয়ার্ড — মনে রাখুন", "This is my ward — remember it")}
+    </button>
+  );
+}
+
 export default function Ward() {
   const { ward, projects, allowances } = useLoaderData<typeof loader>();
   const t = useT();
@@ -36,6 +59,7 @@ export default function Ward() {
     <>
       <p className="no-print"><Link to="/wards">← {t("সব ওয়ার্ড", "All wards")}</Link></p>
       <h1>{t(`${f.digits(ward.no)} নং ওয়ার্ড`, `Ward ${ward.no}`)}</h1>
+      <MyWardButton ward={ward.no} />
       <section className="card">
         <dl className="kv">
           <dt>{t("গ্রাম", "Villages")}</dt><dd>{villages.length ? villages.join(", ") : <Unknown />}</dd>

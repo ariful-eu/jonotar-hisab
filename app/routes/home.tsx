@@ -1,119 +1,116 @@
-import { AlertTriangle } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router";
-import { Bars } from "../components/Bars";
-import { DisclosureStrip } from "../components/DisclosureStrip";
-import { SectionTiles } from "../components/SectionTiles";
+import { SearchBox } from "../components/SearchBox";
+import { MoreSections, QuickActions } from "../components/SectionTiles";
 import { ShareButtons } from "../components/ShareButtons";
-import { categoryItems } from "../data/categories";
 import { loadDataset } from "../data/load.server";
-import { fiscalYearOf, fyStart, headlineYear, summarizeYear, yearsFor } from "../lib/aggregate";
-import { perHousehold } from "../lib/format";
+import { headlineYear, summarizeYear } from "../lib/aggregate";
 import { useFmt, useT } from "../lib/i18n";
-import { KIND_LABEL } from "../lib/labels";
 import { pageMeta } from "../lib/meta";
+import { NoticeRow } from "../components/NoticeRow";
+import { noticesFeed } from "../lib/notices";
+import { getMyWard } from "../lib/prefs";
 
-const TITLE = "কাতুলী ইউনিয়নের টাকা কোথা থেকে আসে, কোথায় যায়?";
+const TITLE = "কাতুলী ইউনিয়নের দরকারি সব তথ্য, এক জায়গায়";
 
 export function meta() {
-  return pageMeta(TITLE, "কাতুলী ইউনিয়ন পরিষদ, টাঙ্গাইল সদর — বাজেট, প্রকল্প, দরপত্র, সেবার ফি, ভাতা ও আপনার অধিকার। স্বাধীন নাগরিক উদ্যোগ।");
+  return pageMeta(TITLE, "জন্ম নিবন্ধন, সনদ, ভাতা, জরুরি নম্বর, নোটিশ, উন্নয়ন কাজ আর ইউনিয়নের বাজেট — কাতুলী ইউনিয়ন, টাঙ্গাইল সদরের মানুষের জন্য সহজ ভাষায়।");
 }
 
 export async function loader() {
   const ds = loadDataset();
   const id = ds.union.id;
-  const { year: latest, newerPartial } = headlineYear(ds.budget, id);
-  const latestUnionYear = yearsFor(ds.budget.filter((l) => l.source_type === "union"), id)[0] ?? null;
+  const { year } = headlineYear(ds.budget, id);
+  const s = year ? summarizeYear(ds.budget, ds.reportedTotals, id, year) : null;
+  const ownBudget = s && s.sourceTypes.includes("union") ? { fy: s.fiscalYear, total: s.reportedIncome ?? s.income } : null;
   return {
-    union: { id, households: ds.union.households, census_year: ds.union.census_year },
-    summary: latest ? summarizeYear(ds.budget, ds.reportedTotals, id, latest) : null,
-    newerPartial: newerPartial.map((fy) => ({ fy, total: summarizeYear(ds.budget, ds.reportedTotals, id, fy)?.income ?? 0 })),
-    latestUnionYear,
-    currentFy: fiscalYearOf(new Date()),
-    disclosures: ds.disclosures.map(({ id, requirement_bn, requirement_en, published }) => ({ id, requirement_bn, requirement_en, published })),
+    facts: {
+      population: ds.union.population,
+      households: ds.union.households,
+      census_year: ds.union.census_year,
+      wards: ds.union.wards.length,
+      villages: ds.union.villages_bn.length,
+      area: ds.union.area_km2,
+    },
+    ownBudget,
+    notices: noticesFeed(ds.documents, ds.tenders, ds.union.comparisons.map((c) => `${c.id}-`)).slice(0, 5),
   };
 }
 
-export default function Home() {
-  const { union, summary, newerPartial, latestUnionYear, currentFy, disclosures } = useLoaderData<typeof loader>();
+function MyWardCard() {
   const t = useT();
   const f = useFmt();
-  const headline = summary ? summary.reportedIncome ?? summary.income : null;
-  const reconstructed = summary ? !summary.sourceTypes.includes("union") : false;
-  const staleYears = latestUnionYear ? fyStart(currentFy) - fyStart(latestUnionYear) : null;
-  const perHh = headline !== null ? perHousehold(headline, union.households) : null;
+  const [ward, setWard] = useState<number | null>(null);
+  useEffect(() => setWard(getMyWard()), []);
+  if (ward === null) return null;
+  return (
+    <Link to={`/ward/${ward}`} className="card list-link my-ward">
+      <MapPin size={22} aria-hidden />
+      <span className="grow"><strong>{t(`আমার ওয়ার্ড: ${f.digits(ward)} নং`, `My ward: ${ward}`)}</strong><br /><span className="muted">{t("আপনার এলাকার কাজ, ভাতা ও ওয়ার্ড সভার তথ্য", "Works, allowances and meetings in your area")}</span></span>
+    </Link>
+  );
+}
 
-  const top = (xs: ReturnType<typeof categoryItems>) => xs.slice(0, 4);
-  const incomeItems = summary ? categoryItems(summary.incomeByCategory, f.lang) : [];
-  const expenseItems = summary ? categoryItems(summary.expenseByCategory, f.lang) : [];
+export default function Home() {
+  const { facts, ownBudget, notices } = useLoaderData<typeof loader>();
+  const t = useT();
+  const f = useFmt();
+  const stats = [
+    { label: t("জনসংখ্যা", "Population"), value: f.num(facts.population) },
+    { label: t("পরিবার", "Households"), value: f.num(facts.households) },
+    { label: t("ওয়ার্ড", "Wards"), value: f.digits(facts.wards) },
+    { label: t("গ্রাম", "Villages"), value: f.digits(facts.villages) },
+    { label: t("আয়তন", "Area"), value: t(`${f.num(facts.area)} বর্গকিমি`, `${facts.area} km²`) },
+  ];
 
   return (
     <>
-      <h1>{t(TITLE, "Where does Katuli Union's money come from, and where does it go?")}</h1>
-      <p className="intro">{t(
-        "“জনতার হিসাব” একটি স্বাধীন নাগরিক উদ্যোগ। সরকারি কাগজপত্র থেকে কাতুলী ইউনিয়ন পরিষদের টাকার হিসাব এখানে সহজ ভাষায় দেওয়া হয়েছে — যাতে আপনি জানতে ও প্রশ্ন করতে পারেন।",
-        "“Jonotar Hisab” is an independent citizens' initiative. It turns government documents into a plain account of Katuli Union Parishad's money, so you can know and ask questions.",
-      )}</p>
+      <section className="home-hero">
+        <h1>{t(TITLE, "Everything useful about Katuli Union, in one place")}</h1>
+        <p className="intro">{t(
+          "সরকারি সেবা কীভাবে পাবেন, কোন ভাতা পেতে পারেন, জরুরি নম্বর, এলাকার নোটিশ ও উন্নয়ন কাজ — কাতুলী ইউনিয়নের মানুষের জন্য সহজ ভাষায়।",
+          "How to get government services, which allowances you may get, useful numbers, local notices and works — in plain language for the people of Katuli Union.",
+        )}</p>
+        <SearchBox />
+      </section>
 
-      <h2>{t("কী জানতে চান?", "What would you like to know?")}</h2>
-      <SectionTiles />
+      <QuickActions />
+      <MyWardCard />
 
-      {summary && headline !== null ? (
-        <section className="card" aria-labelledby="hero-label">
-          <p id="hero-label" className="muted">
-            {reconstructed
-              ? t(`${f.fy(summary.fiscalYear)} অর্থবছরে অন্তত এত টাকা এসেছে (অন্য সরকারি অফিসের তালিকা থেকে — আংশিক)`, `At least this much came in FY ${summary.fiscalYear} (from other offices' lists — partial)`)
-              : t(`কাতুলী ইউনিয়নের মোট বাজেট — সর্বশেষ প্রকাশিত, ${f.fy(summary.fiscalYear)} অর্থবছর`, `Katuli Union's total budget — latest published, FY ${summary.fiscalYear}`)}
-          </p>
-          <p className="hero-number">{f.taka(headline)}</p>
-          {perHh !== null ? (
-            <p>
-              {t(`পরিবারপ্রতি বাজেট প্রায় ${f.takaFull(perHh)}`, `Budget per household: about ${f.takaFull(perHh)}`)}{" "}
-              <span className="muted">({t(`${f.num(union.households)} পরিবার, আদমশুমারি ${f.digits(union.census_year)}`, `${f.num(union.households)} households, census ${union.census_year}`)})</span>
-            </p>
+      <section className="card" aria-labelledby="glance-h">
+        <h2 id="glance-h" className="h3">{t("এক নজরে কাতুলী ইউনিয়ন", "Katuli Union at a glance")}</h2>
+        <dl className="stats">
+          {stats.map((s) => (
+            <div key={s.label}><dt>{s.label}</dt><dd>{s.value}</dd></div>
+          ))}
+          {ownBudget ? (
+            <div><dt>{t("বার্ষিক বাজেট", "Yearly budget")}</dt><dd><Link to={`/budget/${ownBudget.fy}`}>{f.taka(ownBudget.total)}</Link></dd></div>
           ) : null}
-          {staleYears !== null && staleYears >= 2 ? (
-            <div className="warn" role="note">
-              <AlertTriangle aria-hidden />
-              <p>
-                {t(`এই বাজেট ${f.digits(staleYears)} বছর আগের। এর পরে ইউনিয়ন আর কোনো বাজেট প্রকাশ করেনি, অথচ আইন অনুযায়ী প্রতি বছর প্রকাশ্য সভায় বাজেট দেওয়ার কথা। `, `This budget is ${staleYears} years old. The union has not published one since, although the law requires a public budget every year. `)}
-                <Link to="/rights/rti?item=budget-current">{t("এ বছরের বাজেট চেয়ে আবেদন করুন →", "Ask for this year's budget →")}</Link>
-              </p>
-            </div>
-          ) : null}
-          <h2 className="h3">{t("টাকা আসে কোথা থেকে", "Where the money comes from")}</h2>
-          <Bars tone="income" items={top(incomeItems)} />
-          <h2 className="h3">{t("খরচ হয় কোথায়", "Where it is spent")}</h2>
-          <Bars tone="expense" items={top(expenseItems)} />
-          <Link className="btn btn-primary" to={`/budget/${summary.fiscalYear}`}>{t("পুরো বাজেট দেখুন", "See the full budget")}</Link>
-        </section>
-      ) : (
-        <div className="warn" role="alert">
-          <AlertTriangle aria-hidden />
-          <p>
-            {t("কাতুলী ইউনিয়ন পরিষদের প্রকাশিত কোনো বাজেট আমরা খুঁজে পাইনি। ", "We could not find any budget published by Katuli Union Parishad. ")}
-            <Link to="/rights/rti?item=budget-current">{t("বাজেট চেয়ে আবেদন করুন →", "Ask for it →")}</Link>
-          </p>
-        </div>
-      )}
+        </dl>
+        <p className="muted">{t(
+          `জনসংখ্যা ও পরিবার: আদমশুমারি ${f.digits(facts.census_year)}।${ownBudget ? ` বাজেট: ইউনিয়নের সর্বশেষ প্রকাশিত (${f.fy(ownBudget.fy)})।` : ""}`,
+          `Population and households: Census ${facts.census_year}.${ownBudget ? ` Budget: latest published by the union (FY ${ownBudget.fy}).` : ""}`,
+        )}</p>
+      </section>
 
-      {newerPartial.length > 0 ? (
-        <section className="card" aria-labelledby="newer-h">
-          <h2 id="newer-h" className="h3">{t("এর পরের বছরগুলোর খবর", "What we know about later years")}</h2>
-          <p className="muted">{t("ইউনিয়ন এসব বছরের বাজেট প্রকাশ করেনি। অন্য সরকারি অফিসের তালিকায় কাতুলী ইউনিয়নের নামে যা পাওয়া গেছে, শুধু সেটুকু:", "The union did not publish these budgets. Only what other government offices list for Katuli Union:")}</p>
-          <ul className="scorecard">
-            {newerPartial.map((p) => (
-              <li key={p.fy}>
-                <span className="grow"><Link to={`/budget/${p.fy}`}>{t(`${f.fy(p.fy)} অর্থবছর`, `FY ${p.fy}`)}</Link></span>
-                <strong>{t(`অন্তত ${f.taka(p.total)}`, `at least ${f.taka(p.total)}`)}</strong>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
+      <section aria-labelledby="latest-h">
+        <h2 id="latest-h">{t("সর্বশেষ নোটিশ ও টেন্ডার", "Latest notices & tenders")}</h2>
+        {notices.length === 0 ? <p className="muted">{t("এখনো কোনো নোটিশ নেই।", "No notices yet.")}</p> : <ul className="notices">{notices.map((x) => <NoticeRow key={x.id} x={x} />)}</ul>}
+        <p><Link to="/notices">{t("সব নোটিশ দেখুন →", "See all notices →")}</Link></p>
+      </section>
 
-      <DisclosureStrip items={disclosures} />
+      <h2>{t("আরও দেখুন", "More")}</h2>
+      <MoreSections />
 
-      <ShareButtons title={t(TITLE, "Katuli Union budget")} poster={`/poster/home/${union.id}`} />
+      <a className="emergency-strip" href="tel:999">
+        <Phone size={22} aria-hidden />
+        <span className="grow"><strong>{t("জরুরি প্রয়োজনে ৯৯৯", "Emergency: 999")}</strong><br /><span>{t("পুলিশ, ফায়ার সার্ভিস, অ্যাম্বুলেন্স — বিনামূল্যে, ২৪ ঘণ্টা", "Police, fire, ambulance — free, 24 hours")}</span></span>
+        <span className="call">{t("কল করুন", "Call")}</span>
+      </a>
+      <p className="center"><Link to="/contacts">{t("অন্যান্য দরকারি নম্বর →", "Other useful numbers →")}</Link></p>
+
+      <ShareButtons title={t(TITLE, "Jonotar Hisab — Katuli Union")} poster="/poster/home/katuli" />
     </>
   );
 }

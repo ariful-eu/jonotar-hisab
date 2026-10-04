@@ -94,6 +94,14 @@ export const AllowanceCountRow = z.object({
 });
 export type AllowanceCountRow = z.infer<typeof AllowanceCountRow>;
 
+export const CONTACT_CATEGORIES = ["emergency", "health", "women_children", "legal", "agriculture", "govt_info", "utility", "local_office"] as const;
+export const ContactRow = z.object({
+  id: slug, category: z.enum(CONTACT_CATEGORIES), name_bn: text, name_en: text,
+  number: z.string().trim().regex(/[0-9০-৯]/, "expected a phone number with digits"),
+  hours_bn: optText, free: z.enum(["yes", "no", "unknown"]), note_bn: optText, source_doc: slug, status: rowStatus,
+});
+export type ContactRow = z.infer<typeof ContactRow>;
+
 export const UnionProfile = z.object({
   id: slug, name_bn: text, name_en: text, upazila_bn: text, upazila_en: text, district_bn: text, district_en: text,
   area_km2: z.number(), population: z.number(), households: z.number(), census_year: z.number().int(), portal_url: z.string(),
@@ -125,4 +133,5 @@ export type Dataset = {
   fees: ServiceFeeRow[];
   allowances: AllowanceRow[];
   allowanceCounts: AllowanceCountRow[];
+  contacts: ContactRow[];
 };

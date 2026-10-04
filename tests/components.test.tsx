@@ -47,8 +47,8 @@ describe("DisclosureStrip", () => {
       { id: "charter", requirement_bn: "সিটিজেন চার্টার", requirement_en: "Citizen charter", published: "yes" },
       { id: "audit", requirement_bn: "অডিট", requirement_en: "Audit", published: "partial" },
     ]} />);
-    expect(screen.getByText("৩টির মধ্যে প্রকাশ করেছে ১টি")).toBeTruthy();
-    const links = screen.getAllByRole("link", { name: /তথ্য চান/ });
+    expect(screen.getByText("৩টির মধ্যে অনলাইনে পাওয়া গেছে ১টি")).toBeTruthy();
+    const links = screen.getAllByRole("link", { name: /কীভাবে চাইবেন/ });
     expect(links[0].getAttribute("href")).toBe("/rights/rti?item=budget-current");
     expect(links).toHaveLength(2);
   });

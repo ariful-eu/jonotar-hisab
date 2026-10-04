@@ -6,10 +6,10 @@ export type RightsTopic = { key: "rti" | "ward-shava" | "open-budget" | "complai
 export const RIGHTS_TOPICS: RightsTopic[] = [
   {
     key: "rti",
-    title_bn: "তথ্য চাওয়ার অধিকার",
-    title_en: "Your right to information",
-    summary_bn: "ইউনিয়ন পরিষদের বাজেট, প্রকল্প, ভাতাভোগীর সংখ্যা — যেকোনো তথ্য চাওয়ার আইনি অধিকার আপনার আছে।",
-    summary_en: "You have a legal right to ask the Union Parishad for any information — budgets, projects, beneficiary numbers.",
+    title_bn: "দরকারি তথ্য কীভাবে চাইবেন",
+    title_en: "How to ask for information you need",
+    summary_bn: "ভাতার তালিকা, বাজেট, কাজের তথ্য বা কোনো সনদের নিয়ম — ইউনিয়ন পরিষদের কাছে সহজ একটি আবেদনে তথ্য চাইতে পারেন। আবেদনপত্র এখানেই তৈরি করে নিন।",
+    summary_en: "Allowance lists, budgets, works or the rules for a certificate — you can ask the Union Parishad with a simple application. Make it here.",
     sections: [
       {
         heading_bn: "আইন কী বলে", heading_en: "What the law says",
@@ -37,7 +37,7 @@ export const RIGHTS_TOPICS: RightsTopic[] = [
   },
   {
     key: "ward-shava",
-    title_bn: "ওয়ার্ড সভা: এলাকার সবার সভা",
+    title_bn: "ওয়ার্ড সভা: এলাকার কথা বলার জায়গা",
     title_en: "Ward shava: the whole ward's meeting",
     summary_bn: "আপনার ওয়ার্ডের সব ভোটার ওয়ার্ড সভার সদস্য। কোন রাস্তা আগে হবে, কারা ভাতা পাবেন — এখানেই ঠিক হওয়ার কথা।",
     summary_en: "Every voter in your ward is a member. Which road comes first and who gets allowances is meant to be decided here.",
@@ -67,10 +67,10 @@ export const RIGHTS_TOPICS: RightsTopic[] = [
   },
   {
     key: "open-budget",
-    title_bn: "প্রকাশ্য বাজেট অধিবেশন",
-    title_en: "The open budget session",
-    summary_bn: "ইউনিয়ন পরিষদের বাজেট এলাকাবাসীর সামনে প্রকাশ্য সভায় উপস্থাপন করার কথা। আপনি সেখানে প্রশ্ন করতে পারেন।",
-    summary_en: "The UP budget must be presented at a public meeting in front of residents. You can ask questions there.",
+    title_bn: "বাজেট সভায় অংশ নিন",
+    title_en: "Join the open budget session",
+    summary_bn: "প্রতি বছর ইউনিয়নের বাজেট এলাকাবাসীর সামনে প্রকাশ্য সভায় দেওয়া হয়। সেখানে গিয়ে আপনার এলাকার দরকারের কথা বলতে পারেন।",
+    summary_en: "Each year the union's budget is presented at a public meeting. Go and speak up for what your area needs.",
     sections: [
       {
         heading_bn: "আইন কী বলে", heading_en: "What the law says",
@@ -96,9 +96,9 @@ export const RIGHTS_TOPICS: RightsTopic[] = [
   },
   {
     key: "complain",
-    title_bn: "কোথায় অভিযোগ করবেন",
-    title_en: "Where to complain",
-    summary_bn: "ঘুষ চাওয়া, সেবা না পাওয়া বা তালিকায় অনিয়ম — সরকারি মাধ্যমে অভিযোগ করুন এবং নিজের কাছে কপি রাখুন।",
+    title_bn: "সমস্যা হলে কোথায় যাবেন",
+    title_en: "Where to go if there's a problem",
+    summary_bn: "সেবা পেতে দেরি, বাড়তি টাকা চাওয়া বা তালিকায় নাম না থাকা — কোন সরকারি দপ্তরে কীভাবে জানাবেন।",
     summary_en: "Asked for a bribe, denied a service, or a list was manipulated? Use the official channels and keep a copy.",
     sections: [
       {

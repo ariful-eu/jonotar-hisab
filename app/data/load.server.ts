@@ -63,6 +63,8 @@ export function checkRefs(ds: S.Dataset): string[] {
   ds.fees.forEach((f) => doc("service_fees.csv", f.source_doc));
   ds.allowances.forEach((a) => doc("allowances.csv", a.source_doc));
   ds.allowanceCounts.forEach((a) => doc("allowance_counts.csv", a.source_doc));
+  ds.contacts.forEach((c) => doc("contacts.csv", c.source_doc));
+  dupes("contacts.csv", ds.contacts.map((c) => c.id));
   ds.disclosures.forEach((d) => doc("disclosures.csv", d.document_id));
   for (const v of ds.verifications) {
     if (!projectIds.has(v.project_id)) errs.push(`verifications.csv: project_id "${v.project_id}" not found in projects.csv`);
@@ -100,6 +102,7 @@ export function loadDataset(dir = path.resolve(process.cwd(), "data")): S.Datase
     fees: parseCsv("service_fees.csv", read("service_fees.csv"), S.ServiceFeeRow, "-"),
     allowances: parseCsv("allowances.csv", read("allowances.csv"), S.AllowanceRow, "-"),
     allowanceCounts: parseCsv("allowance_counts.csv", read("allowance_counts.csv"), S.AllowanceCountRow),
+    contacts: parseCsv("contacts.csv", read("contacts.csv"), S.ContactRow),
   };
   const errs = checkRefs(ds);
   if (errs.length > 0) throw new DataError(errs.join("\n"));

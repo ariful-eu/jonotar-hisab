@@ -1,4 +1,4 @@
-import { MessageCircle, Phone } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { data, Link, useLoaderData, type LoaderFunctionArgs, type MetaFunction } from "react-router";
 import { Amount } from "../components/Amount";
 import { ShareButtons } from "../components/ShareButtons";
@@ -77,12 +77,11 @@ export default function Project() {
       <p>{p.up_reply_bn ?? t("এখনো কোনো বক্তব্য পাওয়া যায়নি। ইউনিয়ন পরিষদ চাইলে তাদের বক্তব্য এখানে যোগ করা হবে।", "No response yet. If the Union Parishad sends one, it will be added here.")}</p>
 
       <section className="card no-print">
-        <h2 className="h3">{t("আপনি কী দেখেছেন জানান", "Tell us what you saw")}</h2>
-        <p>{t("ছবি তুললে তারিখ ও জায়গা লিখে রাখুন। কারো নাম ধরে প্রকাশ্যে অভিযোগ পোস্ট করবেন না — নিচের সরকারি মাধ্যম ব্যবহার করুন।", "If you take photos, note the date and place. Don't post accusations naming people publicly — use the official channels below.")}</p>
+        <h2 className="h3">{t("এই কাজ সম্পর্কে জানেন?", "Know something about this work?")}</h2>
+        <p>{t("কাজটি শুরু হয়েছে বা শেষ হয়েছে দেখলে, অথবা ছবি থাকলে আমাদের জানান — এলাকার সবাই হালনাগাদ তথ্য পাবেন। ছবির সাথে তারিখ ও জায়গা লিখে দিন।", "Seen this work start or finish, or have a photo? Tell us so everyone gets up-to-date information. Include the date and place.")}</p>
         <div className="share">
-          {whatsapp ? <a className="btn btn-primary" href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(reportText)}`} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden />{t("আমাদের হোয়াটসঅ্যাপে জানান", "Tell us on WhatsApp")}</a> : null}
-          <a className="btn" href="https://www.grs.gov.bd/" target="_blank" rel="noopener">{t("সরকারি অভিযোগ (GRS)", "Official complaint (GRS)")}</a>
-          <a className="btn" href="tel:106"><Phone size={18} aria-hidden />{t("দুদক ১০৬ (ফ্রি)", "ACC 106 (free)")}</a>
+          {whatsapp ? <a className="btn btn-primary" href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(reportText)}`} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden />{t("হোয়াটসঅ্যাপে জানান", "Send on WhatsApp")}</a> : null}
+          <Link className="btn" to="/rights/complain">{t("কোনো সমস্যা? কোথায় যাবেন", "A problem? Where to go")}</Link>
         </div>
       </section>
 

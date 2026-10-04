@@ -9,17 +9,20 @@ export function Footer() {
     <footer className="site-footer">
       <div className="container">
         <nav aria-label={t("সব পাতা", "All pages")}>
+          <Link to="/services">{t("সেবা", "Services")}</Link>
+          <Link to="/allowances/check">{t("ভাতা যাচাই", "Allowance check")}</Link>
+          <Link to="/contacts">{t("দরকারি নম্বর", "Useful numbers")}</Link>
+          <Link to="/notices">{t("নোটিশ", "Notices")}</Link>
           <Link to="/budget">{t("বাজেট", "Budget")}</Link>
           <Link to="/projects">{t("উন্নয়ন কাজ", "Works")}</Link>
           <Link to="/tenders">{t("টেন্ডার", "Tenders")}</Link>
           <Link to="/wards">{t("ওয়ার্ড", "Wards")}</Link>
-          <Link to="/services">{t("সেবার ফি", "Service fees")}</Link>
           <Link to="/allowances">{t("ভাতা", "Allowances")}</Link>
-          <Link to="/rights">{t("অধিকার", "Rights")}</Link>
+          <Link to="/rights">{t("নাগরিক গাইড", "Citizen guide")}</Link>
           <Link to="/documents">{t("মূল কাগজপত্র", "Documents")}</Link>
           <Link to="/about">{t("আমাদের সম্পর্কে", "About")}</Link>
         </nav>
-        <p>{t("এখানের তথ্য সরকারি নথি ও স্বেচ্ছাসেবকদের পর্যবেক্ষণ থেকে নেওয়া। কোনো অমিল মানেই অনিয়মের প্রমাণ নয়।", "Data comes from government documents and volunteer observations. A discrepancy is not proof of wrongdoing.")}</p>
+        <p>{t("জনতার হিসাব একটি স্বাধীন নাগরিক তথ্যসেবা। সব তথ্য সরকারি নথি থেকে নেওয়া, উৎসসহ। ভুল চোখে পড়লে জানান — ঠিক করে দেব।", "Jonotar Hisab is an independent citizen information service. Everything comes from government documents, with sources. Spot a mistake? Tell us and we'll fix it.")}</p>
         <p>{t(`সর্বশেষ হালনাগাদ: ${f.date(__BUILD_DATE__)}`, `Last updated: ${f.date(__BUILD_DATE__)}`)}</p>
         <div className="footer-bottom">
           <p className="footer-brand"><Logo size={28} /> <span>{t(`© ${f.digits(__BUILD_DATE__.slice(0, 4))} জনতার হিসাব। সর্বস্বত্ব সংরক্ষিত।`, `© ${__BUILD_DATE__.slice(0, 4)} Jonotar Hisab. All rights reserved.`)}</span></p>

@@ -31,7 +31,7 @@ export default function RightsTopic() {
   const { lang } = useLang();
   return (
     <>
-      <p className="no-print"><Link to="/rights">← {t("সব অধিকার", "All rights")}</Link></p>
+      <p className="no-print"><Link to="/rights">← {t("নাগরিক গাইড", "Citizen guide")}</Link></p>
       <h1 className="no-print">{lang === "bn" ? topic.title_bn : topic.title_en}</h1>
       <p className="no-print">{lang === "bn" ? topic.summary_bn : topic.summary_en}</p>
       {topic.key === "rti" ? <RtiForm items={rtiItems} union={union} /> : null}

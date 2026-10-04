@@ -12,8 +12,8 @@ export default function Rights() {
   const { lang } = useLang();
   return (
     <>
-      <h1>{t("আপনার অধিকার", "Your rights")}</h1>
-      <p>{t("ইউনিয়ন পরিষদের টাকা জনগণের টাকা। আইন আপনাকে প্রশ্ন করার, তথ্য চাওয়ার আর সিদ্ধান্তে অংশ নেওয়ার অধিকার দিয়েছে।", "Union Parishad money is public money. The law gives you the right to ask, to get information, and to take part in decisions.")}</p>
+      <h1>{t("নাগরিক গাইড", "Citizen guide")}</h1>
+      <p>{t("ইউনিয়ন পরিষদের কাজে কীভাবে অংশ নেবেন, দরকারি তথ্য কীভাবে চাইবেন, আর সমস্যা হলে কোথায় যাবেন — সহজ ভাষায়, ধাপে ধাপে।", "How to take part in your union's work, ask for information you need, and get help with a problem — step by step.")}</p>
       {RIGHTS_TOPICS.map((x) => (
         <Link key={x.key} to={`/rights/${x.key}`} className="card list-link">
           <h2 className="h3">{lang === "bn" ? x.title_bn : x.title_en}</h2>

@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router";
 import { Logo } from "./Logo";
-import { NAV_ITEMS } from "./BottomNav";
+import { TOP_NAV_ITEMS } from "./BottomNav";
 import { useLang, useT } from "../lib/i18n";
 
 export function Header() {
@@ -13,7 +13,7 @@ export function Header() {
         <div className="bar">
           <Link to="/" className="brand"><Logo size={40} /><span className="brand-text"><span>{t("জনতার হিসাব", "Jonotar Hisab")}</span><small>{t("কাতুলী ইউনিয়নের বাজেট", "Katuli Union budget")}</small></span></Link>
           <nav className="top-nav" aria-label={t("প্রধান মেনু", "Main menu")}>
-            {NAV_ITEMS.map((i) => (
+            {TOP_NAV_ITEMS.map((i) => (
               <NavLink key={i.to} to={i.to} end={i.end} className={({ isActive }) => (isActive ? "active" : undefined)}>{t(i.bn, i.en)}</NavLink>
             ))}
           </nav>
