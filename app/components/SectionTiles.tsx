@@ -19,7 +19,7 @@ export const MORE_SECTIONS: Section[] = [
   { to: "/tenders", icon: Gavel, bn: "টেন্ডার (দরপত্র)", en: "Tenders", dbn: "এলাকার কাজের টেন্ডার ও শেষ তারিখ", den: "Local tenders and deadlines" },
   { to: "/rights", icon: Scale, bn: "নাগরিক গাইড", en: "Citizen guide", dbn: "তথ্য চাওয়া, ওয়ার্ড সভা, সমস্যা হলে কোথায় যাবেন", den: "Asking for information, meetings, getting help" },
   { to: "/documents", icon: FolderOpen, bn: "মূল কাগজপত্র", en: "Original documents", dbn: "সব তথ্যের সরকারি উৎস", den: "Official sources for everything here" },
-  { to: "/about", icon: Info, bn: "আমাদের সম্পর্কে", en: "About us", dbn: "জনতার হিসাব কী, কারা চালায়", den: "What Jonotar Hisab is and who runs it" },
+  { to: "/about", icon: Info, bn: "আমাদের সম্পর্কে", en: "About us", dbn: "জনতার খাতা কী, কারা চালায়", den: "What Jonotar Khata is and who runs it" },
 ];
 
 function Tiles({ items, compact = false, label }: { items: Section[]; compact?: boolean; label: string }) {

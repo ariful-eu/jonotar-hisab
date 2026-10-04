@@ -110,7 +110,7 @@ export default function Home() {
       </a>
       <p className="center"><Link to="/contacts">{t("অন্যান্য দরকারি নম্বর →", "Other useful numbers →")}</Link></p>
 
-      <ShareButtons title={t(TITLE, "Jonotar Hisab — Katuli Union")} poster="/poster/home/katuli" />
+      <ShareButtons title={t(TITLE, "Jonotar Khata — Katuli Union")} poster="/poster/home/katuli" />
     </>
   );
 }

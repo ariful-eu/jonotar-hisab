@@ -84,7 +84,7 @@ export default function PosterPage() {
       <p className="no-print">{t("এই পাতাটি A4 কাগজে প্রিন্ট করে নোটিশ বোর্ড, হাট-বাজার, মসজিদ বা স্কুলে লাগান।", "Print this page on A4 and put it up on notice boards, markets, mosques or schools.")}</p>
       <button type="button" className="btn btn-primary no-print" onClick={() => window.print()}>{t("প্রিন্ট করুন", "Print")}</button>
       <article className="poster" lang="bn">
-        <p className="poster-brand"><Logo size={44} /> <strong>জনতার হিসাব</strong></p>
+        <p className="poster-brand"><Logo size={44} /> <strong>জনতার খাতা</strong></p>
         <h1>{poster.title}</h1>
         {poster.big ? <p className="big">{poster.big}</p> : null}
         {poster.bigLabel ? <p>{poster.bigLabel}</p> : null}
@@ -93,7 +93,7 @@ export default function PosterPage() {
           <span dangerouslySetInnerHTML={{ __html: qr }} />
           <p>ফোনের ক্যামেরা দিয়ে স্ক্যান করে বিস্তারিত দেখুন<br /><small>{url}</small></p>
         </div>
-        <p className="muted">জনতার হিসাব — স্বাধীন নাগরিক উদ্যোগ — এটি সরকারি নোটিশ নয়। কোনো অমিল মানেই অনিয়মের প্রমাণ নয়।</p>
+        <p className="muted">জনতার খাতা — স্বাধীন নাগরিক উদ্যোগ — এটি সরকারি নোটিশ নয়। কোনো অমিল মানেই অনিয়মের প্রমাণ নয়।</p>
       </article>
     </>
   );

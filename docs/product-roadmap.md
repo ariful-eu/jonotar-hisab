@@ -1,4 +1,4 @@
-# জনতার হিসাব: product roadmap
+# জনতার খাতা: product roadmap
 
 _Last updated 2026-10-04._
 

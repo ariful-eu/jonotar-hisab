@@ -4,7 +4,7 @@ Date: 2026-10-04 · Status: approved in chat (2026-10-04) · Supersedes the posi
 
 ## 1. Purpose
 
-Reposition জনতার হিসাব from a "budget watchdog" into **a helpful citizen-information service**: "কাতুলী ইউনিয়নের দরকারি সব তথ্য, এক জায়গায়" ("all the useful information about Katuli Union, in one place"). Budget transparency stays as one feature among several, worded neutrally. The product should be ready to grow into a multi-union service with user accounts later.
+Reposition জনতার খাতা from a "budget watchdog" into **a helpful citizen-information service**: "কাতুলী ইউনিয়নের দরকারি সব তথ্য, এক জায়গায়" ("all the useful information about Katuli Union, in one place"). Budget transparency stays as one feature among several, worded neutrally. The product should be ready to grow into a multi-union service with user accounts later.
 
 **Success criteria**
 - A first-time visitor can find "how do I get a birth certificate / what does it cost" within 2 taps from home.

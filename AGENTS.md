@@ -1,4 +1,4 @@
-# জনতার হিসাব (Jonotar Hisab): project handbook for agents and contributors
+# জনতার খাতা (Jonotar Khata): project handbook for agents and contributors
 
 Read this before changing anything. It explains what the project is, how it is built, the rules that must not be broken, where the data comes from, what is automated, and the traps that have already cost time. Last updated 2026-10-04.
 
@@ -6,7 +6,7 @@ Read this before changing anything. It explains what the project is, how it is b
 
 ## 1. What this is
 
-**জনতার হিসাব** ("The People's Account") is an independent **citizen information service** for **Katuli Union Parishad (কাতুলী ইউনিয়ন), Tangail Sadar Upazila, Tangail, Bangladesh**. Its tagline is "কাতুলী ইউনিয়নের দরকারি সব তথ্য, এক জায়গায়" ("everything useful about Katuli Union, in one place").
+**জনতার খাতা** ("The People's Notebook"; called জনতার হিসাব / Jonotar Hisab until 2026-10-04) is an independent **citizen information service** for **Katuli Union Parishad (কাতুলী ইউনিয়ন), Tangail Sadar Upazila, Tangail, Bangladesh**. Its tagline is "কাতুলী ইউনিয়নের দরকারি সব তথ্য, এক জায়গায়" ("everything useful about Katuli Union, in one place").
 
 **Positioning (since 2026-10-04):** a helpful service, **not a watchdog or whistleblower site**. People come back because it is useful every day:
 - step-by-step guides for government services
@@ -21,7 +21,7 @@ See `docs/product-roadmap.md` for the plan to grow into accounts, notifications 
 
 | | |
 |---|---|
-| Live site | https://ariful-eu.github.io/jonotar-hisab/ |
+| Live site | https://ariful-eu.github.io/jonotar-hisab/ (the URL and repo keep the old `jonotar-hisab` name for now; only the displayed name changed) |
 | Repo | https://github.com/ariful-eu/jonotar-hisab (`main` deploys automatically) |
 | Owner | An independent citizen volunteer (GitHub `ariful-eu`), not affiliated with the UP or the government |
 | Credit (footer) | "Designed and Developed with ❤️ in Torapganj, Tangail by Miah Softwares" → https://miah-softwares-site.trendy-outfit.workers.dev/ |
@@ -335,7 +335,7 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
   - `--primary` #0f6b66 (teal), `--accent` sand/amber, `--expense` clay, warm off-white background.
   - Full dark-mode palette.
   - Never use the government green-and-red look.
-- **Logo** (`app/components/Logo.tsx`, `public/icon.svg`): an open ledger (খাতা) with a person on the left page and rising bars on the right, meaning জনতা + হিসাব.
+- **Logo** (`app/components/Logo.tsx`, `public/icon.svg`): an open ledger (খাতা) with a person on the left page and rising bars on the right, meaning জনতা + খাতা.
 - **Performance:** first load is at most 200 KB (CI-enforced). No chart libraries; import lucide icons by name only.
 - **Print:** `@media print` hides the chrome. `/poster/...` is A4 with a QR code; the RTI page prints only the letter.
 
@@ -385,7 +385,7 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 - **Comparisons use each union's latest own budget,** not partial upstream years.
 - **Surplus row (উদ্বৃত্ত) excluded from Katuli 2014-15 spending.** It isn't spending.
 - **Five-year plan 2011-16 is stored as a reference document only.** It's a plan, not a budget.
-- **Site name and labels:** জনতার হিসাব, chosen by the owner. Labels say "X ইউনিয়ন" and "বাজেট", per the owner.
+- **Site name and labels:** জনতার খাতা (Jonotar Khata), chosen by the owner on 2026-10-04. It replaced জনতার হিসাব because "হিসাব" (accounts) sounded like an audit, which no longer fits a service hub; "খাতা" (notebook) is warmer and keeps the ledger logo. The repo and Pages path are still `jonotar-hisab` (renaming them breaks the public URL, so it is a separate step). Labels say "X ইউনিয়ন" and "বাজেট", per the owner.
 - **Large PDFs (>8 MB: BBS census, LGD orders, Baghil budget) are linked by URL, not archived.** This keeps the repo small, at the risk of losing evidence if the portals delete them.
 
 ---
@@ -430,4 +430,4 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 |---|---|
 | 2026-09-26 | Research (3 agents), spec, 17-task plan. Built the scaffold, data layer, all pages, posters, service worker, scraper and CI. Seeded data. |
 | 2026-09-27 | Went live on GitHub Pages. Renamed to জনতার হিসাব. Added LGED auto-publishing (6 Katuli tenders). Reviewed scraper PR #1. Plain-Bangla UX overhaul. Added logo, share options, responsive desktop layout and footer credits. Added AI budget extraction (opt-in, draft-only). Found more FY2012-13 projects on the old upazila page. Exhaustive search for a newer Katuli budget found none. Added "বাজেট" wording, total-budget comparison and featured tiles. |
-| 2026-10-04 | **Repositioned as a citizen information service.** Added service guides (8), the allowance checker, verified useful numbers (20), the notices feed, search, "my ward", the new home hub, a helpful tone across all pages, the About page rewritten as a service, and `docs/product-roadmap.md`. 97 tests, 103 pages. |
+| 2026-10-04 | **Renamed to জনতার খাতা** (display name only; repo and URL unchanged). **Repositioned as a citizen information service.** Added service guides (8), the allowance checker, verified useful numbers (20), the notices feed, search, "my ward", the new home hub, a helpful tone across all pages, the About page rewritten as a service, and `docs/product-roadmap.md`. 97 tests, 103 pages. |

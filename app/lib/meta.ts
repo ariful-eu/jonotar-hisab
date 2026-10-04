@@ -1,4 +1,4 @@
-const SITE = "জনতার হিসাব — কাতুলী ইউনিয়ন";
+const SITE = "জনতার খাতা — কাতুলী ইউনিয়ন";
 
 export function pageMeta(title: string, description: string) {
   return [

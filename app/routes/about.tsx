@@ -7,7 +7,7 @@ import { pageMeta } from "../lib/meta";
 const ROADMAP_URL = "https://github.com/ariful-eu/jonotar-hisab/blob/main/docs/product-roadmap.md";
 
 export function meta() {
-  return pageMeta("আমাদের সম্পর্কে — জনতার হিসাব", "জনতার হিসাব একটি স্বাধীন নাগরিক তথ্যসেবা: সরকারি সেবা, ভাতা, দরকারি নম্বর ও ইউনিয়নের তথ্য সহজ ভাষায়, এক জায়গায়।");
+  return pageMeta("আমাদের সম্পর্কে — জনতার খাতা", "জনতার খাতা একটি স্বাধীন নাগরিক তথ্যসেবা: সরকারি সেবা, ভাতা, দরকারি নম্বর ও ইউনিয়নের তথ্য সহজ ভাষায়, এক জায়গায়।");
 }
 
 export async function loader() {
@@ -28,8 +28,8 @@ export default function About() {
     <>
       <h1>{t("আমাদের সম্পর্কে", "About us")}</h1>
       <p className="intro">{t(
-        "“জনতার হিসাব” একটি স্বাধীন নাগরিক তথ্যসেবা। আমাদের লক্ষ্য: কাতুলী ইউনিয়নের প্রত্যেক মানুষ যেন সরকারি সেবা, ভাতা, দরকারি নম্বর আর নিজের ইউনিয়নের কাজ ও বাজেটের তথ্য সহজে, এক জায়গায় পান।",
-        "“Jonotar Hisab” is an independent citizen information service. Our aim: that everyone in Katuli Union can easily find government services, allowances, useful numbers, and their union's work and budget — all in one place.",
+        "“জনতার খাতা” একটি স্বাধীন নাগরিক তথ্যসেবা। আমাদের লক্ষ্য: কাতুলী ইউনিয়নের প্রত্যেক মানুষ যেন সরকারি সেবা, ভাতা, দরকারি নম্বর আর নিজের ইউনিয়নের কাজ ও বাজেটের তথ্য সহজে, এক জায়গায় পান।",
+        "“Jonotar Khata” is an independent citizen information service. Our aim: that everyone in Katuli Union can easily find government services, allowances, useful numbers, and their union's work and budget — all in one place.",
       )}</p>
 
       <div className="promise-grid">

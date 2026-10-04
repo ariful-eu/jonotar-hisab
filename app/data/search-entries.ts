@@ -15,7 +15,7 @@ const PAGES: SearchEntry[] = [
   { title_bn: "আপনার এলাকা — ওয়ার্ড", title_en: "Your area — wards", keywords: "ওয়ার্ড গ্রাম এলাকা ward village", url: "/wards", kind: "page" },
   { title_bn: "নাগরিক গাইড", title_en: "Citizen guide", keywords: "অধিকার তথ্য অভিযোগ ওয়ার্ড সভা rights rti complaint", url: "/rights", kind: "page" },
   { title_bn: "মূল কাগজপত্র", title_en: "Original documents", keywords: "কাগজ নথি document source", url: "/documents", kind: "page" },
-  { title_bn: "আমাদের সম্পর্কে", title_en: "About", keywords: "জনতার হিসাব about", url: "/about", kind: "page" },
+  { title_bn: "আমাদের সম্পর্কে", title_en: "About", keywords: "জনতার খাতা about", url: "/about", kind: "page" },
 ];
 
 export function buildSearchEntries(ds: Dataset): SearchEntry[] {
