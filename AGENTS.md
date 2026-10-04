@@ -1,20 +1,23 @@
 # জনতার হিসাব (Jonotar Hisab): project handbook for agents and contributors
 
-Read this before changing anything. It explains what the project is, how it is built, the rules that must not be broken, where the data comes from, what is automated, and the traps that have already cost time. Last updated 2026-10-03.
+Read this before changing anything. It explains what the project is, how it is built, the rules that must not be broken, where the data comes from, what is automated, and the traps that have already cost time. Last updated 2026-10-04.
 
 ---
 
 ## 1. What this is
 
-**জনতার হিসাব** ("The People's Account") is an independent, citizen-run budget-transparency website for **Katuli Union Parishad (কাতুলী ইউনিয়ন), Tangail Sadar Upazila, Tangail, Bangladesh**.
+**জনতার হিসাব** ("The People's Account") is an independent **citizen information service** for **Katuli Union Parishad (কাতুলী ইউনিয়ন), Tangail Sadar Upazila, Tangail, Bangladesh**. Its tagline is "কাতুলী ইউনিয়নের দরকারি সব তথ্য, এক জায়গায়" ("everything useful about Katuli Union, in one place").
 
-It shows residents:
-- where the union's money comes from and where it goes
-- development works and tenders
-- official service fees and safety-net allowances
-- which legally required documents the union has not published
+**Positioning (since 2026-10-04):** a helpful service, **not a watchdog or whistleblower site**. People come back because it is useful every day:
+- step-by-step guides for government services
+- an allowance eligibility checker
+- verified useful numbers
+- local notices and tenders
+- their ward's information
 
-It also teaches residents their rights: RTI, the ward shava, the open budget session, and complaint channels. The goals are access to information, less corruption, and rights awareness.
+Transparency stays as one feature among these, worded neutrally: the union budget, development works, tenders, and the original documents.
+
+See `docs/product-roadmap.md` for the plan to grow into accounts, notifications and multi-union. The redesign spec is `docs/superpowers/specs/2026-10-04-citizen-info-hub-redesign.md`.
 
 | | |
 |---|---|
@@ -46,7 +49,12 @@ Every change must respect these. Most of them exist for legal-safety or privacy 
 5. **Unknown means "তথ্য নেই", never 0.** A missing value is `null` and renders as the `Unknown` chip ("তথ্য নেই · তথ্য চান"). Never default a missing number to 0.
 6. **Nothing machine-read reaches the site without human review, except** LGED tenders that are verified row by row as "Katuli Union, Upazila: Tangail Sadar" (see §7). AI-extracted budget rows are always `draft`.
 7. **Honest headlines.** The home and poster headline uses the latest budget the union itself published (currently FY2014-15), and warns how old it is. Partial figures from other offices are shown separately and labelled "অন্তত" ("at least") and "আংশিক" ("partial"). Never present a partial or upstream figure as the union's budget, and never present a plan as a budget.
-8. **Naming.**
+8. **Helpful tone.**
+   - Write service-shaped sentences: "কীভাবে পাবেন / কী লাগবে / কোথায় যাবেন" (how to get it / what you need / where to go).
+   - Complaint channels appear only under "সমস্যা হলে" ("if there's a problem"); the ACC number is not shown on project pages.
+   - A missing document is an invitation ("আপনার কাছে থাকলে দিন" — "share it if you have it"), never a charge.
+   - Fees and phone numbers come **only from official sources**. Anything unverified is omitted or shown as "তথ্য নেই". Never guess.
+9. **Naming.**
    - Always write "X ইউনিয়ন" / "X Union" ("কাতুলী ইউনিয়নের বাজেট"), never the bare place name.
    - Use "বাজেট" (budget), not "আয়" (income), for totals.
    - The per-household figure is "পরিবারপ্রতি বাজেট" (budget per household), not "প্রতি পরিবারে আয়" (income per household).
@@ -58,7 +66,7 @@ Every change must respect these. Most of them exist for legal-safety or privacy 
 ```bash
 npm ci
 npm run dev            # http://localhost:5173 (dev server; config in .claude/launch.json as "dev")
-npm test               # vitest: 78 tests; also validates every real CSV row in data/
+npm test               # vitest: 97 tests; also validates every real CSV row in data/
 npm run typecheck      # react-router typegen && tsc
 npm run build          # prerender all routes to build/client, then scripts/postbuild.ts
 npm run check:size     # fails if first-load JS+CSS (gzip) + Bengali font > 200 KB (currently ~174 KB)
@@ -107,8 +115,8 @@ GitHub Action "Check for new documents" (daily 06:30 BDT)                       
 |---|---|
 | `app/root.tsx` | HTML shell, `LangProvider`, header, footer, bottom nav, offline notice, SW registration, error boundary |
 | `app/routes.ts` | Route table. **`projects/:id` and `tenders/:id` are registered only when records exist** (see §10). |
-| `app/routes/*.tsx` | Pages: `home`, `budget` (`/budget/:year?`), `wards`, `ward/:no`, `projects`, `project`, `tenders`, `tender`, `services`, `allowances`, `rights`, `rights-topic` (`/rights/:topic`, where `rti` has the letter generator), `documents`, `about`, `poster/:kind/:id` (A4 + QR) |
-| `app/components/` | Shared UI: `Header` (logo + desktop top nav + language toggle), `BottomNav` (exports `NAV_ITEMS`, phones only), `Footer`, `SectionTiles` (the "কী জানতে চান?" menu, `SECTIONS`, featured `tone`s), `Bars` (CSS bar chart, optional shared `max`), `Amount`, `Unknown`, `SourceBadge` (+ `docHref`), `DisclosureStrip` (scorecard), `ShareButtons` (WhatsApp/Facebook/Messenger/copy link/native share/poster), `DeadlineBadge`, `RtiForm`, `StatusIcon`, `OfflineNotice`, `Logo` |
+| `app/routes/*.tsx` | Pages: `home` (hub), `services` (guide hub + all fees), `service-guide` (`/services/:id`), `allowance-check` (`/allowances/check`), `contacts`, `notices`, `budget` (`/budget/:year?`), `wards`, `ward/:no`, `projects`, `project`, `tenders`, `tender`, `services`, `allowances`, `rights`, `rights-topic` (`/rights/:topic`, where `rti` has the letter generator), `documents`, `about`, `poster/:kind/:id` (A4 + QR) |
+| `app/components/` | Shared UI: `Header` (logo + desktop top nav + language toggle), `BottomNav` (exports `NAV_ITEMS`, phones only), `Footer`, `SectionTiles` (`QuickActions` = 6 big tiles, three of them filled; `MoreSections`), `SearchBox`, `NoticeRow`, `GuideIcon`, `Bars` (CSS bar chart, optional shared `max`), `Amount`, `Unknown`, `SourceBadge` (+ `docHref`), `DisclosureStrip` (scorecard), `ShareButtons` (WhatsApp/Facebook/Messenger/copy link/native share/poster), `DeadlineBadge`, `RtiForm`, `StatusIcon`, `OfflineNotice`, `Logo` |
 | `app/data/schemas.ts` | **Source of truth for every data column, enum and type.** Read it before touching data. |
 | `app/data/load.server.ts` | `parseCsv`, `checkRefs`, `loadDataset` (merges `*_auto.csv`; caches only when `NODE_ENV=production`) |
 | `app/data/categories.ts` | Budget category labels and icons, `categoryItems()` |
@@ -118,7 +126,13 @@ GitHub Action "Check for new documents" (daily 06:30 BDT)                       
 | `app/lib/aggregate.ts` | `yearsFor`, `summarizeYear` (prefers actual > revised > proposed), `compareUnions` (each union's latest **own** budget year), `headlineYear` (latest own budget + newer partial years), `fiscalYearOf` (July starts the FY) |
 | `app/lib/labels.ts` | bn/en labels for enums (kind, scheme, status, source type, issuer, observed) |
 | `app/lib/rti.ts` | `buildRtiLetter()`. The printed letter is always in Bangla (Form ক). |
-| `app/content/rights.ts` | The four rights guides (`rti`, `ward-shava`, `open-budget`, `complain`), with section numbers from the laws |
+| `app/content/rights.ts` | The four citizen-guide topics (`rti`, `ward-shava`, `open-budget`, `complain`), reworded as practical help, with section numbers from the laws |
+| `app/content/service-guides.ts` | `SERVICE_GUIDES`: bilingual step-by-step guides (who, papers, `fee_ids` into `service_fees.csv`, where, steps, tips, `source_docs`). A test checks that every fee id and source exists. |
+| `app/lib/eligibility.ts` | `checkEligibility(answers, allowances)`: likely/maybe results (old age 65 men / 62 women; widow; disability card; mother & child). An income of "no" excludes income-tested allowances. |
+| `app/lib/search.ts`, `app/data/search-entries.ts`, `app/routes/search-index.ts` | On-device search. The index is a prerendered resource route, `/search-index.json` (~16 KB), fetched only when the search box is focused. `normalize()` unifies the two `য়` encodings and Bangla/English digits. |
+| `app/lib/notices.ts` | `noticesFeed(docs, tenders)`: only scraper-found documents (`NOTICE_ID_PREFIXES`) plus tenders, newest first |
+| `app/lib/prefs.ts` | `getMyWard/setMyWard` in `localStorage`. This is the swap point for accounts later. |
+| `app/lib/contacts.ts` | `telHref()`: builds `tel:` links from Bangla or English digits |
 | `app/app.css` | All styling: design tokens on `:root` with a dark-mode override, components, `@media print`, responsive rules |
 | `data/` | All content; see §6. `data/README.md` is the maintainer's editing guide. |
 | `public/archive/` | Archived source documents (`research/` from the initial research, `lged/` auto-ingested, `<year>/` from the scraper) |
@@ -151,6 +165,7 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 | `verifications.csv` | Volunteer site visits (date, observed status, photos under `public/photos/`) | Empty so far |
 | `tenders.csv` (+ `tenders_auto.csv`) | Tenders | All 6 current ones are auto LGED rows |
 | `service_fees.csv` | Official fees | Birth/death registration fees come from orgbdr.gov.bd. Trade licence, citizenship and heir certificates are unknown because Katuli has no published citizen charter. |
+| `contacts.csv` | Useful numbers | `category` (emergency, health, women_children, legal, agriculture, govt_info, utility, local_office), `number` (must contain digits), `free` (yes/no/unknown), and `source_doc`. **Only numbers verified on official pages.** The source is the national portal hotline page and the Tangail Sadar upazila pages. Legal aid is **16699**, not 16430. The agriculture call centre number is not yet verified, so it's left out. |
 | `allowances.csv`, `allowance_counts.csv` | FY2026-27 rates: old age ৳700, widow ৳700, disability ৳1,000, mother & child ৳850, VWB rice (amount being verified). Counts: union totals from DSS 2020-21 (825 / 159 / 373). | No per-ward counts exist. |
 
 **Statuses.** `draft` rows (in `projects.csv` the column is `status_row`) and `ignored` rows are skipped by the loader. `ignored` means "reviewed, not relevant"; the row is kept so the scraper never fetches that URL again.
@@ -295,13 +310,22 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
   - **900px and up:** container max 1080px, header top nav replaces the bottom nav, and the section menu has 4 columns.
   - **640px and up:** the menu has 2 columns.
   - **Up to 480px:** key/value lists and RTI letter fields stack into one column.
-- **Home page order:**
-  1. Title and intro sentence
-  2. **"কী জানতে চান?" menu.** In the first row, ভাতা (teal), সেবার ফি (amber) and অধিকার (clay) are filled; the user asked for these to stand out.
-  3. Budget card: headline, the "12 years old" warning, and the top 4 income and spending items
-  4. Later partial years
-  5. Disclosure scorecard
-  6. "অন্যদের জানান" share box
+- **Home page order** (citizen hub, since 2026-10-04):
+  1. Headline and intro
+  2. Search box
+  3. 6 quick actions. The filled ones are সেবা পাবেন কীভাবে (teal), ভাতা যাচাই (amber) and দরকারি নম্বর (clay); the others are আপনার এলাকা, নোটিশ ও খবর and ইউনিয়নের বাজেট.
+  4. "আমার ওয়ার্ড" card, if one is saved
+  5. "এক নজরে কাতুলী ইউনিয়ন" stats, including the latest published budget
+  6. Latest 5 notices and tenders
+  7. "আরও দেখুন" sections
+  8. Red 999 emergency strip
+  9. Share box
+
+  The budget hero and the disclosure scorecard are no longer on the home page. They live on `/budget` and `/documents`; the scorecard is now titled "তথ্য সংগ্রহের অবস্থা" ("information we've gathered").
+- **Navigation:**
+  - Bottom (phones): হোম · সেবা · ভাতা · নম্বর · এলাকা
+  - Desktop top (`TOP_NAV_ITEMS`): হোম, সেবা, ভাতা, দরকারি নম্বর, নোটিশ, বাজেট, নাগরিক গাইড
+  - Header subtitle: "কাতুলী ইউনিয়নের তথ্যসেবা"
 - **Budget page:**
   - The source is shown once at the top; a row gets a badge only if its source differs from the page's main source.
   - Partial years are marked "(আংশিক)".
@@ -342,6 +366,8 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 | **Add a neighbour union** | Add it to `union.json` `comparisons` (with households), add its lines and reported total, and add the document. |
 | **Add a page or section** | Add a route in `routes.ts`, add its paths in `data/paths.ts`, add a tile in `SectionTiles.SECTIONS` and links in `BottomNav.NAV_ITEMS`/`Footer`. Every string goes through `t(bn, en)`. |
 | **Add a scraper source** | Add an entry to `scripts/sources.json` (`id`, `issuer`, `url`, `linkPattern` regex, optional `tender: true` or `lged: {union, upazila}`). Do a local dry run with `npm run scrape`, then reset the files it wrote (`git checkout data/… && git clean -fd public/archive/<year>`). |
+| **Add or edit a service guide** | Edit `app/content/service-guides.ts`. Add any fee to `service_fees.csv` and reference it in `fee_ids`. Add every source to `documents.csv`. Only verified facts; if a paper list isn't verifiable, use the "ইউনিয়ন পরিষদ জানিয়ে দেবে" ("the UP will tell you") line. `tests/data.test.ts` checks the references. |
+| **Add a useful number** | Add a row to `data/contacts.csv` with a `source_doc` pointing to an official page that shows the number. Use office numbers, not officers' personal mobiles. |
 | **Change wording** | Keep the plain-language rules in §8–9, and update tests that assert exact Bangla strings (`tests/components.test.tsx`, `tests/budget-page.test.tsx`). |
 | **Review a scraper PR** | Open each link. Mark useful rows `published` with proper titles and figures; mark unrelated or personal ones `ignored`, clear their `archive_path` and delete the file. Then merge. |
 
@@ -384,7 +410,13 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 - **og:image:** none yet; share previews show text only.
 - **Upazila "হাট-বাজার" notice:** a scanned PDF still waiting for manual reading (marked `ignored`).
 
-**Possible next steps:**
+**Unverified, so left out:**
+- the agriculture call-centre number
+- the Katuli UP office phone and community clinic phones
+- citizenship, heir and trade-licence fee amounts (the model tax schedule PDFs are unreadable scans)
+- the NID correction guide
+
+**Possible next steps** (also see `docs/product-roadmap.md`):
 - AI reading for scanned non-budget PDFs (tender notices, hat-bazar lease lists).
 - Volunteer photo-upload flow.
 - Monthly cron deploy.
@@ -398,3 +430,4 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 |---|---|
 | 2026-09-26 | Research (3 agents), spec, 17-task plan. Built the scaffold, data layer, all pages, posters, service worker, scraper and CI. Seeded data. |
 | 2026-09-27 | Went live on GitHub Pages. Renamed to জনতার হিসাব. Added LGED auto-publishing (6 Katuli tenders). Reviewed scraper PR #1. Plain-Bangla UX overhaul. Added logo, share options, responsive desktop layout and footer credits. Added AI budget extraction (opt-in, draft-only). Found more FY2012-13 projects on the old upazila page. Exhaustive search for a newer Katuli budget found none. Added "বাজেট" wording, total-budget comparison and featured tiles. |
+| 2026-10-04 | **Repositioned as a citizen information service.** Added service guides (8), the allowance checker, verified useful numbers (20), the notices feed, search, "my ward", the new home hub, a helpful tone across all pages, the About page rewritten as a service, and `docs/product-roadmap.md`. 97 tests, 103 pages. |
