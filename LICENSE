@@ -1,0 +1,31 @@
+Copyright (c) 2026 Miah Softwares. All rights reserved.
+
+PROPRIETARY LICENSE NOTICE
+
+This repository and everything in it, including the source code, scripts,
+configuration, database schemas and migrations, documentation, designs,
+illustrations, logos and other original materials (together, the "Software"),
+is the proprietary property of Miah Softwares.
+
+No license or other right is granted to anyone, expressly or by implication,
+to use, run, copy, modify, merge, translate, publish, distribute, sublicense,
+sell, host, deploy, or create derivative works from the Software, or any part
+of it, without the prior written permission of Miah Softwares. This applies to
+commercial and non-commercial use alike.
+
+Being able to see the Software, for example because this repository is
+public on GitHub, does not give you any license to it. Any rights that
+GitHub's Terms of Service give users to view and fork public repositories
+on GitHub apply only as those Terms state and do not extend to any other use.
+
+Third-party materials (open-source dependencies, fonts, and public documents
+republished from official sources) are not covered by this notice. They remain
+under their own licenses or terms, which are not changed by this file.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+MIAH SOFTWARES BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR ITS USE.
+
+To ask for permission, contact: miahsoftwares@trendy-outfit.com
