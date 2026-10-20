@@ -150,6 +150,12 @@
     "whatsapp": null,
     "note_bn": null
   },
+  "blood": {
+    "donor_form_url": null,
+    "request_form_url": null,
+    "groups_csv_url": null,
+    "remove_form_url": null
+  },
   "comparisons": [
     {
       "id": "silimpur",

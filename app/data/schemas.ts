@@ -114,6 +114,11 @@ export const UnionProfile = z.object({
     role_bn: text, role_en: text, name_bn: text, name_en: text, verified_on: z.string().nullable(), note_bn: z.string().nullable(),
   })),
   maintainer: z.object({ whatsapp: z.string().nullable(), note_bn: z.string().nullable() }),
+  // Blood donation (Phase B): the owner's Google Forms and the published `public_groups` CSV. All null = hidden.
+  blood: z.object({
+    donor_form_url: z.url().nullable(), request_form_url: z.url().nullable(),
+    groups_csv_url: z.url().nullable(), remove_form_url: z.url().nullable(),
+  }).optional(),
   comparisons: z.array(z.object({
     id: slug, name_bn: text, name_en: text, population: z.number().nullable(), households: z.number().nullable(),
     census_year: z.number().nullable(), portal_url: z.string().nullable(),

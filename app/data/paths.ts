@@ -19,6 +19,7 @@ export function allPaths(ds: Dataset): string[] {
       "/services",
       ...SERVICE_GUIDES.map((g) => `/services/${g.id}`),
       "/contacts",
+      "/blood",
       "/allowances",
       "/allowances/check",
       "/notices",

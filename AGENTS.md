@@ -1,6 +1,6 @@
 # জনতার খাতা (Jonotar Khata): project handbook for agents and contributors
 
-Read this before changing anything. It explains what the project is, how it is built, the rules that must not be broken, where the data comes from, what is automated, and the traps that have already cost time. Last updated 2026-10-04.
+Read this before changing anything. It explains what the project is, how it is built, the rules that must not be broken, where the data comes from, what is automated, and the traps that have already cost time. Last updated 2026-10-20.
 
 ---
 
@@ -45,6 +45,11 @@ Every change must respect these. Most of them exist for legal-safety or privacy 
    - Never publish names, NIDs, phone numbers or photos of allowance or relief beneficiaries. Publish counts only.
    - Don't republish personal records, such as a staff member's leave order. These are marked `ignored`.
    - The RTI form keeps the user's details on their own device and never sends them anywhere.
+   - **Blood donation** (`/blood`) is the only feature that collects personal data, and it goes into the **owner's private Google Sheet**, never into this repo.
+     - Donors give only name, phone, area and blood group. Requests give only group, bags, hospital, time and phone (no patient name or illness).
+     - The site reads one published tab, `public_groups`, and shows only "which groups are available": no names, numbers, areas or counts.
+     - `parseGroupsCsv` reads only the `group` and `available` columns. Keep it that way.
+     - Never commit, export or display donor or request data. The page never shows a requester's or donor's phone number; volunteers connect people by phone. See `docs/blood-setup.md`.
 4. **Every figure has a source.** Every data row points to a `documents.csv` row through `source_doc`. Keep an archived copy under `public/archive/` when the file is small enough, so the evidence survives if the portal deletes it.
 5. **Unknown means "তথ্য নেই", never 0.** A missing value is `null` and renders as the `Unknown` chip ("তথ্য নেই · তথ্য চান"). Never default a missing number to 0.
 6. **Nothing machine-read reaches the site without human review, except** LGED tenders that are verified row by row as "Katuli Union, Upazila: Tangail Sadar" (see §7). AI-extracted budget rows are always `draft`.
@@ -66,7 +71,7 @@ Every change must respect these. Most of them exist for legal-safety or privacy 
 ```bash
 npm ci
 npm run dev            # http://localhost:5173 (dev server; config in .claude/launch.json as "dev")
-npm test               # vitest: 97 tests; also validates every real CSV row in data/
+npm test               # vitest: 106 tests; also validates every real CSV row in data/
 npm run typecheck      # react-router typegen && tsc
 npm run build          # prerender all routes to build/client, then scripts/postbuild.ts
 npm run check:size     # fails if first-load JS+CSS (gzip) + Bengali font > 200 KB (currently ~174 KB)
@@ -91,7 +96,7 @@ Node 24+ is used in CI; the project was developed on Node 26. `npm` warns about 
   - React 19 + TypeScript, built with Vite 7.
   - React Router v7.18 in framework mode with `ssr: false` and `prerender` covering **every** route (`react-router.config.ts` calls `allPaths(loadDataset())`).
   - zod 4, papaparse, lucide-react icons, qrcode, the Noto Sans Bengali font (one 400 weight, self-hosted, `local()` first).
-- **Build-time data only.** Route `loader`s run **only during prerender** (in Node). They call `loadDataset()` from `app/data/load.server.ts`, which reads and validates the CSVs. Each page ships as static HTML plus a small `.data` file. There is no backend.
+- **Build-time data only.** Route `loader`s run **only during prerender** (in Node). They call `loadDataset()` from `app/data/load.server.ts`, which reads and validates the CSVs. Each page ships as static HTML plus a small `.data` file. There is no backend. **One exception:** `/blood` fetches the owner's published `public_groups` CSV in the browser at view time, so donor availability is current without a rebuild. The service worker ignores cross-origin requests, so it is never cached.
 - **Language.**
   - UI copy is written inline as `t("বাংলা", "English")` (`useT()`), and numbers/dates go through `useFmt()`; both live in `app/lib/i18n.tsx`.
   - Pages are prerendered in Bangla. The English choice is stored in `localStorage` (`katuli-lang`, wrapped in try/catch) and applied after hydration.
@@ -115,8 +120,8 @@ GitHub Action "Check for new documents" (daily 06:30 BDT)                       
 |---|---|
 | `app/root.tsx` | HTML shell, `LangProvider`, header, footer, bottom nav, offline notice, SW registration, error boundary |
 | `app/routes.ts` | Route table. **`projects/:id` and `tenders/:id` are registered only when records exist** (see §10). |
-| `app/routes/*.tsx` | Pages: `home` (hub), `services` (guide hub + all fees), `service-guide` (`/services/:id`), `allowance-check` (`/allowances/check`), `contacts`, `notices`, `budget` (`/budget/:year?`), `wards`, `ward/:no`, `projects`, `project`, `tenders`, `tender`, `services`, `allowances`, `rights`, `rights-topic` (`/rights/:topic`, where `rti` has the letter generator), `documents`, `about`, `poster/:kind/:id` (A4 + QR) |
-| `app/components/` | Shared UI: `Header` (logo + desktop top nav + language toggle), `BottomNav` (exports `NAV_ITEMS`, phones only), `Footer`, `SectionTiles` (`QuickActions` = 6 big tiles, three of them filled; `MoreSections`), `SearchBox`, `NoticeRow`, `GuideIcon`, `Bars` (CSS bar chart, optional shared `max`), `Amount`, `Unknown`, `SourceBadge` (+ `docHref`), `DisclosureStrip` (scorecard), `ShareButtons` (WhatsApp/Facebook/Messenger/copy link/native share/poster), `DeadlineBadge`, `RtiForm`, `StatusIcon`, `OfflineNotice`, `Logo` |
+| `app/routes/*.tsx` | Pages: `home` (hub), `services` (guide hub + all fees), `service-guide` (`/services/:id`), `allowance-check` (`/allowances/check`), `contacts`, `blood` (`/blood`: hospital, safety, who can donate, compatibility picker, and Phase B forms/grid when configured), `notices`, `budget` (`/budget/:year?`), `wards`, `ward/:no`, `projects`, `project`, `tenders`, `tender`, `services`, `allowances`, `rights`, `rights-topic` (`/rights/:topic`, where `rti` has the letter generator), `documents`, `about`, `poster/:kind/:id` (A4 + QR) |
+| `app/components/` | Shared UI: `Header` (logo + desktop top nav + language toggle), `BottomNav` (exports `NAV_ITEMS`, phones only), `Footer`, `SectionTiles` (`QuickActions` = 6 big tiles, three of them filled; `MoreSections`), `SearchBox`, `NoticeRow`, `BloodGroups` (`BloodAvailability` fetch + grid, `CompatibilityPicker`), `GuideIcon`, `Bars` (CSS bar chart, optional shared `max`), `Amount`, `Unknown`, `SourceBadge` (+ `docHref`), `DisclosureStrip` (scorecard), `ShareButtons` (WhatsApp/Facebook/Messenger/copy link/native share/poster), `DeadlineBadge`, `RtiForm`, `StatusIcon`, `OfflineNotice`, `Logo` |
 | `app/data/schemas.ts` | **Source of truth for every data column, enum and type.** Read it before touching data. |
 | `app/data/load.server.ts` | `parseCsv`, `checkRefs`, `loadDataset` (merges `*_auto.csv`; caches only when `NODE_ENV=production`) |
 | `app/data/categories.ts` | Budget category labels and icons, `categoryItems()` |
@@ -131,6 +136,7 @@ GitHub Action "Check for new documents" (daily 06:30 BDT)                       
 | `app/lib/eligibility.ts` | `checkEligibility(answers, allowances)`: likely/maybe results (old age 65 men / 62 women; widow; disability card; mother & child). An income of "no" excludes income-tested allowances. |
 | `app/lib/search.ts`, `app/data/search-entries.ts`, `app/routes/search-index.ts` | On-device search. The index is a prerendered resource route, `/search-index.json` (~16 KB), fetched only when the search box is focused. `normalize()` unifies the two `য়` encodings and Bangla/English digits. |
 | `app/lib/notices.ts` | `noticesFeed(docs, tenders)`: only scraper-found documents (`NOTICE_ID_PREFIXES`) plus tenders, newest first |
+| `app/lib/blood.ts` | `BLOOD_GROUPS`, `canDonateTo`/`canReceiveFrom`/`canGiveTo` (red-cell ABO/Rh), `normalizeGroup` (accepts `O neg`, `এবি+`…), `parseGroupsCsv` (reads only `group`/`available`; unknown stays null) |
 | `app/lib/prefs.ts` | `getMyWard/setMyWard` in `localStorage`. This is the swap point for accounts later. |
 | `app/lib/contacts.ts` | `telHref()`: builds `tel:` links from Bangla or English digits |
 | `app/app.css` | All styling: design tokens on `:root` with a dark-mode override, components, `@media print`, responsive rules |
@@ -156,7 +162,7 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 
 | File | Holds | Notes |
 |---|---|---|
-| `union.json` | Union profile | Census 2022: 32,540 people and 7,884 households. 9 wards; the village↔ward mapping is unknown. 24 villages in bn/en (their bn names drive the LGED name translation). Leadership is unverified. `maintainer.whatsapp` is null, which hides the report button. `comparisons[]` lists 6 neighbour unions with 2022 household counts. |
+| `union.json` | Union profile | Census 2022: 32,540 people and 7,884 households. 9 wards; the village↔ward mapping is unknown. 24 villages in bn/en (their bn names drive the LGED name translation). Leadership is unverified. `maintainer.whatsapp` is null, which hides the report button. `comparisons[]` lists 6 neighbour unions with 2022 household counts. `blood` holds the owner's Google Form links and the published `public_groups` CSV link; while each is null its part of `/blood` stays hidden (all null today). |
 | `documents.csv` (+ `documents_auto.csv`) | Every source document | `issuer`: union/upazila/district/ministry/volunteer/other. `reliability`: `official`, `low` (the Katuli 2014-15 budget is `low` because it shows two meeting dates and two chairs, probably copied from a template) or `observed`. `status`: `published`, `draft` or `ignored`. |
 | `disclosures.csv` | Scorecard of 10 legally required disclosures | All `published=no` today ("১০টির মধ্যে প্রকাশ করেছে ০টি", i.e. 0 of 10 published). `rti_request_bn` is the exact text inserted into the RTI letter. |
 | `budget_lines.csv` | One row per **leaf** budget line, never subtotals | `union` is `katuli` or a comparison id. `kind`: proposed/revised/actual. `direction`: income/expense. `category`: one of `CATEGORY_KEYS`. `source_type`: `union`, `upstream` (another office's list) or `observed`. |
@@ -221,6 +227,7 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 | AI budget reading | Part of the daily checker **only if** the `ANTHROPIC_API_KEY` secret is set, and only for documents whose title or URL contains বাজেট/budget | **Yes.** Rows are always `draft` in the same PR. |
 | Typing a new budget into the CSVs | When one is obtained (for example via RTI) | Yes, or run `extract-budget` and review its output |
 | Volunteer site visits | Whenever they happen | Yes (`verifications.csv` + photos) |
+| Blood requests and donors | Whenever a form is submitted (email alert) | **Yes, always.** The owner or volunteers call the requester, then matching donors, from the private sheet. The `public_groups` tab updates itself by formula. |
 
 **Scraper details (`scripts/scrape.ts`, sources in `scripts/sources.json`):**
 - **Sources:** `katuli-notices`, `katuli-files`, `katuli-tenders`, `katuli-projects`, `sadar-notices`, `sadar-office-orders`, `sadar-tenders`, `district-notices`, `lged-tangail-tenders`.
@@ -313,7 +320,7 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 - **Home page order** (citizen hub, since 2026-10-04):
   1. Headline and intro
   2. Search box
-  3. 6 quick actions. The filled ones are সেবা পাবেন কীভাবে (teal), ভাতা যাচাই (amber) and দরকারি নম্বর (clay); the others are আপনার এলাকা, নোটিশ ও খবর and ইউনিয়নের বাজেট.
+  3. 6 quick actions. The filled ones are সেবা পাবেন কীভাবে (teal), ভাতা যাচাই (amber), দরকারি নম্বর (clay) and রক্ত দিন / রক্ত খুঁজুন (crimson `tone-blood`, since 2026-10-20); the others are আপনার এলাকা and নোটিশ ও খবর. ইউনিয়নের বাজেট moved to "আরও দেখুন" (it stays in the desktop top nav).
   4. "আমার ওয়ার্ড" card, if one is saved
   5. "এক নজরে কাতুলী ইউনিয়ন" stats, including the latest published budget
   6. Latest 5 notices and tenders
@@ -367,6 +374,7 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 | **Add a page or section** | Add a route in `routes.ts`, add its paths in `data/paths.ts`, add a tile in `SectionTiles.SECTIONS` and links in `BottomNav.NAV_ITEMS`/`Footer`. Every string goes through `t(bn, en)`. |
 | **Add a scraper source** | Add an entry to `scripts/sources.json` (`id`, `issuer`, `url`, `linkPattern` regex, optional `tender: true` or `lged: {union, upazila}`). Do a local dry run with `npm run scrape`, then reset the files it wrote (`git checkout data/… && git clean -fd public/archive/<year>`). |
 | **Add or edit a service guide** | Edit `app/content/service-guides.ts`. Add any fee to `service_fees.csv` and reference it in `fee_ids`. Add every source to `documents.csv`. Only verified facts; if a paper list isn't verifiable, use the "ইউনিয়ন পরিষদ জানিয়ে দেবে" ("the UP will tell you") line. `tests/data.test.ts` checks the references. |
+| **Connect the blood forms** | Follow `docs/blood-setup.md`, then put the 3–4 links into `data/union.json` → `blood`. Open the CSV link first and check that it contains only `group,available` and 8 rows. |
 | **Add a useful number** | Add a row to `data/contacts.csv` with a `source_doc` pointing to an official page that shows the number. Use office numbers, not officers' personal mobiles. |
 | **Change wording** | Keep the plain-language rules in §8–9, and update tests that assert exact Bangla strings (`tests/components.test.tsx`, `tests/budget-page.test.tsx`). |
 | **Review a scraper PR** | Open each link. Mark useful rows `published` with proper titles and figures; mark unrelated or personal ones `ignored`, clear their `archive_path` and delete the file. Then merge. |
@@ -398,6 +406,7 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 - **Citizen charter fees** (trade licence, citizenship and heir certificates). Unknown.
 - **Per-ward allowance counts, and any counts after 2021.** Unknown.
 - **Volunteer site visits.** None yet; the project timelines are empty.
+- **Blood donation forms.** The owner still has to create them (`docs/blood-setup.md`). The Tangail General Hospital blood department's own number and the local volunteer blood groups' numbers are unverified, so they're left out (the page uses the hospital emergency numbers).
 - **`maintainer.whatsapp`.** Set it to enable the "tell us what you saw" button.
 
 **Known gaps in the code:**
@@ -431,3 +440,4 @@ Edit the CSVs in Excel, LibreOffice or Sheets and save as **CSV UTF-8**. A BOM i
 | 2026-09-26 | Research (3 agents), spec, 17-task plan. Built the scaffold, data layer, all pages, posters, service worker, scraper and CI. Seeded data. |
 | 2026-09-27 | Went live on GitHub Pages. Renamed to জনতার হিসাব. Added LGED auto-publishing (6 Katuli tenders). Reviewed scraper PR #1. Plain-Bangla UX overhaul. Added logo, share options, responsive desktop layout and footer credits. Added AI budget extraction (opt-in, draft-only). Found more FY2012-13 projects on the old upazila page. Exhaustive search for a newer Katuli budget found none. Added "বাজেট" wording, total-budget comparison and featured tiles. |
 | 2026-10-04 | **Renamed to জনতার খাতা** (display name only; repo and URL unchanged). **Repositioned as a citizen information service.** Added service guides (8), the allowance checker, verified useful numbers (20), the notices feed, search, "my ward", the new home hub, a helpful tone across all pages, the About page rewritten as a service, and `docs/product-roadmap.md`. 97 tests, 103 pages. |
+| 2026-10-20 | Added **blood donation** (`/blood`): hospital and safety info, who can donate (WHO), the law on screened blood (Safe Blood Transfusion Act 2002, s.23), a compatibility picker, and the home tile. Donor sign-up, requests and the available-groups grid use the owner's Google Forms and Sheet (spec `docs/superpowers/specs/2026-10-20-blood-donation-design.md`, setup `docs/blood-setup.md`). |

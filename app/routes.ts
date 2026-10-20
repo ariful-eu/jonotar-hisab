@@ -16,6 +16,7 @@ export default [
   route("services", "routes/services.tsx"),
   route("services/:id", "routes/service-guide.tsx"),
   route("contacts", "routes/contacts.tsx"),
+  route("blood", "routes/blood.tsx"),
   route("allowances", "routes/allowances.tsx"),
   route("allowances/check", "routes/allowance-check.tsx"),
   route("notices", "routes/notices.tsx"),

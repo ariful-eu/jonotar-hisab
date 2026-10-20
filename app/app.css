@@ -178,6 +178,25 @@ details.cat > summary::-webkit-details-marker { display: none; }
 .menu-item.tone-teal { background: #0f6b66; border-color: #0f6b66; color: #fff; }
 .menu-item.tone-amber { background: #9a5410; border-color: #9a5410; color: #fff; }
 .menu-item.tone-clay { background: #a13f22; border-color: #a13f22; color: #fff; }
+.menu-item.tone-blood { background: #a8173a; border-color: #a8173a; color: #fff; }
+/* Blood donation page */
+.blood-icon { background: #fbe3e8; color: #a8173a; }
+.btn-blood { background: #a8173a; border-color: #a8173a; color: #fff; }
+.blood-urgent { border-left: 5px solid #a8173a; }
+.blood-urgent .contact-list { padding-left: 0 !important; }
+.blood-urgent .contact { border-top: 1px solid var(--line); padding-top: 8px; }
+.blood-warn { background: var(--warn-bg); color: var(--warn-ink); }
+.blood-warn h2 { color: inherit; }
+.blood-action { border-top: 1px solid var(--line); margin-top: 14px; padding-top: 6px; }
+.blood-action .btn { margin: 4px 0 6px; }
+.blood-grid { list-style: none; padding: 0; margin: 8px 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.blood-cell { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 4px; border-radius: var(--radius); background: var(--surface-2); color: var(--ink-2); text-align: center; }
+.blood-cell.is-yes { background: #a8173a; color: #fff; }
+.blood-group { font-size: 1.35rem; font-weight: 700; line-height: 1.2; }
+.blood-state { font-size: .85rem; }
+.compat dd strong { font-size: 1.1rem; }
+@media (max-width: 340px) { .blood-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-color-scheme: dark) { .blood-icon { background: #4a1020; color: #ff9db2; } }
 .menu-item[class*="tone-"] .muted, .menu-item[class*="tone-"] .menu-chevron { color: rgba(255, 255, 255, .86); }
 .menu-item[class*="tone-"] .menu-icon { background: rgba(255, 255, 255, .18); color: #fff; }
 .menu-item[class*="tone-"]:hover, .menu-item[class*="tone-"]:focus-visible { filter: brightness(1.08); }

@@ -8,6 +8,7 @@ const PAGES: SearchEntry[] = [
   { title_bn: "ভাতা যাচাই — আমি কি পাব?", title_en: "Allowance eligibility check", keywords: "ভাতা বয়স্ক বিধবা প্রতিবন্ধী মা শিশু allowance old age widow disability eligibility", url: "/allowances/check", kind: "page" },
   { title_bn: "ভাতা ও সহায়তা", title_en: "Allowances", keywords: "ভাতা সহায়তা ভিজিডি ভিজিএফ allowance vgd vgf", url: "/allowances", kind: "page" },
   { title_bn: "দরকারি নম্বর", title_en: "Useful numbers", keywords: "জরুরি হেল্পলাইন ফোন নম্বর পুলিশ অ্যাম্বুলেন্স emergency helpline phone police hospital", url: "/contacts", kind: "page" },
+  { title_bn: "রক্তদান — রক্ত দিন, রক্ত খুঁজুন", title_en: "Blood donation — give or find blood", keywords: "রক্ত রক্তদান রক্তদাতা ব্লাড গ্রুপ পজিটিভ নেগেটিভ blood donor donation group A+ A- B+ B- AB+ AB- O+ O- positive negative", url: "/blood", kind: "page" },
   { title_bn: "নোটিশ ও খবর", title_en: "Notices & news", keywords: "নোটিশ খবর বিজ্ঞপ্তি notice news", url: "/notices", kind: "page" },
   { title_bn: "ইউনিয়নের বাজেট", title_en: "Union budget", keywords: "বাজেট আয় ব্যয় খরচ budget income spending", url: "/budget", kind: "page" },
   { title_bn: "উন্নয়ন কাজ", title_en: "Development works", keywords: "উন্নয়ন কাজ প্রকল্প রাস্তা মসজিদ স্কুল project road works", url: "/projects", kind: "page" },

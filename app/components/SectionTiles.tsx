@@ -1,19 +1,20 @@
-import { BadgeCheck, Bell, ChevronRight, ClipboardList, FolderOpen, Gavel, Hammer, HandHeart, Info, MapPin, PhoneCall, Scale, Wallet } from "lucide-react";
+import { BadgeCheck, Bell, ChevronRight, ClipboardList, Droplet, FolderOpen, Gavel, Hammer, HandHeart, Info, MapPin, PhoneCall, Scale, Wallet } from "lucide-react";
 import { Link } from "react-router";
 import { useT } from "../lib/i18n";
 
-type Section = { to: string; icon: typeof Wallet; bn: string; en: string; dbn: string; den: string; tone?: "teal" | "amber" | "clay" };
+type Section = { to: string; icon: typeof Wallet; bn: string; en: string; dbn: string; den: string; tone?: "teal" | "amber" | "clay" | "blood" };
 
 export const QUICK_ACTIONS: Section[] = [
   { to: "/services", icon: ClipboardList, bn: "সেবা পাবেন কীভাবে", en: "How to get services", dbn: "জন্ম নিবন্ধন, সনদ, ট্রেড লাইসেন্স, জমি — কী লাগবে, কত টাকা", den: "Birth registration, certificates, licences, land — papers and fees", tone: "teal" },
   { to: "/allowances/check", icon: BadgeCheck, bn: "ভাতা যাচাই", en: "Check allowances", dbn: "কয়েকটি প্রশ্নে জানুন কোন ভাতা পেতে পারেন", den: "A few questions to see which allowances you may get", tone: "amber" },
   { to: "/contacts", icon: PhoneCall, bn: "দরকারি নম্বর", en: "Useful numbers", dbn: "জরুরি সেবা, হাসপাতাল, হেল্পলাইন — এক চাপে কল", den: "Emergency, health and helplines — tap to call", tone: "clay" },
+  { to: "/blood", icon: Droplet, bn: "রক্ত দিন / রক্ত খুঁজুন", en: "Give / find blood", dbn: "কোন গ্রুপের রক্তদাতা আছেন, রক্ত লাগলে কোথায় যাবেন", den: "Donor blood groups available, and where to go when you need blood", tone: "blood" },
   { to: "/wards", icon: MapPin, bn: "আপনার এলাকা", en: "Your area", dbn: "আপনার ওয়ার্ডের কাজ, ভাতা ও ওয়ার্ড সভা", den: "Works, allowances and meetings in your ward" },
   { to: "/notices", icon: Bell, bn: "নোটিশ ও খবর", en: "Notices & news", dbn: "ইউনিয়ন, উপজেলা ও জেলার নতুন নোটিশ", den: "New notices from union, upazila and district" },
-  { to: "/budget", icon: Wallet, bn: "ইউনিয়নের বাজেট", en: "Union budget", dbn: "ইউনিয়নের টাকা কোথা থেকে আসে, কোথায় খরচ হয়", den: "Where the union's money comes from and goes" },
 ];
 
 export const MORE_SECTIONS: Section[] = [
+  { to: "/budget", icon: Wallet, bn: "ইউনিয়নের বাজেট", en: "Union budget", dbn: "ইউনিয়নের টাকা কোথা থেকে আসে, কোথায় খরচ হয়", den: "Where the union's money comes from and goes" },
   { to: "/allowances", icon: HandHeart, bn: "ভাতা ও সহায়তা", en: "Allowances", dbn: "সব ভাতার হার, শর্ত ও বাছাইয়ের নিয়ম", den: "Rates, conditions and selection" },
   { to: "/projects", icon: Hammer, bn: "উন্নয়ন কাজ", en: "Development works", dbn: "কোথায় কী কাজ হচ্ছে, কত টাকার", den: "What's being built and for how much" },
   { to: "/tenders", icon: Gavel, bn: "টেন্ডার (দরপত্র)", en: "Tenders", dbn: "এলাকার কাজের টেন্ডার ও শেষ তারিখ", den: "Local tenders and deadlines" },

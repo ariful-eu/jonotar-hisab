@@ -1,6 +1,6 @@
 # জনতার খাতা: product roadmap
 
-_Last updated 2026-10-04._
+_Last updated 2026-10-20._
 
 ## Vision
 Every person in a Bangladeshi union can find, in plain Bangla on a cheap phone:
@@ -17,6 +17,7 @@ We start with Katuli Union (Tangail Sadar) and grow union by union.
 - **Service guides:** birth/death registration, certificate correction, citizenship and heir certificates, trade licence, land mutation, allowance application. Each covers papers, official fees, where to go and online links.
 - **Allowance checker** that runs on the phone (nothing is stored or sent).
 - **Useful numbers:** verified national helplines and Tangail Sadar offices, tap to call.
+- **Blood donation:** where to get blood in Tangail, who can donate, group compatibility, and a donor list plus requests run through the owner's private Google Sheet (only available groups are public). In v2, this moves to accounts with SMS alerts to matching donors.
 - **Notices & tenders:** a daily automatic checker reads union, upazila, district and LGED websites; verified LGED tenders publish themselves.
 - **Your area:** ward pages, plus "my ward" remembered on the device.
 - **Union budget** in plain language, development works, and a citizen guide (ward shava, how to ask for information, where to go with a problem).

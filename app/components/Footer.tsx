@@ -12,6 +12,7 @@ export function Footer() {
           <Link to="/services">{t("সেবা", "Services")}</Link>
           <Link to="/allowances/check">{t("ভাতা যাচাই", "Allowance check")}</Link>
           <Link to="/contacts">{t("দরকারি নম্বর", "Useful numbers")}</Link>
+          <Link to="/blood">{t("রক্তদান", "Blood donation")}</Link>
           <Link to="/notices">{t("নোটিশ", "Notices")}</Link>
           <Link to="/budget">{t("বাজেট", "Budget")}</Link>
           <Link to="/projects">{t("উন্নয়ন কাজ", "Works")}</Link>
