@@ -101,7 +101,16 @@ These go into `data/union.json` under `"blood"`. The donor and request buttons a
 }
 ```
 
-## 7. Day-to-day
+## 7. Adding donors yourself
+
+You don't need the form to add a donor. If someone tells you in person or by phone, type a new row straight into the `donors` tab:
+- timestamp: today
+- name, phone, area and blood group (exactly `A+` … `O-`)
+- consent: write "মৌখিক সম্মতি" (verbal consent) and the date
+
+Ask their permission first. The page's group grid updates within a few minutes.
+
+## 8. Day-to-day
 
 | When | What to do |
 |---|---|

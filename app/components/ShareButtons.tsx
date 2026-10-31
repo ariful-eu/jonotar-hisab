@@ -34,7 +34,7 @@ export function ShareButtons({ title, poster }: { title: string; poster?: string
   return (
     <section className="card share-card no-print" aria-labelledby="share-h">
       <h2 id="share-h" className="h3">{t("অন্যদের জানান", "Tell others")}</h2>
-      <p className="muted">{t("এই পাতাটি পরিবার, প্রতিবেশী বা গ্রুপে পাঠান — যত বেশি মানুষ জানবে, তত বেশি প্রশ্ন উঠবে।", "Send this page to family, neighbours or a group — the more people know, the more questions get asked.")}</p>
+      <p className="muted">{t("যাদের কাজে লাগতে পারে, তাদের পাঠান — পরিবার, প্রতিবেশী বা গ্রুপে।", "Send it to anyone it could help — family, neighbours or groups.")}</p>
       <div className="share">
         <a className="btn btn-wa" href={`https://wa.me/?text=${text}`} target="_blank" rel="noopener"><MessageCircle size={18} aria-hidden />{t("হোয়াটসঅ্যাপ", "WhatsApp")}</a>
         <a className="btn btn-fb" href={`https://www.facebook.com/sharer/sharer.php?u=${u}`} target="_blank" rel="noopener"><FacebookIcon />{t("ফেসবুক", "Facebook")}</a>

@@ -17,7 +17,7 @@ export function BloodAvailability({ csvUrl }: { csvUrl: string }) {
 
   if (state.status === "loading") return <p className="muted" role="status">{t("তথ্য আনা হচ্ছে…", "Loading…")}</p>;
   if (state.status === "error" || !state.groups) {
-    return <p className="muted" role="status">{t("এখন তথ্য আনা যাচ্ছে না — ইন্টারনেট সংযোগ দেখে আবার চেষ্টা করুন। জরুরি হলে নিচের হাসপাতালে কল করুন।", "Can't load this right now — check your connection and try again. If it's urgent, call the hospital below.")}</p>;
+    return <p className="muted" role="status">{t("এখন দেখা যাচ্ছে না — পরে আবার চেষ্টা করুন।", "Can't load right now — try again later.")}</p>;
   }
   const groups = state.groups;
   return (
@@ -33,7 +33,7 @@ export function BloodAvailability({ csvUrl }: { csvUrl: string }) {
           );
         })}
       </ul>
-      <p className="muted">{t("তালিকা কয়েক মিনিট পুরোনো হতে পারে। রক্তদাতার নাম বা নম্বর এখানে দেখানো হয় না।", "This may be a few minutes old. Donors' names and numbers are never shown here.")}</p>
+      <p className="muted small">{t("রক্তদাতার নাম-নম্বর দেখানো হয় না।", "Donor names and numbers are never shown.")}</p>
     </>
   );
 }
@@ -51,13 +51,13 @@ export function CompatibilityPicker() {
       </div>
       {g ? (
         <dl className="kv compat" aria-live="polite">
-          <dt>{t(`${groupLabel(g)} রোগী রক্ত নিতে পারেন`, `A ${groupLabel(g)} patient can receive from`)}</dt>
+          <dt>{t(`${groupLabel(g)} নিতে পারেন`, `${groupLabel(g)} can receive from`)}</dt>
           <dd><strong>{canReceiveFrom(g).map(groupLabel).join(", ")}</strong></dd>
-          <dt>{t(`${groupLabel(g)} রক্তদাতা দিতে পারেন`, `A ${groupLabel(g)} donor can give to`)}</dt>
+          <dt>{t(`${groupLabel(g)} দিতে পারেন`, `${groupLabel(g)} can give to`)}</dt>
           <dd><strong>{canGiveTo(g).map(groupLabel).join(", ")}</strong></dd>
         </dl>
       ) : <p className="muted">{t("একটি গ্রুপে চাপ দিন।", "Tap a group.")}</p>}
-      <p className="muted">{t("এটি লোহিত কণিকার (সাধারণ রক্ত) সাধারণ নিয়ম। কোন রক্ত দেওয়া হবে তা চূড়ান্ত করবেন হাসপাতালের ডাক্তার, ক্রস-ম্যাচ পরীক্ষার পর।", "This is the general rule for red cells (ordinary blood). The hospital doctor decides after a cross-match test.")}</p>
+      <p className="muted small">{t("চূড়ান্ত মিল দেখবেন হাসপাতালের ডাক্তার।", "The hospital doctor confirms the match.")}</p>
     </>
   );
 }
